@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/TestingSceneDrilon.unity
-=======
 - path: Assets/Scenes/Toms Scene.unity
->>>>>>> origin/branch-tom
   isLoaded: 1
   isActive: 1
   isSubScene: 0
