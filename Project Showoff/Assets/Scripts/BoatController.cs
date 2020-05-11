@@ -5,56 +5,66 @@ using UnityEngine;
 public class BoatController : MonoBehaviour
 {
     public Rigidbody player;
-    GameObject net;
-
-    public float maxVelocity = 10.0f;
-    public float acceleration = 1.1f;
-    public float decceleration = 0.9f;
 
     static Plane XZPlane = new Plane(Vector3.up, Vector3.zero);
-    Vector3 targetPosition;
+    private Vector3 targetPosition;
+    private float angleDiff;
 
-    public float testForce = 10.0f;
+    public float rotationSpeed = 3;
+    public float boatSpeed = 0;
+    public float boatMaxSpeed = 5;
+
+    bool rotateTowardsTarget = false;
 
     private void Start()
     {
         player = GetComponent<Rigidbody>();
-        //targetPosition = player.transform.position;
-        net = transform.GetChild(1).gameObject;
     }
 
     private void Update()
     {
-        //Sail();
         TargetPosition();
-        
-
+        LookAtTarget();
     }
-
 
     private void FixedUpdate()
     {
-        Vector3 direction = (targetPosition - player.transform.position).normalized;
-        player.MovePosition(player.transform.position + direction * acceleration * Time.deltaTime);
-        //Sail();
+        Sail();
     }
 
     private void Sail()
     {
-        float distance = Vector3.Distance(player.transform.position, targetPosition);
-        player.MovePosition(targetPosition);
-        //if (distance > 10)
-        //{
-        //    player.transform.LookAt(hitPoint);
-        //    //player.velocity += transform.forward * (acceleration);
-        //    //player.AddRelativeForce(Vector3.forward * acceleration);
-        //    player.MovePosition(hitPoint);
-        //}
-        //else if (distance < 10)
-        //{
-        //    //player.velocity -= transform.forward * (acceleration);
-        //    player.AddRelativeForce(Vector3.forward * -acceleration);
-        //}
+        transform.position = Vector3.Lerp(transform.position, targetPosition, boatSpeed * Time.deltaTime);
+        //player.AddRelativeForce(Vector3.forward * boatSpeed);
+        if (boatSpeed >= boatMaxSpeed) boatSpeed = boatMaxSpeed;
+
+        if (boatSpeed < boatMaxSpeed && rotateTowardsTarget)
+        {
+            if (angleDiff > 135) boatSpeed += 0.01f;
+            else if (angleDiff > 90) boatSpeed += 0.02f;
+            else if (angleDiff > 45) boatSpeed += 0.03f;
+            else boatSpeed += 0.04f;
+        }
+        else boatSpeed = 0;
+
+    }
+
+    private void LookAtTarget()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+
+        angleDiff = Quaternion.Angle(targetRotation, transform.rotation);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(angleDiff);
+        }
+
+        if (rotateTowardsTarget)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if (angleDiff < 1) rotateTowardsTarget = false; 
+        }
     }
 
     private void TargetPosition()
@@ -68,6 +78,7 @@ public class BoatController : MonoBehaviour
             {
                 targetPosition = ray.GetPoint(distance);
                 targetPosition.y = 0;
+                rotateTowardsTarget = true;
             }
         }
     }

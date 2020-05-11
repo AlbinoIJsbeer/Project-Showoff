@@ -5,12 +5,15 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
+    private Vector3 yAxisOffset;
 
-    public float smoothSpeed = 0.125f;
-    public Vector3 offset;
+    private void Start()
+    {
+        yAxisOffset = new Vector3(0, this.transform.position.y, 0);
+    }
 
     private void LateUpdate()
     {
-        transform.position = target.position + offset;
+        transform.position = target.position + yAxisOffset;
     }
 }
