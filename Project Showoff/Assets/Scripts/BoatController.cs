@@ -38,7 +38,7 @@ public class BoatController : MonoBehaviour
         //player.AddRelativeForce(Vector3.forward * boatSpeed);
         if (boatSpeed >= boatMaxSpeed) boatSpeed = boatMaxSpeed;
 
-        if (boatSpeed < boatMaxSpeed && rotateTowardsTarget)
+        if (boatSpeed < boatMaxSpeed /*&& rotateTowardsTarget*/)
         {
             if (angleDiff > 135) boatSpeed += 0.01f;
             else if (angleDiff > 90) boatSpeed += 0.02f;
@@ -79,6 +79,7 @@ public class BoatController : MonoBehaviour
                 targetPosition = ray.GetPoint(distance);
                 targetPosition.y = 0;
                 rotateTowardsTarget = true;
+                boatSpeed = 0.1f;
             }
         }
     }

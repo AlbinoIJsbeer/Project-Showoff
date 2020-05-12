@@ -63,9 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Collected.cs" />
     <Compile Include="Assets\Scenes\Toms Assets\Scripts\Waves.cs" />
     <Compile Include="Assets\Scripts\BoatController.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\TrashSpawner.cs" />
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>C:/Users/drilo/Desktop/Project Show Off/Project Show-Off/Project Showoff/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>

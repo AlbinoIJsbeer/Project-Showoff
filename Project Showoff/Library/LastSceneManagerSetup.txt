@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Toms Scene.unity
+- path: Assets/Scenes/TestingSceneDrilon.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
