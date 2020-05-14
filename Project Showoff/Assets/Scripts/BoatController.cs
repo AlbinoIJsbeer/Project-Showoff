@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BoatController : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class BoatController : MonoBehaviour
     private int trashRecycled = 0;
     public TMP_Text scoreDisplay;
     private int score = 0;
+    public TMP_Text timeDisplay;
+    private float timer = 120.00f;
 
     private void Start()
     {
@@ -42,7 +45,16 @@ public class BoatController : MonoBehaviour
         trashDisplay.text = trashCollected.ToString();
         trashRecycledDisplay.text = trashRecycled.ToString();
         scoreDisplay.text = score.ToString();
+        timeDisplay.text = timer.ToString("F2");
         boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
+
+        Manager.Instance.score = score;
+        timer -= Time.deltaTime;
+
+        if (timer < 0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void FixedUpdate()
