@@ -48,7 +48,7 @@ public class BoatController : MonoBehaviour
         timeDisplay.text = timer.ToString("F2");
         boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
 
-        Manager.Instance.score = score;
+        //Manager.Instance.score = score;
         timer -= Time.deltaTime;
 
         if (timer < 0)
@@ -134,7 +134,7 @@ public class BoatController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if (Physics.Raycast(ray, out hit))
             {
