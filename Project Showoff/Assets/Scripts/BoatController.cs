@@ -7,11 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class BoatController : MonoBehaviour
 {
-    public Rigidbody player;
-
     static Plane XZPlane = new Plane(Vector3.up, Vector3.zero);
-    private Vector3 targetPosition;
-    private float angleDiff;
+    private Vector3 _targetPosition;
+    private float _angleDiff;
 
     [Range(0, 3)]
     public float rotationSpeed = 1.5f;
@@ -19,42 +17,16 @@ public class BoatController : MonoBehaviour
     public float boatSpeed = 0f;
     bool rotateTowardsTarget = false;
 
-    bool docking = false;
-    bool docked = false;
-    bool checkingDock = true;
-    bool rotateTowardsFinalTarget = false;
-
-    public TMP_Text trashDisplay;
-    private int trashCollected = 0;
-    public TMP_Text trashRecycledDisplay;
-    private int trashRecycled = 0;
-    public TMP_Text scoreDisplay;
-    private int score = 0;
-    public TMP_Text timeDisplay;
-    private float timer = 120.00f;
-
-    private void Start()
-    {
-        player = GetComponent<Rigidbody>();
-    }
+    private bool _docking = false;
+    private bool _docked = false;
+    private bool _checkingDock = true;
+    private bool _rotateTowardsFinalTarget = false;
 
     private void Update()
     {
         TargetPosition();
         LookAtTarget();
-        trashDisplay.text = trashCollected.ToString();
-        trashRecycledDisplay.text = trashRecycled.ToString();
-        scoreDisplay.text = score.ToString();
-        timeDisplay.text = timer.ToString("F2");
         boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
-
-        //Manager.Instance.score = score;
-        timer -= Time.deltaTime;
-
-        if (timer < 0)
-        {
-            SceneManager.LoadScene(2);
-        }
     }
 
     private void FixedUpdate()
@@ -67,30 +39,30 @@ public class BoatController : MonoBehaviour
     {
         float distToDock = Vector3.Distance(transform.position, new Vector3(95, 0, -100));
 
-        if (distToDock < 1 && checkingDock)
+        if (distToDock < 1 && _checkingDock)
         {
-            docked = true;
-            rotateTowardsFinalTarget = true;
-            checkingDock = false;
+            _docked = true;
+            _rotateTowardsFinalTarget = true;
+            _checkingDock = false;
         }
         else if (distToDock > 1)
         {
-            checkingDock = true;
+            _checkingDock = true;
         }
     }
 
     private void Sail()
     {
-        if (docked == false)
+        if (_docked == false)
         {
-            float distance = Vector3.Distance(transform.position, targetPosition);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, boatSpeed * Time.deltaTime);
+            float distance = Vector3.Distance(transform.position, _targetPosition);
+            transform.position = Vector3.Lerp(transform.position, _targetPosition, boatSpeed * Time.deltaTime);
 
             if (distance > 1)
             {
-                if (angleDiff > 135) boatSpeed += 0.01f;
-                else if (angleDiff > 90) boatSpeed += 0.015f;
-                else if (angleDiff > 45) boatSpeed += 0.02f;
+                if (_angleDiff > 135) boatSpeed += 0.01f;
+                else if (_angleDiff > 90) boatSpeed += 0.015f;
+                else if (_angleDiff > 45) boatSpeed += 0.02f;
                 else boatSpeed += 0.025f;
             }
             else
@@ -102,15 +74,15 @@ public class BoatController : MonoBehaviour
 
     private void LookAtTarget()
     {
-        if (docked == false)
+        if (_docked == false)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-            angleDiff = Quaternion.Angle(targetRotation, transform.rotation);
+            Quaternion targetRotation = Quaternion.LookRotation(_targetPosition - transform.position);
+            _angleDiff = Quaternion.Angle(targetRotation, transform.rotation);
 
             if (rotateTowardsTarget)
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                if (angleDiff < 1) rotateTowardsTarget = false;
+                if (_angleDiff < 1) rotateTowardsTarget = false;
             }
         }
         else
@@ -118,12 +90,18 @@ public class BoatController : MonoBehaviour
             Debug.Log("Rotation in progress");
             Vector3 finalRotation = new Vector3(95, 0, 0);
             Quaternion finalRotationQ = Quaternion.LookRotation(finalRotation - transform.position);
-            angleDiff = Quaternion.Angle(finalRotationQ, transform.rotation);
+            _angleDiff = Quaternion.Angle(finalRotationQ, transform.rotation);
 
-            if (rotateTowardsFinalTarget)
+            if (_rotateTowardsFinalTarget)
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, finalRotationQ, rotationSpeed * Time.deltaTime);
-                if (angleDiff < 1) rotateTowardsFinalTarget = false; trashRecycled += trashCollected; score += trashCollected * 10; trashCollected = 0;
+                if (_angleDiff < 1)
+                {
+                    _rotateTowardsFinalTarget = false;
+                    TrashCollector.trashRecycled += TrashCollector.trashCollected;
+                    TrashCollector.score += TrashCollector.trashCollected * 10;
+                    TrashCollector.trashCollected = 0;
+                }
             }     
         }
     }
@@ -140,49 +118,34 @@ public class BoatController : MonoBehaviour
             {
                 if (hit.transform.tag == "Dock")
                 {
-                    docking = true;
+                    _docking = true;
                 }
                 else
                 {
-                    docking = false;
+                    _docking = false;
                 }
             }
 
-            if (!docking)
+            if (!_docking)
             {
                 if (XZPlane.Raycast(ray, out distance))
                 {
                     // Get clicked position and reset y axis to 0
-                    targetPosition = ray.GetPoint(distance);
-                    targetPosition.y = 0;
+                    _targetPosition = ray.GetPoint(distance);
+                    _targetPosition.y = 0;
 
                     // Start rotation towards target
                     rotateTowardsTarget = true;
                     boatSpeed = 0.1f;
-                    docked = false;
+                    _docked = false;
                 }
             }
             else
             {
-                targetPosition = new Vector3(95, 0, -100);
+                _targetPosition = new Vector3(95, 0, -100);
                 rotateTowardsTarget = true;
                 boatSpeed = 0.1f;
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Trash")
-        {
-            if (trashCollected <= 50)
-            {
-                Debug.Log("Collied with Trash");
-                Destroy(other.gameObject);
-                trashCollected++;
-                score++;
-            }
-        }
-    }
-
 }

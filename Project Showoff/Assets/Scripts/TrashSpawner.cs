@@ -4,29 +4,20 @@ using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
 {
-    int z = 0;
-    int x = 0;
-
     public GameObject trash;
     public GameObject sea;
     private BoxCollider col;
+    public int numberOfTrash;
+    private List<Vector3> usedPoints;
 
     public float scale;
     public int octaves;
     public int seed;
     [Range(0, 1)]
     public float persistence;
-    public float lacunarity;
-    
+    public float lacunarity; 
     public Vector2 offset;
-
     public bool autoUpdate;
-
-    public int numberOfTrash;
-
-    private List<Vector3> usedPoints;
-
-    bool printed = false;
 
     void Start()
     {
@@ -89,27 +80,4 @@ public class TrashSpawner : MonoBehaviour
         for (int i = transform.childCount; i > 0; --i)
             DestroyImmediate(transform.GetChild(0).gameObject);
     }
-    //private float[,] calculateNoiseMap()
-    //{
-    //    float[,] noiseMap = new float[(int)col.bounds.size.x, (int)col.bounds.size.z];
-
-    //    if (scale <= 0)
-    //    {
-    //        scale = 0.0001f;
-    //    }
-
-    //    for (int z = 0; z < col.bounds.size.z; z++)
-    //    {
-    //        for (int x = 0; x < col.bounds.size.x; x++)
-    //        {
-    //            float sampleX = x / scale;
-    //            float sampleZ = z / scale;
-
-    //            float perlinValue = Mathf.PerlinNoise(sampleX, sampleZ);
-    //            noiseMap[x, z] = perlinValue;
-    //        }
-    //    }
-
-    //    return noiseMap;
-    //}
 }

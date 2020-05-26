@@ -7,7 +7,7 @@ public class BoatUpgrade : MonoBehaviour
     GameObject smallBoat;
     GameObject mediumBoat;
     GameObject largeBoat;
-    // Start is called before the first frame update
+
     void Start()
     {
         smallBoat = gameObject.transform.GetChild(0).gameObject;
@@ -15,7 +15,6 @@ public class BoatUpgrade : MonoBehaviour
         largeBoat = gameObject.transform.GetChild(2).gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         SwitchBoats();

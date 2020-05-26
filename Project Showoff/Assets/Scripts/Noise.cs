@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Noise class taken from Sebastian Lague, YouTube link : https://www.youtube.com/watch?v=WP-Bm65Q-1Y
+/// </summary>
 public static class Noise
 {
 	public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistence, float lacunarity, Vector2 offset)
