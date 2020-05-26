@@ -7,10 +7,17 @@ public class TrashSpawner : MonoBehaviour
     public GameObject trash;
     public GameObject sea;
     private BoxCollider col;
-
     public int numberOfTrash;
-
     private List<Vector3> usedPoints;
+
+    public float scale;
+    public int octaves;
+    public int seed;
+    [Range(0, 1)]
+    public float persistence;
+    public float lacunarity; 
+    public Vector2 offset;
+    public bool autoUpdate;
 
     void Start()
     {
@@ -21,14 +28,23 @@ public class TrashSpawner : MonoBehaviour
 
     void GenerateObject(GameObject go, int amount)
     {
+        float[,] noiseMap = Noise.GenerateNoiseMap((int)col.bounds.size.x, (int)col.bounds.size.z, seed, scale, octaves, persistence, lacunarity, offset);
+
         if (go == null) return;
 
         for (int i = 0; i < amount; i++)
         {
             GameObject temp = Instantiate(go);
             Vector3 randomPosition = GetRandomPosition();
+
+            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.5f)
+            {
+                randomPosition = GetRandomPosition();
+            }
+
             usedPoints.Add(randomPosition);
             temp.gameObject.transform.position = new Vector3(randomPosition.x, 0, randomPosition.z);
+            temp.transform.SetParent(transform);
         }
     }
 
@@ -38,17 +54,30 @@ public class TrashSpawner : MonoBehaviour
     }
 
     private Vector3 GetRandomPosition()
-    {
-        int xRandom = 0;
-        int zRandom = 0;
+    {      
+        float xRandom = 0;
+        float zRandom = 0;
 
-        xRandom = (int)Random.Range(col.bounds.min.x, col.bounds.max.x);
-        zRandom = (int)Random.Range(col.bounds.min.z, col.bounds.max.z);
+        xRandom = Random.Range(col.bounds.min.x, col.bounds.max.x);
+        zRandom = Random.Range(col.bounds.min.z, col.bounds.max.z);
 
         Vector3 tempVec = new Vector3(xRandom, 0.0f, zRandom);
 
         if (usedPoints.Contains(tempVec)) return GetRandomPosition();
 
         return tempVec;
+    }
+
+    public void GenerateTrash()
+    {
+        usedPoints = new List<Vector3>();
+        col = sea.GetComponent<BoxCollider>();
+        GenerateObjects();
+    }
+
+    public void ClearTrash()
+    {
+        for (int i = transform.childCount; i > 0; --i)
+            DestroyImmediate(transform.GetChild(0).gameObject);
     }
 }
