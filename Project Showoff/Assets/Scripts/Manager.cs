@@ -7,8 +7,13 @@ public class Manager : MonoBehaviour
 {
     public static Manager Instance;
 
+<<<<<<< HEAD
     public string name;
     public int score;
+=======
+    //public string name;
+    //public int score;
+>>>>>>> DrilonBranch
 
     private void Awake()
     {
@@ -25,8 +30,12 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
         name = "";
         score = 0;
+=======
+
+>>>>>>> DrilonBranch
     }
 
     // Update is called once per frame
@@ -37,7 +46,12 @@ public class Manager : MonoBehaviour
 
     private void Reset()
     {
+<<<<<<< HEAD
         name = "";
         score = 0;
+=======
+        //name = "";
+        //score = 0;
+>>>>>>> DrilonBranch
     }
 }

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Project Showoff/Assets/Scripts/BoatUpgrade.cs.meta
 guid: 45a1477a7b37a454ea596bbee1e2c80d
+=======
+guid: 87dfa360a514fbf4b851677844b41063
+>>>>>>> DrilonBranch:Project Showoff/Assets/CodeMonkey Assets/RadarPing.cs.meta
+=======
+guid: 45a1477a7b37a454ea596bbee1e2c80d
+>>>>>>> DrilonBranch
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

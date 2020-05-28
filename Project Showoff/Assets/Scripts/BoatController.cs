@@ -87,7 +87,10 @@ public class BoatController : MonoBehaviour
         }
         else
         {
+<<<<<<< HEAD
             Debug.Log("Rotation in progress");
+=======
+>>>>>>> DrilonBranch
             Vector3 finalRotation = new Vector3(95, 0, 0);
             Quaternion finalRotationQ = Quaternion.LookRotation(finalRotation - transform.position);
             _angleDiff = Quaternion.Angle(finalRotationQ, transform.rotation);
@@ -127,6 +130,7 @@ public class BoatController : MonoBehaviour
             }
 
             if (!_docking)
+<<<<<<< HEAD
             {
                 if (XZPlane.Raycast(ray, out distance))
                 {
@@ -142,10 +146,28 @@ public class BoatController : MonoBehaviour
             }
             else
             {
+=======
+            {
+                if (XZPlane.Raycast(ray, out distance))
+                {
+                    // Get clicked position and reset y axis to 0
+                    _targetPosition = ray.GetPoint(distance);
+                    _targetPosition.y = 0;
+
+                    // Start rotation towards target
+                    rotateTowardsTarget = true;
+                    boatSpeed = 0.1f;
+                    _docked = false;
+                }
+            }
+            else
+            {
+>>>>>>> DrilonBranch
                 _targetPosition = new Vector3(95, 0, -100);
                 rotateTowardsTarget = true;
                 boatSpeed = 0.1f;
             }
         }
     }
+
 }
