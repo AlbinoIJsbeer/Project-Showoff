@@ -4,21 +4,15 @@ using UnityEngine;
 using TMPro;
 
 public class TrashCollector : MonoBehaviour
-{
-    public TMP_Text trashDisplay;
-    public static int trashCollected = 0;
-    public TMP_Text trashRecycledDisplay;
-    public static int trashRecycled = 0;
+{ 
     public TMP_Text scoreDisplay;
+    public TMP_Text trashDisplay;
+    public TMP_Text trashRecycledDisplay;
+
     public static int score = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public static int trashCollected = 0;
+    public static int trashRecycled = 0;
+    
     void Update()
     {
         trashDisplay.text = trashCollected.ToString();
@@ -30,13 +24,13 @@ public class TrashCollector : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            if (trashCollected <= 50)
-            {
-                Debug.Log("Collied with Trash");
+            //if (trashCollected <= 50)
+            //{
+                //Debug.Log("Collied with Trash");
                 Destroy(other.gameObject);
                 trashCollected++;
                 score++;
-            }
+            //}
         }
     }
 }

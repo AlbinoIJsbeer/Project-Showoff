@@ -87,7 +87,6 @@ public class BoatController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Rotation in progress");
             Vector3 finalRotation = new Vector3(95, 0, 0);
             Quaternion finalRotationQ = Quaternion.LookRotation(finalRotation - transform.position);
             _angleDiff = Quaternion.Angle(finalRotationQ, transform.rotation);
@@ -148,4 +147,5 @@ public class BoatController : MonoBehaviour
             }
         }
     }
+
 }

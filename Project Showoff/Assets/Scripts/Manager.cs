@@ -7,8 +7,8 @@ public class Manager : MonoBehaviour
 {
     public static Manager Instance;
 
-    public string name;
-    public int score;
+    //public string name;
+    //public int score;
 
     private void Awake()
     {
@@ -25,8 +25,7 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        name = "";
-        score = 0;
+
     }
 
     // Update is called once per frame
@@ -37,7 +36,7 @@ public class Manager : MonoBehaviour
 
     private void Reset()
     {
-        name = "";
-        score = 0;
+        //name = "";
+        //score = 0;
     }
 }

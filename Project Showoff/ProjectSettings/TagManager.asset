@@ -7,6 +7,8 @@ TagManager:
   - Net
   - Trash
   - Dock
+  - Sweep
+  - RadarSweep
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - Trash
-  - 
+  - Radar
   - 
   - 
   - 
