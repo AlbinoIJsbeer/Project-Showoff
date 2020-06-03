@@ -5,6 +5,9 @@ using UnityEngine;
 public class TrashSpawner : MonoBehaviour
 {
     public GameObject trash;
+
+    public List<GameObject> Trash = new List<GameObject>(21);
+
     public GameObject sea;
     private BoxCollider col;
     public int numberOfTrash;
@@ -26,7 +29,7 @@ public class TrashSpawner : MonoBehaviour
         GenerateObjects();
     }
 
-    void GenerateObject(GameObject go, int amount)
+    void GenerateObject(List<GameObject> go, int amount)
     {
         float[,] noiseMap = Noise.GenerateNoiseMap((int)col.bounds.size.x, (int)col.bounds.size.z, seed, scale, octaves, persistence, lacunarity, offset);
 
@@ -34,23 +37,24 @@ public class TrashSpawner : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject temp = Instantiate(go);
+            GameObject temp = Instantiate(go[Random.Range(0, go.Count)]);
             Vector3 randomPosition = GetRandomPosition();
 
-            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.5f)
+            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.75f)
             {
                 randomPosition = GetRandomPosition();
             }
 
             usedPoints.Add(randomPosition);
-            temp.gameObject.transform.position = new Vector3(randomPosition.x, 0, randomPosition.z);
+            temp.gameObject.transform.position = new Vector3(randomPosition.x, transform.position.y, randomPosition.z);
+            temp.transform.eulerAngles = new Vector3(temp.transform.eulerAngles.x, Random.Range(0, 360), temp.transform.eulerAngles.z);
             temp.transform.SetParent(transform);
         }
     }
 
     void GenerateObjects()
     {
-        GenerateObject(trash, numberOfTrash);
+        GenerateObject(Trash, numberOfTrash);
     }
 
     private Vector3 GetRandomPosition()

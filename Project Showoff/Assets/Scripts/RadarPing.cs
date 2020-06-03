@@ -17,8 +17,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RadarPing : MonoBehaviour {
-
+public class RadarPing : MonoBehaviour 
+{
     private SpriteRenderer spriteRenderer;
     private float disappearTimer;
     private float disappearTimerMax;
