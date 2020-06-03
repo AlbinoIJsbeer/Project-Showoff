@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class BoatController : MonoBehaviour
 {
+    // For mouse click position
     static Plane XZPlane = new Plane(Vector3.up, Vector3.zero);
+
     private Vector3 _targetPosition;
     private float _angleDiff;
 
-    [Range(0, 3)]
     public float rotationSpeed = 1.5f;
-    [Range(0, 5)]
-    public float boatSpeed = 0f;
+    public float boatSpeed;
     bool rotateTowardsTarget = false;
 
     private bool _docking = false;
@@ -31,7 +31,10 @@ public class BoatController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Sail();
+        if (Input.GetMouseButton(0))
+        {
+            Sail();
+        }
         CheckIfDocked();
     }
 
@@ -55,20 +58,23 @@ public class BoatController : MonoBehaviour
     {
         if (_docked == false)
         {
+
             float distance = Vector3.Distance(transform.position, _targetPosition);
             transform.position = Vector3.Lerp(transform.position, _targetPosition, boatSpeed * Time.deltaTime);
+            //boat.AddRelativeForce(Vector3.forward * boatSpeed, ForceMode.Acceleration);
+            boatSpeed = 1f;
 
-            if (distance > 1)
-            {
-                if (_angleDiff > 135) boatSpeed += 0.01f;
-                else if (_angleDiff > 90) boatSpeed += 0.015f;
-                else if (_angleDiff > 45) boatSpeed += 0.02f;
-                else boatSpeed += 0.025f;
-            }
-            else
-            {
-                boatSpeed = 0.0f;
-            }
+            //if (distance > 1)
+            //{
+            //    if (_angleDiff > 135) boatSpeed += 0.01f;
+            //    else if (_angleDiff > 90) boatSpeed += 0.015f;
+            //    else if (_angleDiff > 45) boatSpeed += 0.02f;
+            //    else boatSpeed += 0.025f;
+            //}
+            //else
+            //{
+            //    boatSpeed = 0.02f;
+            //}
         }
     }
 
@@ -140,7 +146,7 @@ public class BoatController : MonoBehaviour
 
                     // Start rotation towards target
                     rotateTowardsTarget = true;
-                    boatSpeed = 0.1f;
+                    //boatSpeed = 0.0f;
                     _docked = false;
                 }
             }
@@ -165,9 +171,12 @@ public class BoatController : MonoBehaviour
 >>>>>>> DrilonBranch
                 _targetPosition = new Vector3(95, 0, -100);
                 rotateTowardsTarget = true;
-                boatSpeed = 0.1f;
+                boatSpeed = 0.0f;
             }
         }
+
+        //if (Input.GetMouseButtonUp(0))
+            //boatSpeed = 0;
     }
 
 }
