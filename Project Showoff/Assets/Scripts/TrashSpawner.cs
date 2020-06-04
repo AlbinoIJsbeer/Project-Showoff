@@ -40,7 +40,7 @@ public class TrashSpawner : MonoBehaviour
             GameObject temp = Instantiate(go[Random.Range(0, go.Count)]);
             Vector3 randomPosition = GetRandomPosition();
 
-            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.75f)
+            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.85f)
             {
                 randomPosition = GetRandomPosition();
             }

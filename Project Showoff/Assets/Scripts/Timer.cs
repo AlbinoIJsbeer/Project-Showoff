@@ -25,6 +25,7 @@ public class Timer : MonoBehaviour
     {
         timeDisplay.text = timer.ToString("F2");
         timer -= Time.deltaTime;
+
         if (timer <= 0)
         {
             scoreManager.Add(new Score
@@ -35,6 +36,6 @@ public class Timer : MonoBehaviour
             ScoreManager.Save(scoreManager);
             SceneManager.LoadScene(2);
         }
-            
+
     }
 }

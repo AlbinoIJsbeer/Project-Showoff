@@ -109,6 +109,10 @@ public class BoatControllerV2 : MonoBehaviour
 		// Dock the boat
 		transform.position = _targetPosition;
 		transform.rotation = new Quaternion(0, 0, 0, 0);
+
+		//TrashCollector.trashRecycled += TrashCollector.trashCollected;
+		TrashCollector.score += TrashCollector.trashCollected * 10;
+		TrashCollector.trashCollected = 0;
 	}
 
 	private void TargetPosition()

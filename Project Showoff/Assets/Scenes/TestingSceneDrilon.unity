@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 2079883959}
-  timer: 10
+  timer: 120
 --- !u!114 &255057491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,8 +995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0254b485e3cbb940988218fc2929b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1.5
-  boatSpeed: 22
+  rotationSpeed: 3
+  boatSpeed: 20
   dock: {fileID: 2142107431}
   upgradeMenu: {fileID: 347104487}
   exitUpgradeMenu: {fileID: 1821862515}

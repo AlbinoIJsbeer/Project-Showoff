@@ -24,13 +24,13 @@ public class TrashCollector : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            //if (trashCollected <= 50)
-            //{
-                //Debug.Log("Collied with Trash");
+            if (trashCollected <= 50)
+            {
+                Debug.Log("Collied with Trash");
                 Destroy(other.gameObject);
                 trashCollected++;
                 score++;
-            //}
+            }
         }
     }
 }
