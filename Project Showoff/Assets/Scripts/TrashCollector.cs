@@ -21,7 +21,7 @@ public class TrashCollector : MonoBehaviour
     {
         boatIndex = ViewSwitch.boatIndex;
 
-        moneyDisplay.text = money.ToString();
+        //moneyDisplay.text = money.ToString();
         trashDisplay.text = trashCollected.ToString();
         trashRecycledDisplay.text = trashRecycled.ToString();
         scoreDisplay.text = score.ToString();
