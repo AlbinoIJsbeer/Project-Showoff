@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
     public class ScoreManager
     {
-        private static string _fileName = "scores.xml"; // Since we don't give a path, this'll be saved in the "bin" folder
+        public static string _fileName = "scores.xml"; // Since we don't give a path, this'll be saved in the "bin" folder
 
         public List<Score> Highscores { get; private set; }
 
@@ -50,13 +50,13 @@ using System.Xml.Serialization;
 
                 var scores = (List<Score>)serilizer.Deserialize(reader);
 
-                return new ScoreManager(scores);
+            return new ScoreManager(scores);
             }
         }
 
         public void UpdateHighscores()
         {
-            Highscores = Scores.Take(5).ToList(); // Takes the first 5 elements
+            Highscores = Scores.Take(4).ToList(); // Takes the first 4 elements
         }
 
         public static void Save(ScoreManager scoreManager)
