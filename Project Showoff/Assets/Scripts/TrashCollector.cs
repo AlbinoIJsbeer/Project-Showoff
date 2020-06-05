@@ -21,9 +21,9 @@ public class TrashCollector : MonoBehaviour
     {
         boatIndex = ViewSwitch.boatIndex;
 
-        moneyDisplay.text = money.ToString();
+        //moneyDisplay.text = money.ToString();
         trashDisplay.text = trashCollected.ToString();
-        trashRecycledDisplay.text = trashRecycled.ToString();
+        //trashRecycledDisplay.text = trashRecycled.ToString();
         scoreDisplay.text = score.ToString();
     }
 
@@ -31,25 +31,27 @@ public class TrashCollector : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            if (boatIndex == 0 && trashCollected <= 50)
+            if (boatIndex == 0 && trashCollected < 50)
             {
-                    Destroy(other.gameObject);
-                    trashCollected++;
-                    score++;
+                Destroy(other.gameObject);
+                trashCollected++;
+                score++;
             }
-            else if (boatIndex == 1 && trashCollected <= 100)
+            else if (boatIndex == 1 && trashCollected < 100)
             {
 
-                    Destroy(other.gameObject);
-                    trashCollected++;
-                    score++;
+                Destroy(other.gameObject);
+                trashCollected++;
+                score++;
             }
-            else if (boatIndex == 2 && trashCollected <= 200)
+            else if (boatIndex == 2 && trashCollected < 200)
             {
-                    Destroy(other.gameObject);
-                    trashCollected++;
-                    score++;
+                Destroy(other.gameObject);
+                trashCollected++;
+                score++;
             }
         }
+        
+    
     }
 }

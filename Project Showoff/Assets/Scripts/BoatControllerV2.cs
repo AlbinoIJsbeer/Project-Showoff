@@ -22,6 +22,8 @@ public class BoatControllerV2 : MonoBehaviour
 	public float boatSpeed = 0;
 	private bool _rotateTowardsTarget;
 
+	private Vector3 pos;
+
 	[SerializeField]
 	private Transform dock;
 	[SerializeField]
@@ -31,6 +33,8 @@ public class BoatControllerV2 : MonoBehaviour
 
 	private void Update()
 	{
+		ClampBoatPosition();
+
 		switch (boatCurrentState)
 		{
 			case BoatState.SAIL:
@@ -46,6 +50,16 @@ public class BoatControllerV2 : MonoBehaviour
 				Docked();
 				break;
 		}
+
+		
+	}
+
+	private void ClampBoatPosition()
+	{
+		pos = transform.position;
+		pos.x = Mathf.Clamp(transform.position.x, -350, 350);
+		pos.z = Mathf.Clamp(transform.position.z, -100, 600);
+		transform.position = pos;
 	}
 
 	private void Sail()

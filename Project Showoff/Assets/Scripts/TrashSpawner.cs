@@ -40,7 +40,7 @@ public class TrashSpawner : MonoBehaviour
             GameObject temp = Instantiate(go[Random.Range(0, go.Count)]);
             Vector3 randomPosition = GetRandomPosition();
 
-            while (noiseMap[(int)randomPosition.x+250, (int)randomPosition.z+125] < 0.85f)
+            while (noiseMap[(int)randomPosition.x + 375, (int)randomPosition.z + 125] < 0.7f)
             {
                 randomPosition = GetRandomPosition();
             }
@@ -74,8 +74,8 @@ public class TrashSpawner : MonoBehaviour
 
     public void GenerateTrash()
     {
-        usedPoints = new List<Vector3>();
-        col = sea.GetComponent<BoxCollider>();
+        //usedPoints = new List<Vector3>();
+        //col = sea.GetComponent<BoxCollider>();
         GenerateObjects();
     }
 
