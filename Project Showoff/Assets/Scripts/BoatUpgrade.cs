@@ -8,12 +8,13 @@ public class BoatUpgrade : MonoBehaviour
     [SerializeField] private GameObject mediumBoat;
     [SerializeField] private GameObject largeBoat;
 
-    private int boatIndex;
+    public static int boatIndex;
 
     void Update()
     {
-        boatIndex = ViewSwitch.boatIndex;
-        SwitchBoats();
+        //boatIndex = ViewSwitch.boatIndex;
+        DebugUpgrade();
+        SwitchBoats();  
     }
 
     void SwitchBoats()
@@ -35,6 +36,22 @@ public class BoatUpgrade : MonoBehaviour
             smallBoat.SetActive(false);
             mediumBoat.SetActive(false);
             largeBoat.SetActive(true);
+        }
+    }
+
+    void DebugUpgrade()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            boatIndex = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            boatIndex = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            boatIndex = 2;
         }
     }
 }

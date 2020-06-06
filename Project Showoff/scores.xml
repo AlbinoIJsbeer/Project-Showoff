@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfScore xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Score>
-    <PlayerName>Test1</PlayerName>
-    <Value>100</Value>
-  </Score>
-  <Score>
-      <PlayerName>Test2</PlayerName>
-      <Value>75</Value>
-  </Score>
-  <Score>
-     <PlayerName>Test3</PlayerName>
-     <Value>50</Value>
-  </Score>
-  <Score>
-      <PlayerName>Test4</PlayerName>
-      <Value>25</Value>
-  </Score>
-  <Score>
-      <PlayerName>Test5</PlayerName>
-      <Value>0</Value>
+    <PlayerName>Test</PlayerName>
+    <Value>0</Value>
   </Score>
 </ArrayOfScore>

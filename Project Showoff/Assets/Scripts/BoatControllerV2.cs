@@ -17,6 +17,9 @@ public class BoatControllerV2 : MonoBehaviour
 	private Vector3 _targetPosition;
 	private float _angleDiff;
 
+	// Field of View
+	private float FOV = 135f;
+
 	// Boat speeds
 	public float rotationSpeed = 1.5f;
 	public float boatSpeed = 0;
@@ -39,8 +42,11 @@ public class BoatControllerV2 : MonoBehaviour
 		{
 			case BoatState.SAIL:
 				TargetPosition();
-				Sail();
-				LookAtTarget();
+				if (CheckIfTargetPositionInFront())
+				{
+					Sail();
+					LookAtTarget();
+				}		
 				upgradeMenu.SetActive(false);
 				break;
 			case BoatState.DOCK:
@@ -54,6 +60,20 @@ public class BoatControllerV2 : MonoBehaviour
 		
 	}
 
+	private bool CheckIfTargetPositionInFront()
+	{
+		float halfFOV = FOV / 2;
+		float halfFOVcos = Mathf.Cos(halfFOV);
+		float DOTProduct = Vector3.Dot(transform.forward, _targetPosition - transform.position);
+		float MultiplicationProduct = Vector3.Magnitude(transform.forward) * Vector3.Magnitude(_targetPosition - transform.position);
+		float thresholdAngle = DOTProduct / MultiplicationProduct;
+
+		if (thresholdAngle >= halfFOVcos)
+			return true;
+		else
+			return false;
+	}
+
 	private void ClampBoatPosition()
 	{
 		pos = transform.position;
@@ -64,15 +84,14 @@ public class BoatControllerV2 : MonoBehaviour
 
 	private void Sail()
 	{
-		boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
-		float distance = Vector3.Distance(transform.position, _targetPosition);
-		transform.position = Vector3.Lerp(transform.position, _targetPosition, boatSpeed * Time.deltaTime);
+			boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
+			float distance = Vector3.Distance(transform.position, _targetPosition);
+			transform.position = Vector3.Lerp(transform.position, _targetPosition, boatSpeed * Time.deltaTime);
 
-		if (distance > 1)
-			boatSpeed = 1;
-		else
-			boatSpeed = 0;
-		
+			if (distance > 1)
+				boatSpeed = 1;
+			else
+				boatSpeed = 0;
 
 		// Increase speed while decreasing angle towars target position
 		//if (distance > 1)
