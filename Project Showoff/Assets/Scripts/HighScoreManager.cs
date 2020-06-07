@@ -24,7 +24,6 @@ public class HighScoreManager : MonoBehaviour
         _scoreReader = new ScoreReader();
         _scoreReader.loadHighScore(TodayNames, TodayScores, AllTimeNames, AllTimeScores);
         ScoreManager.Load();
-
     }
     
 }

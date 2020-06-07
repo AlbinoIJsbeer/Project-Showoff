@@ -5,26 +5,24 @@ using TMPro;
 
 public class TrashCollector : MonoBehaviour
 {
-    public TMP_Text moneyDisplay;
     public TMP_Text scoreDisplay;
+    public TMP_Text moneyDisplay;
     public TMP_Text trashDisplay;
-    public TMP_Text trashRecycledDisplay;
 
-    public static int money = 0;
     public static int score = 0;
-    public static int trashCollected = 0;
-    public static int trashRecycled = 0;
+    private int money = 0;
+    private int trashCollected = 0;
 
     private int boatIndex;
     
     void Update()
     {
         boatIndex = ViewSwitch.boatIndex;
-
         //moneyDisplay.text = money.ToString();
         trashDisplay.text = trashCollected.ToString();
-        //trashRecycledDisplay.text = trashRecycled.ToString();
         scoreDisplay.text = score.ToString();
+
+        EmptyBoatOnDock();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +49,14 @@ public class TrashCollector : MonoBehaviour
                 score++;
             }
         }
-        
-    
+    }
+
+    private void EmptyBoatOnDock()
+    {
+        if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+        {
+            score += trashCollected * 100;
+            trashCollected = 0;
+        }
     }
 }

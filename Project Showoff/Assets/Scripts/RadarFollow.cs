@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RadarFollow : MonoBehaviour
 {
+    // Target for radar to follow
     public Transform target;
     private Vector3 yAxisOffset;
 
+    // Radar scaler
     private Vector3 scaleChange;
 
     void Start()
@@ -19,6 +21,7 @@ public class RadarFollow : MonoBehaviour
     {
         transform.position = target.position + yAxisOffset;
 
+        // Change radar scaler based on boat size
         if (BoatUpgrade.boatIndex == 0)
             scaleChange = new Vector3(1, 1, 1);
         else if (BoatUpgrade.boatIndex == 1)
@@ -26,6 +29,7 @@ public class RadarFollow : MonoBehaviour
         else if (BoatUpgrade.boatIndex == 2)
             scaleChange = new Vector3(2, 1, 2);
 
+        // Scale radar size
         transform.localScale = scaleChange;
     }
 }

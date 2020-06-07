@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RadarCameraFollow : MonoBehaviour
 {
+    // Target for radar camera to follow
     public Transform target;
     private Vector3 yAxisOffset;
     private Camera camera;
@@ -16,6 +17,7 @@ public class RadarCameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        // Change radar camera size based on boat size
         if (BoatUpgrade.boatIndex == 0)
             camera.orthographicSize = 175;
         else if (BoatUpgrade.boatIndex == 1)
@@ -23,6 +25,7 @@ public class RadarCameraFollow : MonoBehaviour
         else if (BoatUpgrade.boatIndex == 2)
             camera.orthographicSize = 350;
 
+        // Radar camera follows the boat
         transform.position = target.position + yAxisOffset;
     }
 }
