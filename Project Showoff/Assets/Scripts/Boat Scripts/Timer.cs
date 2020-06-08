@@ -12,8 +12,8 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        scoreManager = new ScoreManager();
-        ScoreManager.Load();
+        //scoreManager = new ScoreManager();
+        //ScoreManager.Load();
     }
 
     void Update()
@@ -28,12 +28,12 @@ public class Timer : MonoBehaviour
 
         if (timer <= 0)
         {
-            scoreManager.Add(new Score
-            {
-                Value = TrashCollector.score,
-                PlayerName = "Test"
-            });
-            ScoreManager.Save(scoreManager);
+            //scoreManager.Add(new Score
+            //{
+            //    Value = TrashCollector.score,
+            //    PlayerName = "Test"
+            //});
+            //ScoreManager.Save(scoreManager);
             SceneManager.LoadScene(2);
         }
 

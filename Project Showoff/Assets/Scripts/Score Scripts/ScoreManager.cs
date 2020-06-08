@@ -17,7 +17,7 @@ using System.Xml.Serialization;
         public ScoreManager()
           : this(new List<Score>())
         {
-
+            
         }
 
         public ScoreManager(List<Score> scores)
