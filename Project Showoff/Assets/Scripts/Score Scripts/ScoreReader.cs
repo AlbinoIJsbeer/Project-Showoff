@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.XPath;
 using TMPro;
 using UnityEngine;
 
-internal class ScoreReader
+public class ScoreReader
 {
 
     private XmlDocument _xml = new XmlDocument();
     private string[][] Scores = new string[1][];
     private int i = 0;
     private List<string> _names = new List<string>();
-    private List<string> _scores = new List<string>();
+    private List<int> _scores = new List<int>();
+
+    private Dictionary<string, int> PlayerScore = new Dictionary<string, int>(4);
 
     public ScoreReader()
     {
@@ -44,16 +46,31 @@ internal class ScoreReader
         foreach (XPathNavigator Score in navigator.Select("//Value"))
         {
             Debug.Log(Score.Value);
-            _scores.Add(Score.Value.ToString());
+            _scores.Add(Score.ValueAsInt);
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < _names.Count; i++)
         {
-            TodayNames[i].GetComponent<TextMeshProUGUI>().text = _names[i];
-            AllTimeNames[i].GetComponent<TextMeshProUGUI>().text = _names[i];
-            
-            TodayScores[i].GetComponent<TextMeshProUGUI>().text = _scores[i];
-            AllTimeScores[i].GetComponent<TextMeshProUGUI>().text = _scores[i];
+            Debug.Log(_names.Count);
+            PlayerScore.Add(_names[i], _scores[i]);
+        }
+
+        IOrderedEnumerable<KeyValuePair<string, int>> sortedScores = from pair in PlayerScore orderby pair.Value ascending select pair;
+
+        foreach (KeyValuePair<string, int> pair in sortedScores)
+        {
+            TodayNames[0].GetComponent<TextMeshProUGUI>().text = pair.Key;
+            TodayScores[0].GetComponent<TextMeshProUGUI>().text = pair.Value.ToString();
+
+            TodayNames[1].GetComponent<TextMeshProUGUI>().text = pair.Key;
+            TodayScores[1].GetComponent<TextMeshProUGUI>().text = pair.Value.ToString();
+
+            TodayNames[2].GetComponent<TextMeshProUGUI>().text = pair.Key;
+            TodayScores[2].GetComponent<TextMeshProUGUI>().text = pair.Value.ToString();
+
+            TodayNames[3].GetComponent<TextMeshProUGUI>().text = pair.Key;
+            TodayScores[3].GetComponent<TextMeshProUGUI>().text = pair.Value.ToString();
+
         }
 
     }
