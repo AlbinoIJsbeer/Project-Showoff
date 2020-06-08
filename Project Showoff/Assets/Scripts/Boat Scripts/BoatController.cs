@@ -30,6 +30,13 @@ public class BoatController : MonoBehaviour
 	// Navigation distance
 	public float navDist = 75f;
 
+	
+	public float maxFuel = 200f;
+	public float fuel;
+
+	[SerializeField]
+	private Transform fuelGaugeNeedle;
+
 	[SerializeField]
 	private Transform dock;
 	[SerializeField]
@@ -39,6 +46,10 @@ public class BoatController : MonoBehaviour
 
 	private void Update()
 	{
+		fuel = Mathf.Clamp(fuel, 0, maxFuel);
+		fuel -= 0.1f;
+		FuelGauge();
+
 		ClampBoatPosition();
 
 		switch (boatCurrentState)
@@ -64,6 +75,12 @@ public class BoatController : MonoBehaviour
 				Docked();
 				break;
 		}
+	}
+
+	private void FuelGauge()
+	{
+		float fuelPercentage = fuel / maxFuel;
+		fuelGaugeNeedle.transform.rotation = Quaternion.Euler(0, 0, 90 + (-180 * fuelPercentage));
 	}
 
 	private bool CheckIfTargetPositionInFront()
