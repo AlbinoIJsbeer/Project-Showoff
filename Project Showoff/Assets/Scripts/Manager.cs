@@ -11,8 +11,23 @@ public class Manager : MonoBehaviour
     public static string Name { get; set; }
     public static int Score;
 
+    public static Language _language = Language.ENGLISH;
+
+    private GameObject[] DutchGameObjects;
+    private GameObject[] EnglishGameObjects;
+    private GameObject[] GermanGameObjects;
+
     private void Awake()
     {
+
+        DutchGameObjects = GameObject.FindGameObjectsWithTag("Dutch");
+        EnglishGameObjects = GameObject.FindGameObjectsWithTag("English");
+        GermanGameObjects = GameObject.FindGameObjectsWithTag("German");
+
+        Debug.Log(DutchGameObjects.Length);
+        Debug.Log(EnglishGameObjects.Length);
+        Debug.Log(GermanGameObjects.Length);
+
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -23,16 +38,42 @@ public class Manager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        switch (_language)
+        {
+            case Language.DUTCH:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(true);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(false);
+                break;
+            case Language.ENGLISH:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(true);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(false);
+                break;
+            case Language.GERMAN:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(true);
+                break;
+        }
     }
 
     public void SetPlayerNickName(string value)
