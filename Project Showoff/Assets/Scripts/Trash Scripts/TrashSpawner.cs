@@ -74,8 +74,6 @@ public class TrashSpawner : MonoBehaviour
 
     public void GenerateTrash()
     {
-        //usedPoints = new List<Vector3>();
-        //col = sea.GetComponent<BoxCollider>();
         GenerateObjects();
     }
 

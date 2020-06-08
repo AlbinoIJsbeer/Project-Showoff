@@ -5,6 +5,10 @@ using TMPro;
 
 public class TrashCollector : MonoBehaviour
 {
+    public int smallBoatCapacity = 50;
+    public int mediumBoatCapacity = 100;
+    public int largeBoatCapacity = 150;
+
     public TMP_Text scoreDisplay;
     public TMP_Text moneyDisplay;
     public TMP_Text trashDisplay;
@@ -29,20 +33,20 @@ public class TrashCollector : MonoBehaviour
     {
         if (other.tag == "Trash")
         {
-            if (boatIndex == 0 && trashCollected < 50)
+            if (boatIndex == 0 && trashCollected < smallBoatCapacity)
             {
                 Destroy(other.gameObject);
                 trashCollected++;
                 score++;
             }
-            else if (boatIndex == 1 && trashCollected < 100)
+            else if (boatIndex == 1 && trashCollected < mediumBoatCapacity)
             {
 
                 Destroy(other.gameObject);
                 trashCollected++;
                 score++;
             }
-            else if (boatIndex == 2 && trashCollected < 200)
+            else if (boatIndex == 2 && trashCollected < largeBoatCapacity)
             {
                 Destroy(other.gameObject);
                 trashCollected++;

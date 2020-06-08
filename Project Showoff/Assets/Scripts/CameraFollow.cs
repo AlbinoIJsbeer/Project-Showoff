@@ -23,6 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
+        // REMOVE STATIC VARs
         if (BoatUpgrade.boatIndex == 0)
             offset = Vector3.Lerp(offset, smallOffset, 0.01f);
         else if (BoatUpgrade.boatIndex == 1)

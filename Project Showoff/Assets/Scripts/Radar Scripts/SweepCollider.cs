@@ -21,20 +21,22 @@ public class SweepCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Pings trash on radar
         if (other.tag == "Trash")
         {
             // If the object has been already detected within half rotation of the sweep then skip
             if (!colliders.Contains(other))
             {
                 RadarPing ping = Instantiate(radarPing, other.transform.position, Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
-                //ping.SetColor(new Color(1, 1, 0, 1));
                 ping.transform.parent = radarPings.transform;
                 colliders.Add(other);
             }
         }
 
+        // Pings dock on radar
         if (other.tag == "Dock")
         {
+            // If the object has been already detected within half rotation of the sweep then skip
             if (!colliders.Contains(other))
             {
                 RadarPing ping = Instantiate(radarPing, new Vector3(other.transform.position.x, 0, other.transform.position.z), Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
@@ -42,8 +44,7 @@ public class SweepCollider : MonoBehaviour
                 ping.transform.localScale = new Vector3(25, 25, 25);
                 ping.transform.parent = radarPings.transform;
                 colliders.Add(other);
-            }
-            
+            }    
         }   
     }
 }

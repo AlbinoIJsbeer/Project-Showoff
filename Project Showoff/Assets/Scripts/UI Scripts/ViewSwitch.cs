@@ -49,6 +49,7 @@ public class ViewSwitch : MonoBehaviour
         }
     }
 
+    // For the "Next Button"
     public void Next()
     {
         if (index == 2)
@@ -57,6 +58,7 @@ public class ViewSwitch : MonoBehaviour
             index++;
     }
 
+    // For the "Previous Button"
     public void Previous()
     {
         if (index == 0)
@@ -65,6 +67,7 @@ public class ViewSwitch : MonoBehaviour
             index--;
     }
 
+    // For the "Upgrade Button"
     public void Upgrade()
     {
         if (index == 0)

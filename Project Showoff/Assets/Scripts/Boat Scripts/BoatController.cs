@@ -27,6 +27,9 @@ public class BoatController : MonoBehaviour
 	// For clamping movement
 	private Vector3 pos;
 
+	// Navigation distance
+	public float navDist = 75f;
+
 	[SerializeField]
 	private Transform dock;
 	[SerializeField]
@@ -42,7 +45,7 @@ public class BoatController : MonoBehaviour
 		{
 			case BoatState.SAIL:
 				TargetPosition();
-				if (CheckIfTargetPositionInFront())
+				if (CheckIfTargetPositionInFront() && NavDistance())
 				{
 					Sail();
 					LookAtTarget();
@@ -77,6 +80,16 @@ public class BoatController : MonoBehaviour
 			return false;
 	}
 
+	private bool NavDistance()
+	{
+		float distanceToTargetPosition = Vector3.Distance(transform.position, _targetPosition);
+
+		if (distanceToTargetPosition < navDist)
+			return true;
+		else
+			return false;
+	}
+
 	private void ClampBoatPosition()
 	{
 		pos = transform.position;
@@ -99,31 +112,25 @@ public class BoatController : MonoBehaviour
 		//	boatSpeed = 0;
 
 		//Version 2
+		// Boat moves only forward
 		Vector3 heading = _targetPosition - transform.position;
 		Vector3 force = Vector3.Project(heading, transform.forward);
 		Vector3 tempPosition = transform.position + force;
+		transform.position = Vector3.Slerp(transform.position, tempPosition, boatSpeed * Time.deltaTime);
 
-		float distanceT = Vector3.Distance(transform.position, tempPosition);
-		transform.position = Vector3.Lerp(transform.position, tempPosition, boatSpeed * Time.deltaTime);
+		float distance = Vector3.Distance(transform.position, tempPosition);
 
-
-		if (distanceT > 1)
-			boatSpeed = 1;
+		if (distance > 1)
+		{
+			if (_angleDiff > 35) boatSpeed = 0.7f;
+			else if (_angleDiff > 15) boatSpeed = 0.8f;
+			else if (_angleDiff > 7.5f) boatSpeed = 0.9f;
+			else boatSpeed = 1f;
+		}
 		else
+		{
 			boatSpeed = 0;
-
-		// Increase speed while decreasing angle towars target position
-		//if (distance > 1)
-		//{
-		//	if (_angleDiff > 135) boatSpeed += 0.01f;
-		//	else if (_angleDiff > 90) boatSpeed += 0.015f;
-		//	else if (_angleDiff > 45) boatSpeed += 0.02f;
-		//	else boatSpeed += 0.025f;
-		//}
-		//else
-		//{
-		//	boatSpeed = 0.02f;
-		//}
+		}
 	}
 
 	private void LookAtTarget()
@@ -144,10 +151,12 @@ public class BoatController : MonoBehaviour
 	{
 		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
+
 		if (distance < 50)
 		{
 			boatCurrentState = BoatState.DOCKED;
 		}
+
 		Sail();
 		LookAtTarget();
 	}
@@ -160,7 +169,7 @@ public class BoatController : MonoBehaviour
 
 		// Dock the boat
 		transform.position = _targetPosition;
-		transform.rotation = new Quaternion(0, 0, 0, 0);	
+		transform.rotation = new Quaternion(0, 0, 0, 0);
 	}
 
 	private void TargetPosition()
