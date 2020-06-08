@@ -29,6 +29,11 @@ public class TrashCollector : MonoBehaviour
         EmptyBoatOnDock();
     }
 
+    void FixedUpdate()
+    {
+        Manager.Score = score;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Trash")
