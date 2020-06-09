@@ -23,17 +23,34 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        // REMOVE STATIC VARs
+        if (BoatController.boatCurrentState == BoatController.BoatState.SAIL)
+            SailCamera();
+        else if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+            DockedCamera();      
+    }
+
+    //private void LateUpdate()
+    //{
+    //    transform.position = target.position + offset;
+    //}
+
+    private void DockedCamera()
+    {
+        transform.position = new Vector3(100, 25, -10);
+        transform.eulerAngles = new Vector3(15, 160, 0);
+    }
+
+    private void SailCamera()
+    {
+        transform.eulerAngles = new Vector3(45, 0, 0);
+
         if (BoatUpgrade.boatIndex == 0)
             offset = Vector3.Lerp(offset, smallOffset, 0.01f);
         else if (BoatUpgrade.boatIndex == 1)
             offset = Vector3.Lerp(offset, mediumOffset, 0.01f);
         else if (BoatUpgrade.boatIndex == 2)
             offset = Vector3.Lerp(offset, largeOffset, 0.01f);
-    }
 
-    private void LateUpdate()
-    {
         transform.position = target.position + offset;
     }
 }

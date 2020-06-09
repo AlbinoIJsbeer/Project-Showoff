@@ -12,7 +12,7 @@ public class BoatUpgrade : MonoBehaviour
 
     void Update()
     {
-        //boatIndex = ViewSwitch.boatIndex;
+        boatIndex = ViewSwitch.boatIndex;
         DebugUpgrade();
         SwitchBoats();  
     }
@@ -23,19 +23,23 @@ public class BoatUpgrade : MonoBehaviour
         {
             smallBoat.SetActive(true);
             mediumBoat.SetActive(false);
-            largeBoat.SetActive(false);     
+            largeBoat.SetActive(false);
+
+            
         }
         else if (boatIndex == 1)
         {
             smallBoat.SetActive(false);
             mediumBoat.SetActive(true);
             largeBoat.SetActive(false);
+
         }
         else if (boatIndex == 2)
         {
             smallBoat.SetActive(false);
             mediumBoat.SetActive(false);
             largeBoat.SetActive(true);
+
         }
     }
 

@@ -15,6 +15,9 @@ public class ViewSwitch : MonoBehaviour
     private int index = 0;
     public static int boatIndex = 0;
 
+    private int mediumBoatCost = 4500;
+    private int largeBoatCost = 10000;
+
     private void Update()
     {
         // Boat preview and stats in Upgrade Menu
@@ -72,10 +75,22 @@ public class ViewSwitch : MonoBehaviour
     public void Upgrade()
     {
         if (index == 0)
+        {
             boatIndex = 0;
-        else if (index == 1)
+        }
+        else if (index == 1 && TrashCollector.money >= mediumBoatCost)
+        {
+            BoatController.maxFuel = 150;
+            BoatController.fuel = 150;        
+            TrashCollector.money -= mediumBoatCost;
             boatIndex = 1;
-        else if (index == 2)
+        }
+        else if (index == 2 && TrashCollector.money >= largeBoatCost)
+        {
+            BoatController.maxFuel = 200;
+            BoatController.fuel = 200;
+            TrashCollector.money -= largeBoatCost;
             boatIndex = 2;
+        }
     }
 }

@@ -22,6 +22,7 @@ public class BoatController : MonoBehaviour
 	// Boat speeds
 	public float rotationSpeed = 1.5f;
 	public float boatSpeed = 0;
+	public float maxBoatSpeed = 1f;
 	private bool _rotateTowardsTarget;
 
 	// For clamping movement
@@ -30,45 +31,42 @@ public class BoatController : MonoBehaviour
 	// Navigation distance
 	public float navDist = 75f;
 	
-	public float maxFuel = 100;
-	public float fuel = 100;
+	public static float maxFuel;
+	public static float fuel;
 
-	[SerializeField]
-	private Transform fuelGaugeNeedle;
+	[SerializeField] private Transform fuelGaugeNeedle;
+	[SerializeField] private GameObject lowFuelNotification;
 
-	[SerializeField]
-	private Transform dock;
-	[SerializeField]
-	private GameObject upgradeMenu;
-	[SerializeField]
-	private Button exitUpgradeMenu;
+	[SerializeField] private Transform dock;
+	[SerializeField] private GameObject dockMenu;
 
 	private void Start()
 	{
-		//fuel = 100;
+		maxFuel = 100;
+		fuel = maxFuel;
+		TrashCollector.OnRefuel += Refuel;
 	}
 
 	private void Update()
 	{
+		MaxSpeed();
 		FuelGauge();
 		ClampBoatPosition();
 
 		switch (boatCurrentState)
 		{
 			case BoatState.SAIL:
+				Time.timeScale = 1;
 				TargetPosition();
-				if (CheckIfTargetPositionInFront() && NavDistance())
+				if (CheckIfTargetPositionInFront() && NavDistance() && fuel > 0)
 				{
 					Sail();
 					LookAtTarget();				
 				}
-				upgradeMenu.SetActive(false);
 				break;
 			case BoatState.DOCK:
 				if (CheckIfTargetPositionInFront())
-				{
 					Dock();
-				}
 				else
 					boatCurrentState = BoatState.SAIL;
 				break;
@@ -76,15 +74,50 @@ public class BoatController : MonoBehaviour
 				Docked();
 				break;
 		}
+	}
 
-		
+	private void MaxSpeed()
+	{
+		if (BoatUpgrade.boatIndex == 0)
+		{
+			maxBoatSpeed = 1.0f;
+			rotationSpeed = 1.5f;
+		}
+		else if (BoatUpgrade.boatIndex == 1)
+		{
+			maxBoatSpeed = 0.8f;
+			rotationSpeed = 1.25f;
+		}
+		else if (BoatUpgrade.boatIndex == 2)
+		{
+			maxBoatSpeed = 0.6f;
+			rotationSpeed = 1f;
+		}
+	}
+
+	public void Refuel()
+	{
+		fuel += 50;
+	}
+
+	public void SetSailState()
+	{
+		boatCurrentState = BoatState.SAIL;
+		transform.position = new Vector3(125, 0, -10);
 	}
 
 	private void FuelGauge()
 	{
+		// Fuel gauge needle shows how much fuel is left
 		fuel = Mathf.Clamp(fuel, 0, maxFuel);
 		float fuelPercentage = fuel / maxFuel;
 		fuelGaugeNeedle.transform.rotation = Quaternion.Euler(0, 0, (90 - (180 * fuelPercentage)));
+
+		// Notification for when the fuel is low
+		if (90 >= fuelGaugeNeedle.eulerAngles.z && fuelGaugeNeedle.eulerAngles.z >= 45)
+			lowFuelNotification.SetActive(true);
+		else
+			lowFuelNotification.SetActive(false);
 	}
 
 	private bool CheckIfTargetPositionInFront()
@@ -124,7 +157,7 @@ public class BoatController : MonoBehaviour
 
 	private void Sail()
 	{
-		boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
+		boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, maxBoatSpeed);
 
 		//Version 2
 		// Boat moves only forward while turning as well
@@ -148,7 +181,7 @@ public class BoatController : MonoBehaviour
 		}
 		else
 		{
-			boatSpeed = 0;
+			boatSpeed -= 0.01f;
 		}
 	}
 
@@ -168,7 +201,7 @@ public class BoatController : MonoBehaviour
 
 	private void Dock()
 	{
-		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z);
+		_targetPosition = new Vector3(dock.transform.position.x + 25, 0, dock.transform.position.z + 15);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
 		// If near dock then switch to DOCKED state
@@ -184,8 +217,8 @@ public class BoatController : MonoBehaviour
 	private void Docked()
 	{
 		// Activate Upgrade Menu
-		upgradeMenu.SetActive(true);
-		exitUpgradeMenu.onClick.AddListener(delegate { boatCurrentState = BoatState.SAIL; });
+		dockMenu.SetActive(true);
+		Time.timeScale = 0;
 
 		// Dock the boat
 		transform.position = _targetPosition;

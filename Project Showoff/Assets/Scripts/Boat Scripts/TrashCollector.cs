@@ -5,69 +5,79 @@ using TMPro;
 
 public class TrashCollector : MonoBehaviour
 {
-    public int smallBoatCapacity = 50;
-    public int mediumBoatCapacity = 100;
-    public int largeBoatCapacity = 150;
+	public delegate void Refuel();
+	public static event Refuel OnRefuel;
 
-    [SerializeField] private TMP_Text scoreDisplay;
-    [SerializeField] private TMP_Text moneyDisplay;
-    [SerializeField] private TMP_Text trashDisplay;
+	public int smallBoatCapacity = 50;
+	public int mediumBoatCapacity = 100;
+	public int largeBoatCapacity = 150;
 
-    private int score = 0;
-    private int money = 0;
-    private int trashCollected = 0;
+	[SerializeField] private TMP_Text scoreDisplay;
+	[SerializeField] private TMP_Text moneyDisplay;
+	[SerializeField] private TMP_Text trashDisplay;
 
-    private int boatIndex;
-    
-    void Update()
-    {
-        boatIndex = ViewSwitch.boatIndex;
+	private int score = 0;
+	public static int money = 0;
+	private int trashCollected = 0;
 
-        moneyDisplay.text = money.ToString();
-        trashDisplay.text = trashCollected.ToString();
-        scoreDisplay.text = score.ToString();
+	private int boatIndex;
 
-        EmptyBoatOnDock();
-    }
+	void Update()
+	{
+		boatIndex = ViewSwitch.boatIndex;
 
-    void FixedUpdate()
-    {
-        Manager.Score = score;
-    }
+		moneyDisplay.text = money.ToString();
+		trashDisplay.text = trashCollected.ToString();
+		scoreDisplay.text = score.ToString();
+	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Trash")
-        {
-            if (boatIndex == 0 && trashCollected < smallBoatCapacity)
-            {
-                Destroy(other.gameObject);
-                trashCollected++;
-                score++;
-            }
-            else if (boatIndex == 1 && trashCollected < mediumBoatCapacity)
-            {
+	void FixedUpdate()
+	{
+		Manager.Score = score;
+	}
 
-                Destroy(other.gameObject);
-                trashCollected++;
-                score++;
-            }
-            else if (boatIndex == 2 && trashCollected < largeBoatCapacity)
-            {
-                Destroy(other.gameObject);
-                trashCollected++;
-                score++;
-            }
-        }
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Trash")
+		{
+			if (boatIndex == 0 && trashCollected < smallBoatCapacity)
+			{
+				Destroy(other.gameObject);
+				trashCollected++;
+				score += 10;
+			}
+			else if (boatIndex == 1 && trashCollected < mediumBoatCapacity)
+			{
 
-    private void EmptyBoatOnDock()
-    {
-        if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
-        {
-            score += trashCollected * 100;
-            money += trashCollected * 100;
-            trashCollected = 0;
-        }
-    }
+				Destroy(other.gameObject);
+				trashCollected++;
+				score += 10;
+			}
+			else if (boatIndex == 2 && trashCollected < largeBoatCapacity)
+			{
+				Destroy(other.gameObject);
+				trashCollected++;
+				score += 10;
+			}
+		}
+	}
+
+	public void Deposit()
+	{
+		score += trashCollected * 10;
+		money += trashCollected * 50;
+		trashCollected = 0;
+	}
+
+	public void BuyFuel()
+	{
+		if (money >= 100)
+		{
+			if (BoatController.fuel < BoatController.maxFuel)
+			{
+				OnRefuel?.Invoke();
+				money -= 100;
+			}
+		}
+	}
 }
