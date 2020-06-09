@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfScore xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Score>
-    <Value>0</Value>
+    <PlayerName>Tom</PlayerName>
+    <Value>50</Value>
   </Score>
-</ArrayOfScore>
+</ArrayOfScore>fScore>

@@ -9,6 +9,9 @@ TagManager:
   - Dock
   - Sweep
   - RadarSweep
+  - Dutch
+  - English
+  - German
   layers:
   - Default
   - TransparentFX
