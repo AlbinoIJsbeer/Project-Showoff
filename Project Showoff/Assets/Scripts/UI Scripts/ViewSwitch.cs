@@ -17,6 +17,7 @@ public class ViewSwitch : MonoBehaviour
 
     private void Update()
     {
+        // Boat preview and stats in Upgrade Menu
         if (index == 0)
         {
             smallBoatView.SetActive(true);
@@ -49,7 +50,7 @@ public class ViewSwitch : MonoBehaviour
         }
     }
 
-    // For the "Next Button"
+    // For the "Next Button" in Upgrade Menu
     public void Next()
     {
         if (index == 2)
@@ -58,7 +59,7 @@ public class ViewSwitch : MonoBehaviour
             index++;
     }
 
-    // For the "Previous Button"
+    // For the "Previous Button" in Upgrade Menu
     public void Previous()
     {
         if (index == 0)
@@ -67,7 +68,7 @@ public class ViewSwitch : MonoBehaviour
             index--;
     }
 
-    // For the "Upgrade Button"
+    // For the "Upgrade Button" in Upgrade Menu
     public void Upgrade()
     {
         if (index == 0)

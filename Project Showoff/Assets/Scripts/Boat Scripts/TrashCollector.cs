@@ -9,11 +9,11 @@ public class TrashCollector : MonoBehaviour
     public int mediumBoatCapacity = 100;
     public int largeBoatCapacity = 150;
 
-    public TMP_Text scoreDisplay;
-    public TMP_Text moneyDisplay;
-    public TMP_Text trashDisplay;
+    [SerializeField] private TMP_Text scoreDisplay;
+    [SerializeField] private TMP_Text moneyDisplay;
+    [SerializeField] private TMP_Text trashDisplay;
 
-    public static int score = 0;
+    private int score = 0;
     private int money = 0;
     private int trashCollected = 0;
 
@@ -22,7 +22,8 @@ public class TrashCollector : MonoBehaviour
     void Update()
     {
         boatIndex = ViewSwitch.boatIndex;
-        //moneyDisplay.text = money.ToString();
+
+        moneyDisplay.text = money.ToString();
         trashDisplay.text = trashCollected.ToString();
         scoreDisplay.text = score.ToString();
 
@@ -65,6 +66,7 @@ public class TrashCollector : MonoBehaviour
         if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
         {
             score += trashCollected * 100;
+            money += trashCollected * 100;
             trashCollected = 0;
         }
     }

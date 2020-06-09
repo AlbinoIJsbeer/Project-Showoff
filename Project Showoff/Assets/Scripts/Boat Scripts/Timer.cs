@@ -10,12 +10,6 @@ public class Timer : MonoBehaviour
     public float timer = 120.00f;
     public ScoreManager scoreManager;
 
-    void Start()
-    {
-        //scoreManager = new ScoreManager();
-        //ScoreManager.Load();
-    }
-
     void Update()
     {
         TimerCountdown();
@@ -23,19 +17,22 @@ public class Timer : MonoBehaviour
 
     private void TimerCountdown()
     {
-        timeDisplay.text = timer.ToString("F2");
+        int min = Mathf.FloorToInt(timer / 60);
+        int sec = Mathf.FloorToInt(timer % 60);
+
+        if (sec == 0)
+            timeDisplay.color = new Color(1, 0, 0, 1);
+        else
+            timeDisplay.color = new Color(1, 1, 1, 1);
+
+        timeDisplay.text = min.ToString("00") + ":" + sec.ToString("00");
+
+        
         timer -= Time.deltaTime;
 
         if (timer <= 0)
         {
-            //scoreManager.Add(new Score
-            //{
-            //    Value = TrashCollector.score,
-            //    PlayerName = "Test"
-            //});
-            //ScoreManager.Save(scoreManager);
             SceneManager.LoadScene(2);
         }
-
     }
 }

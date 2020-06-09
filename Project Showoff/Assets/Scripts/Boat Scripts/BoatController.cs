@@ -17,7 +17,7 @@ public class BoatController : MonoBehaviour
 	private float _angleDiff;
 
 	// Field of View
-	private float FOV = 90f;
+	private float FOV = 180f;
 
 	// Boat speeds
 	public float rotationSpeed = 1.5f;
@@ -29,10 +29,9 @@ public class BoatController : MonoBehaviour
 
 	// Navigation distance
 	public float navDist = 75f;
-
 	
-	public float maxFuel = 200f;
-	public float fuel;
+	public float maxFuel = 100;
+	public float fuel = 100;
 
 	[SerializeField]
 	private Transform fuelGaugeNeedle;
@@ -44,12 +43,14 @@ public class BoatController : MonoBehaviour
 	[SerializeField]
 	private Button exitUpgradeMenu;
 
+	private void Start()
+	{
+		//fuel = 100;
+	}
+
 	private void Update()
 	{
-		fuel = Mathf.Clamp(fuel, 0, maxFuel);
-		fuel -= 0.1f;
 		FuelGauge();
-
 		ClampBoatPosition();
 
 		switch (boatCurrentState)
@@ -59,7 +60,7 @@ public class BoatController : MonoBehaviour
 				if (CheckIfTargetPositionInFront() && NavDistance())
 				{
 					Sail();
-					LookAtTarget();
+					LookAtTarget();				
 				}
 				upgradeMenu.SetActive(false);
 				break;
@@ -75,16 +76,20 @@ public class BoatController : MonoBehaviour
 				Docked();
 				break;
 		}
+
+		
 	}
 
 	private void FuelGauge()
 	{
+		fuel = Mathf.Clamp(fuel, 0, maxFuel);
 		float fuelPercentage = fuel / maxFuel;
-		fuelGaugeNeedle.transform.rotation = Quaternion.Euler(0, 0, 90 + (-180 * fuelPercentage));
+		fuelGaugeNeedle.transform.rotation = Quaternion.Euler(0, 0, (90 - (180 * fuelPercentage)));
 	}
 
 	private bool CheckIfTargetPositionInFront()
 	{
+		// Check if the target position is within the field of view
 		float halfFOV = FOV / 2;
 		float halfFOVcos = Mathf.Cos(halfFOV);
 		float DOTProduct = Vector3.Dot(transform.forward, _targetPosition - transform.position);
@@ -99,6 +104,7 @@ public class BoatController : MonoBehaviour
 
 	private bool NavDistance()
 	{
+		// Check if target position is within navigation distance
 		float distanceToTargetPosition = Vector3.Distance(transform.position, _targetPosition);
 
 		if (distanceToTargetPosition < navDist)
@@ -109,6 +115,7 @@ public class BoatController : MonoBehaviour
 
 	private void ClampBoatPosition()
 	{
+		// Clamp boat position so it does not go off the map
 		pos = transform.position;
 		pos.x = Mathf.Clamp(transform.position.x, -350, 350);
 		pos.z = Mathf.Clamp(transform.position.z, -100, 600);
@@ -119,17 +126,8 @@ public class BoatController : MonoBehaviour
 	{
 		boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, 5.0f);
 
-		// Version 1
-		//float distance = Vector3.Distance(transform.position, _targetPosition);
-		//transform.position = Vector3.Lerp(transform.position, _targetPosition, boatSpeed * Time.deltaTime);
-
-		//if (distance > 1)
-		//	boatSpeed = 1;
-		//else
-		//	boatSpeed = 0;
-
 		//Version 2
-		// Boat moves only forward
+		// Boat moves only forward while turning as well
 		Vector3 heading = _targetPosition - transform.position;
 		Vector3 force = Vector3.Project(heading, transform.forward);
 		Vector3 tempPosition = transform.position + force;
@@ -137,12 +135,16 @@ public class BoatController : MonoBehaviour
 
 		float distance = Vector3.Distance(transform.position, tempPosition);
 
+		// Increase speed while the angle between the boat and target position gets smaller
+		// If boat is on the target position then turn speed down to 0
 		if (distance > 1)
 		{
 			if (_angleDiff > 35) boatSpeed = 0.7f;
 			else if (_angleDiff > 15) boatSpeed = 0.8f;
 			else if (_angleDiff > 7.5f) boatSpeed = 0.9f;
 			else boatSpeed = 1f;
+
+			fuel -= 0.01f;
 		}
 		else
 		{
@@ -169,6 +171,7 @@ public class BoatController : MonoBehaviour
 		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
+		// If near dock then switch to DOCKED state
 		if (distance < 50)
 		{
 			boatCurrentState = BoatState.DOCKED;

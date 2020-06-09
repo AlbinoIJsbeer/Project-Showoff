@@ -23,17 +23,6 @@ public class Manager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetPlayerNickName(string value)
     {
@@ -45,11 +34,5 @@ public class Manager : MonoBehaviour
         Name = value;
         Manager.Name = Name;
         Debug.Log(Manager.Name);
-    }
-
-    private void Reset()
-    {
-        //name = "";
-        //score = 0;
     }
 }

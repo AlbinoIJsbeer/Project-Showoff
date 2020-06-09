@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+	// This bool will be used for the audiolistener to continue
 	public static bool GameIsPaused = false;
 
 	private void Start()
