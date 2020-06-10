@@ -8,10 +8,10 @@ public class Manager : MonoBehaviour
 {
     public static Manager Instance;
 
-    public static string Name { get; set; }
-    public static int Score;
+    public string Name { get; set; }
+    public int Score;
 
-    public static Language _language = Language.ENGLISH;
+    public Language _language = Language.ENGLISH;
 
 
 
@@ -46,8 +46,7 @@ public class Manager : MonoBehaviour
             return;
         }
         Name = value;
-        Manager.Name = Name;
-        Debug.Log(Manager.Name);
+        Debug.Log(Name);
     }
 
     private void Reset()

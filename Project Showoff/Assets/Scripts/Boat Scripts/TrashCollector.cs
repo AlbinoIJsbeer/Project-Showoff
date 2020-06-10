@@ -33,7 +33,7 @@ public class TrashCollector : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Manager.Score = score;
+		Manager.Instance.Score = score;
 	}
 
 	private void OnTriggerEnter(Collider other)

@@ -11,8 +11,8 @@ public class SaveAndCopyScore : MonoBehaviour
 
     void Awake()
     {
-        _score = Manager.Score;
-        _name = Manager.Name;
+        _score = Manager.Instance.Score;
+        _name = Manager.Instance.Name;
 
         _scoreManager = new ScoreManager();
         ScoreManager.Load();

@@ -30,22 +30,22 @@ public class SetLanguage : MonoBehaviour
 
     public void SetLanguageDutch()
     {
-        Manager._language = Language.DUTCH;
+        Manager.Instance._language = Language.DUTCH;
     }
 
     public void SetLanguageEnglish()
     {
-        Manager._language = Language.ENGLISH;
+        Manager.Instance._language = Language.ENGLISH;
     }
 
     public void SetLanguageGerman()
     {
-        Manager._language = Language.GERMAN;
+        Manager.Instance._language = Language.GERMAN;
     }
 
     void Update()
     {
-        switch (Manager._language)
+        switch (Manager.Instance._language)
         {
             case Language.DUTCH:
                 foreach (GameObject _object in DutchGameObjects)
