@@ -41,8 +41,7 @@ GameObject:
   - component: {fileID: 1822603383997306950}
   - component: {fileID: 7210323064567538288}
   - component: {fileID: 3975763451263934089}
-  - component: {fileID: 8219067833457631235}
-  - component: {fileID: -6973216917983087539}
+  - component: {fileID: -1907352362016108660}
   m_Layer: 0
   m_Name: bottle 1
   m_TagString: Trash
@@ -59,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 3391326826755484245}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.035, y: 0.035, z: 0.035}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 4728294619169146594}
   m_Father: {fileID: 0}
@@ -112,7 +111,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8219067833457631235
+--- !u!135 &-1907352362016108660
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,21 +122,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 17.131435
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-6973216917983087539
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391326826755484245}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

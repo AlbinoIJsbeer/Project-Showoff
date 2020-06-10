@@ -41,8 +41,7 @@ GameObject:
   - component: {fileID: 867373841602967902}
   - component: {fileID: 8165731284014515048}
   - component: {fileID: 2480929505199341457}
-  - component: {fileID: 2025945274793732755}
-  - component: {fileID: -1514050264320564544}
+  - component: {fileID: -7654092411450249051}
   m_Layer: 0
   m_Name: bucket (3)
   m_TagString: Trash
@@ -59,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 4202665705325398861}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.035, y: 0.035, z: 0.035}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 2575242299030055343}
   m_Father: {fileID: 0}
@@ -112,7 +111,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &2025945274793732755
+--- !u!135 &-7654092411450249051
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,21 +122,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 24.39121
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-1514050264320564544
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4202665705325398861}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

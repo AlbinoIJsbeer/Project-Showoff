@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
 {
-    public GameObject trash;
-
-    public List<GameObject> Trash = new List<GameObject>(21);
+    public List<GameObject> Trash = new List<GameObject>();
 
     public GameObject sea;
     private BoxCollider col;
