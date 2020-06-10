@@ -12,6 +12,22 @@ public class SetLanguage : MonoBehaviour
     [SerializeField]
     private GameObject German;
 
+    private GameObject[] DutchGameObjects;
+    private GameObject[] EnglishGameObjects;
+    private GameObject[] GermanGameObjects;
+
+    void Awake()
+    {
+
+        DutchGameObjects = GameObject.FindGameObjectsWithTag("Dutch");
+        EnglishGameObjects = GameObject.FindGameObjectsWithTag("English");
+        GermanGameObjects = GameObject.FindGameObjectsWithTag("German");
+
+        Debug.Log(DutchGameObjects.Length);
+        Debug.Log(EnglishGameObjects.Length);
+        Debug.Log(GermanGameObjects.Length);
+    }
+
     public void SetLanguageDutch()
     {
         Manager._language = Language.DUTCH;
@@ -27,6 +43,36 @@ public class SetLanguage : MonoBehaviour
         Manager._language = Language.GERMAN;
     }
 
+    void Update()
+    {
+        switch (Manager._language)
+        {
+            case Language.DUTCH:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(true);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(false);
+                break;
+            case Language.ENGLISH:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(true);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(false);
+                break;
+            case Language.GERMAN:
+                foreach (GameObject _object in DutchGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in EnglishGameObjects)
+                    _object.SetActive(false);
+                foreach (GameObject _object in GermanGameObjects)
+                    _object.SetActive(true);
+                break;
+        }
+    }
 
 }
 
