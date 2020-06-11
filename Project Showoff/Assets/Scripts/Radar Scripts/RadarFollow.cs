@@ -11,6 +11,8 @@ public class RadarFollow : MonoBehaviour
     // Radar scaler
     private Vector3 scaleChange;
 
+    [SerializeField] private BoatUpgrade boatUpgrade;
+
     void Start()
     {
         scaleChange = new Vector3(1, 1, 1);
@@ -22,11 +24,11 @@ public class RadarFollow : MonoBehaviour
         transform.position = target.position + yAxisOffset;
 
         // Change radar scaler based on boat size
-        if (BoatUpgrade.boatIndex == 0)
+        if (boatUpgrade.BoatIndex == 0)
             scaleChange = new Vector3(1, 1, 1);
-        else if (BoatUpgrade.boatIndex == 1)
+        else if (boatUpgrade.BoatIndex == 1)
             scaleChange = new Vector3(1.5f, 1, 1.5f);
-        else if (BoatUpgrade.boatIndex == 2)
+        else if (boatUpgrade.BoatIndex == 2)
             scaleChange = new Vector3(2, 1, 2);
 
         // Scale radar size

@@ -16,6 +16,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 mediumOffset = new Vector3(0, 70, -80);
     private Vector3 largeOffset = new Vector3(0, 90, -100);
 
+    [SerializeField] private BoatUpgrade boatUpgrade;
+
     private void Start()
     {
         offset = transform.position;
@@ -44,11 +46,11 @@ public class CameraFollow : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(45, 0, 0);
 
-        if (BoatUpgrade.boatIndex == 0)
+        if (boatUpgrade.BoatIndex == 0)
             offset = Vector3.Lerp(offset, smallOffset, 0.01f);
-        else if (BoatUpgrade.boatIndex == 1)
+        else if (boatUpgrade.BoatIndex == 1)
             offset = Vector3.Lerp(offset, mediumOffset, 0.01f);
-        else if (BoatUpgrade.boatIndex == 2)
+        else if (boatUpgrade.BoatIndex == 2)
             offset = Vector3.Lerp(offset, largeOffset, 0.01f);
 
         transform.position = target.position + offset;

@@ -5,79 +5,60 @@ using TMPro;
 
 public class TrashCollector : MonoBehaviour
 {
-	public delegate void Refuel();
-	public static event Refuel OnRefuel;
-
 	public int smallBoatCapacity = 50;
 	public int mediumBoatCapacity = 100;
 	public int largeBoatCapacity = 150;
 
-	[SerializeField] private TMP_Text scoreDisplay;
-	[SerializeField] private TMP_Text moneyDisplay;
-	[SerializeField] private TMP_Text trashDisplay;
+	private BoatStats boatStats;
+	private BoatUpgrade boatUpgrade;
 
-	private int score = 0;
-	public static int money = 0;
-	private int trashCollected = 0;
+	[SerializeField] private GameObject dockPointer;
 
-	private int boatIndex;
-
-	void Update()
+	private void Start()
 	{
-		boatIndex = ViewSwitch.boatIndex;
-
-		moneyDisplay.text = money.ToString();
-		trashDisplay.text = trashCollected.ToString();
-		scoreDisplay.text = score.ToString();
+		boatStats = GetComponent<BoatStats>();
+		boatUpgrade = GetComponent<BoatUpgrade>();
 	}
 
-	void FixedUpdate()
+	private void Update()
 	{
-		Manager.Instance.Score = score;
+		//ShowPointerOnMaxTrash();
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Trash")
 		{
-			if (boatIndex == 0 && trashCollected < smallBoatCapacity)
+			if (boatUpgrade.BoatIndex == 0 && boatStats.Trash < smallBoatCapacity)
 			{
 				Destroy(other.gameObject);
-				trashCollected++;
-				score += 10;
+				boatStats.Trash++;
+				boatStats.Score += 10;
 			}
-			else if (boatIndex == 1 && trashCollected < mediumBoatCapacity)
+			else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash < mediumBoatCapacity)
 			{
-
 				Destroy(other.gameObject);
-				trashCollected++;
-				score += 10;
+				boatStats.Trash++;
+				boatStats.Score += 10;
 			}
-			else if (boatIndex == 2 && trashCollected < largeBoatCapacity)
+			else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash < largeBoatCapacity)
 			{
 				Destroy(other.gameObject);
-				trashCollected++;
-				score += 10;
+				boatStats.Trash++;
+				boatStats.Score += 10;
 			}
 		}
 	}
 
-	public void Deposit()
+	private void ShowPointerOnMaxTrash()
 	{
-		score += trashCollected * 10;
-		money += trashCollected * 50;
-		trashCollected = 0;
-	}
-
-	public void BuyFuel()
-	{
-		if (money >= 100)
-		{
-			if (BoatController.fuel < BoatController.maxFuel)
-			{
-				OnRefuel?.Invoke();
-				money -= 100;
-			}
-		}
+		if (boatUpgrade.BoatIndex == 0 && boatStats.Trash == smallBoatCapacity)
+			dockPointer.SetActive(true);
+		else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash == mediumBoatCapacity)
+			dockPointer.SetActive(true);
+		else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash == largeBoatCapacity)
+			dockPointer.SetActive(true);
+		else
+			dockPointer.SetActive(false);
 	}
 }

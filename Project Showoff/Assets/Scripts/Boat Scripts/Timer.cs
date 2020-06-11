@@ -6,7 +6,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public TMP_Text timeDisplay;
+    [SerializeField] private TMP_Text timeDisplay;
     public float timer = 120.00f;
     public ScoreManager scoreManager;
 
@@ -17,19 +17,31 @@ public class Timer : MonoBehaviour
 
     private void TimerCountdown()
     {
+        // Minutes and Seconds
         int min = Mathf.FloorToInt(timer / 60);
         int sec = Mathf.FloorToInt(timer % 60);
 
-        if (sec == 0)
-            timeDisplay.color = new Color(1, 0, 0, 1);
+        // Change time text color
+        if (timer > 5)
+        {
+            // If a full minute(s) is left then highlight time in red
+            if (sec == 0)
+                timeDisplay.color = new Color(1, 0, 0, 1);
+            else
+                timeDisplay.color = new Color(1, 1, 1, 1);
+        }
         else
-            timeDisplay.color = new Color(1, 1, 1, 1);
+        {
+            // If 5 seconds are left then highlight time in red
+            timeDisplay.color = new Color(1, 0, 0, 1);
+        }
 
+        // Display time in "mm:ss" format
         timeDisplay.text = min.ToString("00") + ":" + sec.ToString("00");
-
         
         timer -= Time.deltaTime;
 
+        // If there is no time left, then go to end screen
         if (timer <= 0)
         {
             SceneManager.LoadScene(2);

@@ -30,27 +30,24 @@ public class BoatController : MonoBehaviour
 
 	// Navigation distance
 	public float navDist = 75f;
-	
-	public static float maxFuel;
-	public static float fuel;
 
-	[SerializeField] private Transform fuelGaugeNeedle;
-	[SerializeField] private GameObject lowFuelNotification;
+	// Access to other scripts attached to the Boat 
+	private BoatFuel boatFuel;
+	private BoatUpgrade boatUpgrade;
 
+	// Reference to Dock position for Docking
 	[SerializeField] private Transform dock;
 	[SerializeField] private GameObject dockMenu;
 
 	private void Start()
 	{
-		maxFuel = 100;
-		fuel = maxFuel;
-		TrashCollector.OnRefuel += Refuel;
+		boatFuel = GetComponent<BoatFuel>();
+		boatUpgrade = GetComponent<BoatUpgrade>();
 	}
 
 	private void Update()
 	{
 		MaxSpeed();
-		FuelGauge();
 		ClampBoatPosition();
 
 		switch (boatCurrentState)
@@ -58,7 +55,7 @@ public class BoatController : MonoBehaviour
 			case BoatState.SAIL:
 				Time.timeScale = 1;
 				TargetPosition();
-				if (CheckIfTargetPositionInFront() && NavDistance() && fuel > 0)
+				if (CheckIfTargetPositionInFront() && NavDistance() && boatFuel.Fuel > 0)
 				{
 					Sail();
 					LookAtTarget();				
@@ -78,46 +75,27 @@ public class BoatController : MonoBehaviour
 
 	private void MaxSpeed()
 	{
-		if (BoatUpgrade.boatIndex == 0)
+		if (boatUpgrade.BoatIndex == 0)
 		{
 			maxBoatSpeed = 1.0f;
 			rotationSpeed = 1.5f;
 		}
-		else if (BoatUpgrade.boatIndex == 1)
+		else if (boatUpgrade.BoatIndex == 1)
 		{
 			maxBoatSpeed = 0.8f;
 			rotationSpeed = 1.25f;
 		}
-		else if (BoatUpgrade.boatIndex == 2)
+		else if (boatUpgrade.BoatIndex == 2)
 		{
 			maxBoatSpeed = 0.6f;
 			rotationSpeed = 1f;
 		}
 	}
-
-	public void Refuel()
-	{
-		fuel += 50;
-	}
-
+	
 	public void SetSailState()
 	{
 		boatCurrentState = BoatState.SAIL;
 		transform.position = new Vector3(125, 0, -10);
-	}
-
-	private void FuelGauge()
-	{
-		// Fuel gauge needle shows how much fuel is left
-		fuel = Mathf.Clamp(fuel, 0, maxFuel);
-		float fuelPercentage = fuel / maxFuel;
-		fuelGaugeNeedle.transform.rotation = Quaternion.Euler(0, 0, (90 - (180 * fuelPercentage)));
-
-		// Notification for when the fuel is low
-		if (90 >= fuelGaugeNeedle.eulerAngles.z && fuelGaugeNeedle.eulerAngles.z >= 45)
-			lowFuelNotification.SetActive(true);
-		else
-			lowFuelNotification.SetActive(false);
 	}
 
 	private bool CheckIfTargetPositionInFront()
@@ -177,7 +155,7 @@ public class BoatController : MonoBehaviour
 			else if (_angleDiff > 7.5f) boatSpeed = 0.9f;
 			else boatSpeed = 1f;
 
-			fuel -= 0.01f;
+			boatFuel.Fuel -= 0.01f;
 		}
 		else
 		{

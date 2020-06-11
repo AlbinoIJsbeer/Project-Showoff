@@ -9,6 +9,8 @@ public class RadarCameraFollow : MonoBehaviour
     private Vector3 yAxisOffset;
     private Camera camera;
 
+    [SerializeField] private BoatUpgrade boatUpgrade;
+
     void Start()
     {
         camera = GetComponent<Camera>();
@@ -18,11 +20,11 @@ public class RadarCameraFollow : MonoBehaviour
     void LateUpdate()
     {
         // Change radar camera size based on boat size
-        if (BoatUpgrade.boatIndex == 0)
+        if (boatUpgrade.BoatIndex == 0)
             camera.orthographicSize = 175;
-        else if (BoatUpgrade.boatIndex == 1)
+        else if (boatUpgrade.BoatIndex == 1)
             camera.orthographicSize = 262.5f;
-        else if (BoatUpgrade.boatIndex == 2)
+        else if (boatUpgrade.BoatIndex == 2)
             camera.orthographicSize = 350;
 
         // Radar camera follows the boat
