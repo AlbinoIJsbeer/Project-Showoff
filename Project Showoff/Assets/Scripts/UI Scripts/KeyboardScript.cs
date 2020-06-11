@@ -20,5 +20,13 @@ public class KeyboardScript : MonoBehaviour
         _name.text = _word;
     }
 
+    public void BackSpace()
+    {
+        if (_wordIndex > 0)
+        {
+            _wordIndex--;
+            _name.text = _name.text.Substring(0, _wordIndex);
+        }
 
+    }
 }
