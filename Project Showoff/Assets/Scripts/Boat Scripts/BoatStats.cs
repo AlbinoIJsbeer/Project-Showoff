@@ -34,6 +34,8 @@ public class BoatStats : MonoBehaviour
         moneyDisplay.text = money.ToString();
         trashDisplay.text = trashCollected.ToString();
         scoreDisplay.text = score.ToString();
+
+        TrashDebugger();
     }
 
     public void Deposit()
@@ -52,6 +54,22 @@ public class BoatStats : MonoBehaviour
                 OnRefuel?.Invoke();
                 money -= 100;
             }
+        }
+    }
+
+    private void TrashDebugger()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            trashCollected = 50;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            trashCollected = 100;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            trashCollected = 150;
         }
     }
 }

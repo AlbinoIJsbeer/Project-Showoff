@@ -53,12 +53,12 @@ public class BoatController : MonoBehaviour
 		switch (boatCurrentState)
 		{
 			case BoatState.SAIL:
-				Time.timeScale = 1;
+				PauseMenu.GameIsPaused = false;
 				TargetPosition();
 				if (CheckIfTargetPositionInFront() && NavDistance() && boatFuel.Fuel > 0)
 				{
-					Sail();
-					LookAtTarget();				
+					LookAtTarget();
+					Sail();					
 				}
 				break;
 			case BoatState.DOCK:
@@ -69,6 +69,7 @@ public class BoatController : MonoBehaviour
 				break;
 			case BoatState.DOCKED:
 				Docked();
+				PauseMenu.GameIsPaused = true;
 				break;
 		}
 	}
