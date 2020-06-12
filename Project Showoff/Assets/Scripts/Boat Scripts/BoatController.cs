@@ -41,6 +41,7 @@ public class BoatController : MonoBehaviour
 
 	private void Start()
 	{
+		_targetPosition = new Vector3(125, 0, -70);
 		boatFuel = GetComponent<BoatFuel>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 	}

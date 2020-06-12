@@ -12,6 +12,7 @@ TagManager:
   - Dutch
   - English
   - German
+  - Obstacle
   layers:
   - Default
   - TransparentFX

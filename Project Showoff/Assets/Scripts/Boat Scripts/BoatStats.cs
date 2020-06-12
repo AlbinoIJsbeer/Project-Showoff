@@ -72,4 +72,10 @@ public class BoatStats : MonoBehaviour
             trashCollected = 150;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+            score -= 200;
+    }
 }
