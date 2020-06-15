@@ -5,21 +5,29 @@ using TMPro;
 
 public class TrashCollector : MonoBehaviour
 {
+	// Notification for maximum trash capacity reached
 	[SerializeField] private TMP_Text capacityThreshold;
 	[SerializeField] private GameObject capacityNotification;
 	private float notificationTimer = 5;
 	private bool notificationOn = false;
 
+	// Score increase per trash collected
+	private int scoreIncrement = 10;
+
+	// Dock pointer
+	[SerializeField] private GameObject dockPointer;
+
+	// Boat trash capacities
 	public int smallBoatCapacity = 50;
 	public int mediumBoatCapacity = 100;
 	public int largeBoatCapacity = 150;
 
+	// Current boat trash capacity
 	private int currentCapacityThreshold;
 
+	// Reference to boat index and stats
 	private BoatStats boatStats;
 	private BoatUpgrade boatUpgrade;
-
-	[SerializeField] private GameObject dockPointer;
 
 	private void Start()
 	{
@@ -29,7 +37,7 @@ public class TrashCollector : MonoBehaviour
 
 	private void Update()
 	{	
-		ChangeCapacityThreshold();
+		ChangeCapacityThreshold(boatUpgrade.BoatIndex);
 		ShowPointerOnMaxTrash();
 		capacityThreshold.text = "/" + currentCapacityThreshold.ToString();
 		RemoveNotificationOnTime();
@@ -43,66 +51,59 @@ public class TrashCollector : MonoBehaviour
 			{
 				Destroy(other.gameObject);
 				boatStats.Trash++;
-				boatStats.Score += 10;
+				boatStats.Score += scoreIncrement;
 			}
 			else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash < mediumBoatCapacity)
 			{
 				Destroy(other.gameObject);
 				boatStats.Trash++;
-				boatStats.Score += 10;
+				boatStats.Score += scoreIncrement;
 			}
 			else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash < largeBoatCapacity)
 			{
 				Destroy(other.gameObject);
 				boatStats.Trash++;
-				boatStats.Score += 10;
+				boatStats.Score += scoreIncrement;
 			}
 		}
 	}
 
+	// Show pointer when trash max capacity is reached
 	private void ShowPointerOnMaxTrash()
 	{
 		if (boatUpgrade.BoatIndex == 0 && boatStats.Trash == smallBoatCapacity)
-		{
-			dockPointer.SetActive(true);
-			if (notificationOn == false)
-			{
-				capacityNotification.SetActive(true);
-				notificationOn = true;
-			}
-		}
+			ShowPointer();
 		else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash == mediumBoatCapacity)
-		{
-			dockPointer.SetActive(true);
-			if (notificationOn == false)
-			{
-				capacityNotification.SetActive(true);
-				notificationOn = true;
-			}
-		}
+			ShowPointer();
 		else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash == largeBoatCapacity)
-		{
-			dockPointer.SetActive(true);
-			if (notificationOn == false)
-			{
-				capacityNotification.SetActive(true);
-				notificationOn = true;
-			}
-		}
+			ShowPointer();
 		else
 			dockPointer.SetActive(false);	
 	}
 
-	private void ChangeCapacityThreshold()
+	// Show Pointer
+	private void ShowPointer()
 	{
-		if (boatUpgrade.BoatIndex == 0)
+		dockPointer.SetActive(true);
+		if (notificationOn == false)
+		{
+			capacityNotification.SetActive(true);
+			notificationOn = true;
+		}
+	}
+
+	// Change capactiy threshold based on boat 
+	private void ChangeCapacityThreshold(int index)
+	{
+		if (index == 0)
 			currentCapacityThreshold = smallBoatCapacity;
-		else if (boatUpgrade.BoatIndex == 1)
+		else if (index == 1)
 			currentCapacityThreshold = mediumBoatCapacity;
-		else if (boatUpgrade.BoatIndex == 2)
+		else if (index == 2)
 			currentCapacityThreshold = largeBoatCapacity;
 	}
 
+	// Remove trash max capacity notification
 	private void RemoveNotificationOnTime()
 	{
 		if (boatStats.Trash == 0)

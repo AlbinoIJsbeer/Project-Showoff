@@ -7,72 +7,86 @@ public class DockPointer : MonoBehaviour
 	[SerializeField] private Transform boat;
 	[SerializeField] private Transform dock;
 
+	// Reference for boat type(index)
 	private BoatUpgrade boatUpgrade;
+
+	// Get the transform of the pointer
 	private Transform pointer;
 
+	// For reposition and resizing 
 	private Vector3 tempSize;
 	private Vector3 tempPos;
-	//private float minSize = 6f;
-	//private float maxSize = 10f;
-	private float resizer;
 
+	// Resize rate for the resizing visual effect
+	private float resizer = 0.025f;
+
+	// Used for knowing if the pointer should be resized or not based on boat type
 	private int prevBoatIndex;
 	private bool toSetSize;
 
-	[SerializeField] private Vector3 sizeS = new Vector3(6, 6, 6);
-	[SerializeField] private Vector3 sizeM = new Vector3(8, 8, 8);
-	[SerializeField] private Vector3 sizeL = new Vector3(10, 10, 10);
-	[SerializeField] private float distanceS = 25f;
-	[SerializeField] private float distanceM = 30f;
-	[SerializeField] private float distanceL = 45f;
+	// Pointer distance and size sets for boats
+	private Vector3 sizeS = new Vector3(6, 6, 6);
+	private Vector3 sizeM = new Vector3(8, 8, 8);
+	private Vector3 sizeL = new Vector3(10, 10, 10);
+	private float distanceS = 25f;
+	private float distanceM = 30f;
+	private float distanceL = 45f;
 
 	void Start()
 	{
 		boatUpgrade = boat.GetComponent<BoatUpgrade>();
 		pointer = transform.GetChild(0).GetComponent<Transform>();
-		resizer = 0.025f;
 		prevBoatIndex = boatUpgrade.BoatIndex;
 		toSetSize = false;
 	}
 
 	void Update()
 	{
-		transform.position = boat.position;
-		ChangeSizeThresholds();
+		UpdatePosition(boat);
+		ChangeSizeThresholds(boatUpgrade.BoatIndex);
 		PointAtDock();
 	}
 
-	private void ChangeSizeThresholds()
+	// Makes the pointer follow the boat
+	private void UpdatePosition(Transform target)
 	{
-		if (boatUpgrade.BoatIndex == 0)
+		transform.position = target.position;
+	}
+
+	// Change min and max sizes for the pointer stretching effect based on boat type
+	private void ChangeSizeThresholds(int index)
+	{
+		if (index == 0)
 		{
 			SetSize(sizeS);
 			Position(distanceS);		
-			Resize(4, 8);
+			Stretch(4, 8);
 			prevBoatIndex = 0;
 		}
-		else if (boatUpgrade.BoatIndex == 1)
+		else if (index == 1)
 		{
 			SetSize(sizeM);
 			Position(distanceM);
-			Resize(6, 10);
+			Stretch(6, 10);
 			prevBoatIndex = 1;
 		}
-		else if (boatUpgrade.BoatIndex == 2)
+		else if (index == 2)
 		{
 			SetSize(sizeL);
 			Position(distanceL);
-			Resize(8, 12);
+			Stretch(8, 12);
 			prevBoatIndex = 2;
 		}
 	}
 
+	// Make the pointer point at the dock always
 	private void PointAtDock()
 	{
 		Quaternion targetRotation = Quaternion.LookRotation(dock.position - transform.position);
 		transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
 	}
 
+	// Resize pointer based on boat type
 	private void SetSize(Vector3 size)
 	{
 		if (CheckIfResizePossible())
@@ -82,18 +96,21 @@ public class DockPointer : MonoBehaviour
 		}
 	}
 
-	private void Resize(float min, float max)
+	// Stretch the pointer on 'x' axis for visual effects
+	private void Stretch(float min, float max)
 	{
 		tempSize = pointer.transform.localScale;
 		tempSize.x += resizer;
 		pointer.transform.localScale = tempSize;
 
+		// Change resizer sign
 		if (tempSize.x <= min)
-			resizer = resizer * -1;
+			resizer *= -1;
 		else if (tempSize.x >= max)
-			resizer = resizer * -1;
+			resizer *= -1;
 	}
 
+	// Used for changing pointer position based on boat type
 	private void Position(float pos)
 	{
 		tempPos = pointer.transform.localPosition;
@@ -101,6 +118,7 @@ public class DockPointer : MonoBehaviour
 		pointer.transform.localPosition = tempPos;
 	}
 
+	// Check if pointer needs to be resized or not based on boat type
 	private bool CheckIfResizePossible()
 	{
 		if (prevBoatIndex != boatUpgrade.BoatIndex)

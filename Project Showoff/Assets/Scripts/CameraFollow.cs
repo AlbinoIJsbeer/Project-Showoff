@@ -16,11 +16,13 @@ public class CameraFollow : MonoBehaviour
     private Vector3 mediumOffset = new Vector3(0, 70, -80);
     private Vector3 largeOffset = new Vector3(0, 90, -100);
 
+    // Reference to boat index
     [SerializeField] private BoatUpgrade boatUpgrade;
 
     private void Start()
     {
         offset = transform.position;
+        FollowTarget();
     }
 
     private void Update()
@@ -31,17 +33,20 @@ public class CameraFollow : MonoBehaviour
             DockedCamera();      
     }
 
-    //private void LateUpdate()
-    //{
-    //    transform.position = target.position + offset;
-    //}
+    // Follow target
+    private void FollowTarget()
+    {
+        transform.position = target.position + offset;
+    }
 
+    // Change camera position on dock
     private void DockedCamera()
     {
         transform.position = new Vector3(100, 25, -10);
         transform.eulerAngles = new Vector3(15, 160, 0);
     }
 
+    // Change camera position smoothly when boat changes
     private void SailCamera()
     {
         transform.eulerAngles = new Vector3(45, 0, 0);
@@ -52,7 +57,5 @@ public class CameraFollow : MonoBehaviour
             offset = Vector3.Lerp(offset, mediumOffset, 0.01f);
         else if (boatUpgrade.BoatIndex == 2)
             offset = Vector3.Lerp(offset, largeOffset, 0.01f);
-
-        transform.position = target.position + offset;
     }
 }

@@ -3952,7 +3952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef63874e3b8ee148891493a4a8e29c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 50000
+  money: 0
   fuelPrice: 200
   scoreDisplay: {fileID: 1878039013}
   moneyDisplay: {fileID: 849376630}

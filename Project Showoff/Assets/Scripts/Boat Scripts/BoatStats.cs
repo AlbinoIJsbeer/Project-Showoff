@@ -5,22 +5,26 @@ using TMPro;
 
 public class BoatStats : MonoBehaviour
 {
+    // Delegate to tell the "BoatFuel.cs" to refuel
     public delegate void Refuel();
     public static event Refuel OnRefuel;
 
     private int score;
     public int Score { get { return score; } set { score = value; } }
-    public int money;
+    private int money;
     public int Money { get { return money; } set { money = value; } }
-    private int trashCollected;
-    public int Trash { get { return trashCollected; } set { trashCollected = value; } }
+    private int trash;
+    public int Trash { get { return trash; } set { trash = value; } }
 
-    [SerializeField] private int fuelPrice = 100;
+    [SerializeField] private int fuelPrice = 200;
+    [SerializeField] private int obstacleHitPenalty = 200;
 
+    // References to UI objects
     [SerializeField] private TMP_Text scoreDisplay;
     [SerializeField] private TMP_Text moneyDisplay;
     [SerializeField] private TMP_Text trashDisplay;
 
+    // Reference to fuel
     private BoatFuel boatFuel;
 
     void Start()
@@ -28,23 +32,31 @@ public class BoatStats : MonoBehaviour
         boatFuel = GetComponent<BoatFuel>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        moneyDisplay.text = money.ToString();
-        trashDisplay.text = trashCollected.ToString();
-        scoreDisplay.text = score.ToString();
+        //Manager.Instance.Score = score;
+        ShowStats();
 
         TrashDebugger();
     }
 
-    public void Deposit()
+    // Link UI objects to boat stats
+    private void ShowStats()
     {
-        score += trashCollected * 10;
-        money += trashCollected * 50;
-        trashCollected = 0;
+        moneyDisplay.text = money.ToString();
+        trashDisplay.text = trash.ToString();
+        scoreDisplay.text = score.ToString();
     }
 
+    // Deposit trash in harbor
+    public void Deposit()
+    {
+        score += trash * 10;
+        money += trash * 50;
+        trash = 0;
+    }
+
+    // Buy fuel
     public void BuyFuel()
     {
         if (money >= fuelPrice)
@@ -52,30 +64,32 @@ public class BoatStats : MonoBehaviour
             if (boatFuel.Fuel < boatFuel.MaxFuel)
             {
                 OnRefuel?.Invoke();
-                money -= 100;
+                money -= fuelPrice;
             }
         }
     }
 
+    // Debugging 
     private void TrashDebugger()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            trashCollected = 50;
+            trash = 50;
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            trashCollected = 100;
+            trash = 100;
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            trashCollected = 150;
+            trash = 150;
         }
     }
 
+    // If boat collides with obstacles, deduct score
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
-            score -= 200;
+            score -= obstacleHitPenalty;
     }
 }

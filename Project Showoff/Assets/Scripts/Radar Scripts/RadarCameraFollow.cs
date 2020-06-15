@@ -5,10 +5,11 @@ using UnityEngine;
 public class RadarCameraFollow : MonoBehaviour
 {
     // Target for radar camera to follow
-    public Transform target;
+    public Transform boat;
     private Vector3 yAxisOffset;
     private Camera camera;
 
+    // Reference to boat index
     [SerializeField] private BoatUpgrade boatUpgrade;
 
     void Start()
@@ -19,15 +20,24 @@ public class RadarCameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        // Change radar camera size based on boat size
-        if (boatUpgrade.BoatIndex == 0)
-            camera.orthographicSize = 175;
-        else if (boatUpgrade.BoatIndex == 1)
-            camera.orthographicSize = 262.5f;
-        else if (boatUpgrade.BoatIndex == 2)
-            camera.orthographicSize = 350;
+        ChangeCameraSize(boatUpgrade.BoatIndex);
+        FollowTarget(boat);
+    }
 
-        // Radar camera follows the boat
+    // Radar camera follows the boat
+    private void FollowTarget(Transform target)
+    {
         transform.position = target.position + yAxisOffset;
+    }
+
+    // Change radar camera size based on boat size
+    private void ChangeCameraSize(int index)
+    {
+        if (index == 0)
+            camera.orthographicSize = 175;
+        else if (index == 1)
+            camera.orthographicSize = 262.5f;
+        else if (index == 2)
+            camera.orthographicSize = 350;
     }
 }

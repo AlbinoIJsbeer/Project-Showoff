@@ -23,6 +23,7 @@ public class BoatController : MonoBehaviour
 	public float rotationSpeed = 1.5f;
 	public float boatSpeed = 0;
 	public float maxBoatSpeed = 1f;
+
 	private bool _rotateTowardsTarget;
 
 	// For clamping movement
@@ -49,7 +50,7 @@ public class BoatController : MonoBehaviour
 	private void Update()
 	{
 		MaxSpeed();
-		ClampBoatPosition();
+		ClampBoatPosition(-350, 350, -100, 600);
 
 		switch (boatCurrentState)
 		{
@@ -126,12 +127,12 @@ public class BoatController : MonoBehaviour
 			return false;
 	}
 
-	private void ClampBoatPosition()
+	private void ClampBoatPosition(int xMin, int xMax, int zMin, int zMax)
 	{
 		// Clamp boat position so it does not go off the map
 		pos = transform.position;
-		pos.x = Mathf.Clamp(transform.position.x, -350, 350);
-		pos.z = Mathf.Clamp(transform.position.z, -100, 600);
+		pos.x = Mathf.Clamp(transform.position.x, xMin, xMax);
+		pos.z = Mathf.Clamp(transform.position.z, zMin, zMax);
 		transform.position = pos;
 	}
 
@@ -139,7 +140,6 @@ public class BoatController : MonoBehaviour
 	{
 		boatSpeed = Mathf.Clamp(boatSpeed, 0.0f, maxBoatSpeed);
 
-		//Version 2
 		// Boat moves only forward while turning as well
 		Vector3 heading = _targetPosition - transform.position;
 		Vector3 force = Vector3.Project(heading, transform.forward);
@@ -157,6 +157,7 @@ public class BoatController : MonoBehaviour
 			else if (_angleDiff > 7.5f) boatSpeed = 0.9f;
 			else boatSpeed = 1f;
 
+			// Use fuel when moving
 			boatFuel.Fuel -= 0.01f;
 		}
 		else
@@ -205,6 +206,7 @@ public class BoatController : MonoBehaviour
 		transform.rotation = new Quaternion(0, 0, 0, 0);
 	}
 
+	// Get clicked position
 	private void TargetPosition()
 	{
 		float distance;

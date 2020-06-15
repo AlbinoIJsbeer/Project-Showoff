@@ -25,23 +25,11 @@ public class BoatUpgrade : MonoBehaviour
     void UpgradeBoat()
     {
         if (boatIndex == 0)
-        {
-            smallBoat.SetActive(true);
-            mediumBoat.SetActive(false);
-            largeBoat.SetActive(false);  
-        }
+            ShowSmallBoat();
         else if (boatIndex == 1)
-        {
-            smallBoat.SetActive(false);
-            mediumBoat.SetActive(true);
-            largeBoat.SetActive(false);
-        }
+            ShowMediumBoat();
         else if (boatIndex == 2)
-        {
-            smallBoat.SetActive(false);
-            mediumBoat.SetActive(false);
-            largeBoat.SetActive(true);
-        }
+            ShowLargeBoat();
     }
 
     // For debugging purposes
@@ -59,5 +47,26 @@ public class BoatUpgrade : MonoBehaviour
         {
             boatIndex = 2;
         }
+    }
+
+    private void ShowSmallBoat()
+    {
+        smallBoat.SetActive(true);
+        mediumBoat.SetActive(false);
+        largeBoat.SetActive(false);
+    }
+
+    private void ShowMediumBoat()
+    {
+        smallBoat.SetActive(false);
+        mediumBoat.SetActive(true);
+        largeBoat.SetActive(false);
+    }
+
+    private void ShowLargeBoat()
+    {
+        smallBoat.SetActive(false);
+        mediumBoat.SetActive(false);
+        largeBoat.SetActive(true);
     }
 }

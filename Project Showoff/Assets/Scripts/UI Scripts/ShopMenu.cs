@@ -16,9 +16,11 @@ public class ShopMenu : MonoBehaviour
 
     private int boatViewIndex = 0;
 
+    // Medium and Large boat costs
     [SerializeField] private int mBoatCost = 10000;
     [SerializeField] private int lBoatCost = 20000;
 
+    // Reference to boat index, stats and fuel
     [SerializeField] private BoatFuel boatFuel;
     [SerializeField] private BoatStats boatStats;
     [SerializeField] private BoatUpgrade boatUpgrade;
@@ -30,7 +32,7 @@ public class ShopMenu : MonoBehaviour
 
     private void Update()
     {
-        UpdatePreview();
+        UpdatePreview(boatViewIndex);
     }
 
     // For the "Next Button" in Upgrade Menu
@@ -75,13 +77,13 @@ public class ShopMenu : MonoBehaviour
     }
 
     // Update the shop view
-    private void UpdatePreview()
+    private void UpdatePreview(int index)
     {
-        if (boatViewIndex == 0)
+        if (index == 0)
             BoatViewSmall();
-        else if (boatViewIndex == 1)
+        else if (index == 1)
             BoatViewMedium();
-        else if (boatViewIndex == 2)
+        else if (index == 2)
             BoatViewLarge();
     }
 
@@ -117,6 +119,4 @@ public class ShopMenu : MonoBehaviour
         mediumBoatInfo.SetActive(false);
         largeBoatInfo.SetActive(true);
     }
-
- 
 }
