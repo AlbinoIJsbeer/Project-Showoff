@@ -13,6 +13,8 @@ TagManager:
   - English
   - German
   - Obstacle
+  - Animal
+  - Sea
   layers:
   - Default
   - TransparentFX

@@ -668,6 +668,52 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!1 &57478142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57478144}
+  - component: {fileID: 57478143}
+  m_Layer: 0
+  m_Name: Rescue Animal Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &57478143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57478142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f913e29094446643840d78f5e085ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 1695657957345252538, guid: 548b47cb03a506a499a4009c97a0ad72, type: 3}
+  sea: {fileID: 1591366708}
+  timeInBetweenSpawns: 5
+--- !u!4 &57478144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57478142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76194484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642fd178b813d00419b80b3c4d8f8881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 255057487}
+  boat: {fileID: 255057487}
   boatUpgrade: {fileID: 255057489}
 --- !u!1 &86507509
 GameObject:
@@ -2395,26 +2441,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1158430103}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &164497395 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: a4217b8b6e87f20478bc177f284e5737,
-    type: 3}
-  m_PrefabInstance: {fileID: 1158430103}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &164497396
-CapsuleCollider:
+--- !u!65 &164497393
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164497392}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 900
-  m_Height: 3500
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 2456.9126, y: 1274.3705, z: 1227.834}
+  m_Center: {x: -1.108551, y: 0, z: -1145.0454}
+--- !u!65 &164497394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164497392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1025.8643, y: 1250, z: 3517.922}
+  m_Center: {x: -10.286865, y: 0, z: 0}
+--- !u!4 &164497395 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: a4217b8b6e87f20478bc177f284e5737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1158430103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &164497397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2429,7 +2487,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &164714240
 GameObject:
@@ -3821,6 +3879,9 @@ GameObject:
   - component: {fileID: 255057491}
   - component: {fileID: 255057488}
   - component: {fileID: 255057492}
+  - component: {fileID: 255057495}
+  - component: {fileID: 255057494}
+  - component: {fileID: 255057493}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -3846,6 +3907,7 @@ MonoBehaviour:
   navDist: 150
   dock: {fileID: 164497395}
   dockMenu: {fileID: 962550755}
+  exitDockPosition: {x: 125, y: 0, z: -10}
 --- !u!54 &255057486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3854,14 +3916,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255057484}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 84
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &255057487
 Transform:
   m_ObjectHideFlags: 0
@@ -3936,10 +3998,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacityThreshold: {fileID: 1315474823}
   capacityNotification: {fileID: 1157138547}
+  dockPointer: {fileID: 592505325}
   smallBoatCapacity: 50
   mediumBoatCapacity: 100
   largeBoatCapacity: 150
-  dockPointer: {fileID: 592505325}
 --- !u!114 &255057492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3952,11 +4014,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef63874e3b8ee148891493a4a8e29c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
   fuelPrice: 200
+  obstacleHitPenalty: 200
   scoreDisplay: {fileID: 1878039013}
   moneyDisplay: {fileID: 849376630}
   trashDisplay: {fileID: 2078997394}
+--- !u!65 &255057493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255057484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 16.124496, y: 8.9903145, z: 33.98174}
+  m_Center: {x: 0.08204651, y: 4.470833, z: -6.2861614}
+--- !u!65 &255057494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255057484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 10.384659, y: 3.4749646, z: 21.358887}
+  m_Center: {x: -0.00009918213, y: 1.2374823, z: -0.0184021}
+--- !u!65 &255057495
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255057484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.150482, y: 2.2584934, z: 14.211051}
+  m_Center: {x: -0.038635254, y: 0.38636208, z: -0.09837866}
 --- !u!1 &258847005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,19 +4415,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270475670}
   m_CullTransparentMesh: 0
---- !u!65 &276069909
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297602181394345058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.620176, y: 5.68165, z: 22.321587}
-  m_Center: {x: 0.026865005, y: 2.8165007, z: -0.45608568}
 --- !u!136 &276069910
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9321,12 +9409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boat: {fileID: 255057487}
   dock: {fileID: 164497395}
-  sizeS: {x: 6, y: 6, z: 6}
-  sizeM: {x: 8, y: 8, z: 8}
-  sizeL: {x: 10, y: 10, z: 10}
-  distanceS: 25
-  distanceM: 30
-  distanceL: 40
 --- !u!4 &592505327
 Transform:
   m_ObjectHideFlags: 0
@@ -11173,7 +11255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10.000
+  m_text: 20.000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,
@@ -21353,7 +21435,7 @@ GameObject:
   - component: {fileID: 1591366709}
   m_Layer: 0
   m_Name: Sea
-  m_TagString: Untagged
+  m_TagString: Sea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23537,7 +23619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4.000
+  m_text: 10.000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,
@@ -29401,19 +29483,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb534ff8b8426e4b92ec4411b9b1840, type: 3}
---- !u!65 &2104936922
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172667664961758}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 21.72555, y: 3.4749646, z: 10.389978}
-  m_Center: {x: 0.25201225, y: 1.2374823, z: -0.000034809113}
 --- !u!136 &2104936923
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30116,5 +30185,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8890610549112324313, guid: faa046c8a5d95c8409828aa3440886fe,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890610549112324313, guid: faa046c8a5d95c8409828aa3440886fe,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8890610549112324313, guid: faa046c8a5d95c8409828aa3440886fe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: faa046c8a5d95c8409828aa3440886fe, type: 3}

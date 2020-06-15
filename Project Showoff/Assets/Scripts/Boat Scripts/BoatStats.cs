@@ -30,6 +30,7 @@ public class BoatStats : MonoBehaviour
     void Start()
     {
         boatFuel = GetComponent<BoatFuel>();
+        ResetStats();
     }
 
     void Update()
@@ -38,6 +39,14 @@ public class BoatStats : MonoBehaviour
         ShowStats();
 
         TrashDebugger();
+    }
+
+    // Reset stats on new game
+    private void ResetStats()
+    {
+        score = 0;
+        money = 0;
+        trash = 0;
     }
 
     // Link UI objects to boat stats

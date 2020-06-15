@@ -7,14 +7,14 @@ public class RadarCameraFollow : MonoBehaviour
     // Target for radar camera to follow
     public Transform boat;
     private Vector3 yAxisOffset;
-    private Camera camera;
+    private Camera Camera;
 
     // Reference to boat index
     [SerializeField] private BoatUpgrade boatUpgrade;
 
     void Start()
     {
-        camera = GetComponent<Camera>();
+        Camera = GetComponent<Camera>();
         yAxisOffset = new Vector3(0, this.transform.position.y, 0);
     }
 
@@ -34,10 +34,10 @@ public class RadarCameraFollow : MonoBehaviour
     private void ChangeCameraSize(int index)
     {
         if (index == 0)
-            camera.orthographicSize = 175;
+            Camera.orthographicSize = 175;
         else if (index == 1)
-            camera.orthographicSize = 262.5f;
+            Camera.orthographicSize = 262.5f;
         else if (index == 2)
-            camera.orthographicSize = 350;
+            Camera.orthographicSize = 350;
     }
 }

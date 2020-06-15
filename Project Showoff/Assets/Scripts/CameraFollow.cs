@@ -22,11 +22,12 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         offset = transform.position;
-        FollowTarget();
     }
 
     private void Update()
     {
+        FollowTarget();
+
         if (BoatController.boatCurrentState == BoatController.BoatState.SAIL)
             SailCamera();
         else if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
