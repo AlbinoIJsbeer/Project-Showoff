@@ -71,14 +71,17 @@ public class TrashCollector : MonoBehaviour
 	// Show pointer when trash max capacity is reached
 	private void ShowPointerOnMaxTrash()
 	{
-		if (boatUpgrade.BoatIndex == 0 && boatStats.Trash == smallBoatCapacity)
-			ShowPointer();
-		else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash == mediumBoatCapacity)
-			ShowPointer();
-		else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash == largeBoatCapacity)
-			ShowPointer();
-		else
-			dockPointer.SetActive(false);	
+		if (dockPointer.activeSelf == false)
+		{
+			if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+				dockPointer.SetActive(false);
+			else if (boatUpgrade.BoatIndex == 0 && boatStats.Trash == smallBoatCapacity)
+				ShowPointer();
+			else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash == mediumBoatCapacity)
+				ShowPointer();
+			else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash == largeBoatCapacity)
+				ShowPointer(); 
+		}
 	}
 
 	// Show Pointer

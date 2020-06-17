@@ -13,12 +13,8 @@ public class Manager : MonoBehaviour
 
     public Language _language = Language.ENGLISH;
 
-
-
     private void Awake()
     {
-
-
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -29,14 +25,6 @@ public class Manager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    void Start()
-    {
-
-    }
-
-    
-
 
     public void SetPlayerNickName(string value)
     {
@@ -47,11 +35,5 @@ public class Manager : MonoBehaviour
         }
         Name = value;
         Debug.Log(Name);
-    }
-
-    private void Reset()
-    {
-        //name = "";
-        //score = 0;
     }
 }

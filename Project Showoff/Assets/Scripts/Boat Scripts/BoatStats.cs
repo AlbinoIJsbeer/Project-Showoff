@@ -24,6 +24,9 @@ public class BoatStats : MonoBehaviour
     [SerializeField] private TMP_Text moneyDisplay;
     [SerializeField] private TMP_Text trashDisplay;
 
+    [SerializeField] private GameObject rockHitNotification;
+    [SerializeField] private GameObject birdSaveNotification;
+
     // Reference to fuel
     private BoatFuel boatFuel;
 
@@ -37,8 +40,14 @@ public class BoatStats : MonoBehaviour
     {
         //Manager.Instance.Score = score;
         ShowStats();
-
+        ClampScore();
         TrashDebugger();
+    }
+
+    // ClampScore
+    private void ClampScore()
+    {
+        score = Mathf.Clamp(score, 0, 99999);
     }
 
     // Reset stats on new game
@@ -99,6 +108,16 @@ public class BoatStats : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
+        {
             score -= obstacleHitPenalty;
+            rockHitNotification.SetActive(true);
+        }
+        else if (collision.gameObject.tag == "Animal")
+        {
+            Destroy(collision.gameObject);
+            score += 200;
+            birdSaveNotification.SetActive(true);
+            PauseMenu.GameIsPaused = true;
+        }
     }
 }

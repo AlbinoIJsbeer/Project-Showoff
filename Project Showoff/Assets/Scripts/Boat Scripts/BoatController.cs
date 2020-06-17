@@ -36,12 +36,13 @@ public class BoatController : MonoBehaviour
 	private BoatFuel boatFuel;
 	private BoatStats boatStats;
 	private BoatUpgrade boatUpgrade;
-	
+
 	// Reference to Dock position for Docking
 	[SerializeField] private Transform dock;
 	[SerializeField] private GameObject dockMenu;
 
 	[SerializeField] private Vector3 exitDockPosition = new Vector3(125, 0, -10);
+	[SerializeField] private GameObject pointer;
 
 	private BoxCollider[] boatColliders;
 
@@ -54,11 +55,6 @@ public class BoatController : MonoBehaviour
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 	}
 
-	private void Update()
-	{
-		Debug.Log(boatCurrentState);
-	}
-
 	private void FixedUpdate()
 	{
 		ChangeColliders(boatUpgrade.BoatIndex);
@@ -68,7 +64,7 @@ public class BoatController : MonoBehaviour
 		switch (boatCurrentState)
 		{
 			case BoatState.SAIL:
-				PauseMenu.GameIsPaused = false;
+				//PauseMenu.GameIsPaused = false;
 				TargetPosition();
 				if (CheckIfTargetPositionWithinFOV() && NavDistance() && boatFuel.Fuel > 0)
 				{
@@ -134,12 +130,19 @@ public class BoatController : MonoBehaviour
 			rotationSpeed = 1f;
 		}
 	}
-	
+
+	// Send boat to dock if boat stuck with no fuel
+	public void SendToDock()
+	{
+		boatCurrentState = BoatState.DOCKED;		
+	}
+
 	// Set boat read for sail when undocked
 	public void SetSailState()
 	{
 		boatCurrentState = BoatState.SAIL;
 		transform.position = exitDockPosition;
+		PauseMenu.GameIsPaused = false;
 	}
 
 	// Check if target position is within FOV of the boat
@@ -229,7 +232,7 @@ public class BoatController : MonoBehaviour
 	// Moves the boat towards the dock
 	private void Dock()
 	{
-		_targetPosition = new Vector3(dock.transform.position.x + 25, 0, dock.transform.position.z + 15);
+		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z + 35);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
 		// If near dock then switch to DOCKED state
@@ -246,11 +249,12 @@ public class BoatController : MonoBehaviour
 	private void Docked()
 	{
 		// Activate Upgrade Menu
+		pointer.SetActive(false);
 		dockMenu.SetActive(true);
-		Time.timeScale = 0;
+		PauseMenu.GameIsPaused = true;
 
 		// Dock the boat
-		transform.position = _targetPosition;
+		transform.position = new Vector3(dock.transform.position.x + 25, 0, dock.transform.position.z + 15);
 		transform.rotation = new Quaternion(0, 0, 0, 0);
 	}
 

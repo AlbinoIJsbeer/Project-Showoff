@@ -47,4 +47,9 @@ public class Timer : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
+    public void DeductTime(float seconds)
+    {
+        timer -= seconds;
+    }
 }

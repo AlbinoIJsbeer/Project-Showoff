@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyGameObject : MonoBehaviour
+public class DisableSelf : MonoBehaviour
 {
     private float disappearTimer;
-    public float disappearTimerMax = 30f;
+    public float disappearTimerMax = 3f;
 
-    private void Awake()
+    private void OnEnable()
     {
-        disappearTimer = 0f;
+        disappearTimer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         disappearTimer += Time.deltaTime;
 
         if (disappearTimer >= disappearTimerMax)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 }

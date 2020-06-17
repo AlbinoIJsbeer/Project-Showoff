@@ -12,6 +12,8 @@ public class BoatFuel : MonoBehaviour
     // Fuel gauge needle and lowFuel notification
     [SerializeField] private Transform fuelNdeedle;
     [SerializeField] private GameObject lowFuel;
+    [SerializeField] private GameObject pointer;
+    [SerializeField] private GameObject emptyFuelTank;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class BoatFuel : MonoBehaviour
 
     void Update()
     {
+        EmptyFuelTank();
         FuelGauge();
         LowFuelNotification();
     }
@@ -48,10 +51,26 @@ public class BoatFuel : MonoBehaviour
 
     // Notification for when the fuel is low
     private void LowFuelNotification()
-    {      
+    {
         if (90 >= fuelNdeedle.eulerAngles.z && fuelNdeedle.eulerAngles.z >= 45)
+        {
             lowFuel.SetActive(true);
+            if (BoatController.boatCurrentState == BoatController.BoatState.SAIL)
+                pointer.SetActive(true);
+            else if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+                pointer.SetActive(false);
+        }
         else
             lowFuel.SetActive(false);
+    }
+
+    // Show empty fuel tank notification
+    private void EmptyFuelTank()
+    {
+        if (fuelNdeedle.eulerAngles.z == 90 && BoatController.boatCurrentState == BoatController.BoatState.SAIL)
+        {
+            emptyFuelTank.SetActive(true);
+            PauseMenu.GameIsPaused = true;
+        }
     }
 }
