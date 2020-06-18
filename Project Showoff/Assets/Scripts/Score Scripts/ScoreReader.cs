@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.XPath;
@@ -18,7 +19,11 @@ public class ScoreReader
 
     public ScoreReader()
     {
-        _xml.Load(ScoreManager._fileName);
+        if (File.Exists(ScoreManager._fileName))
+        {
+            _xml.Load(ScoreManager._fileName);
+        }else throw new System.Exception("Highscore File not found");
+        
         XmlElement root = _xml.DocumentElement;
         XmlNodeList elemList = root.GetElementsByTagName("Score");
     }

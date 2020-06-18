@@ -62,7 +62,7 @@ using System.Xml.Serialization;
         public static void Save(ScoreManager scoreManager)
         {
             // Overrides the file if it alreadt exists
-            using (var writer = new StreamWriter(new FileStream(_fileName, FileMode.OpenOrCreate)))
+            using (var writer = new StreamWriter(new FileStream(_fileName, FileMode.Create)))
             {
                 var serilizer = new XmlSerializer(typeof(List<Score>));
 
