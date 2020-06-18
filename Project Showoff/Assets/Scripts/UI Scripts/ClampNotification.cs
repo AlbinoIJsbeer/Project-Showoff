@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClampNotification : MonoBehaviour
 {
-    [SerializeField] private GameObject hitNotification;
+    [SerializeField] private GameObject UIElement;
 
     void Update()
     {
         Vector3 hitNotPos = Camera.main.WorldToScreenPoint(this.transform.position);
-        hitNotification.transform.position = Vector3.Lerp(hitNotification.transform.position, hitNotPos, 0.5f);
+        UIElement.transform.position = Vector3.Lerp(UIElement.transform.position, hitNotPos, 0.5f);
     }
 }

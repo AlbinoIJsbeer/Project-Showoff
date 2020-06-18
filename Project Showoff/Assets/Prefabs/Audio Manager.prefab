@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6233667728464358302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6233667728464358296}
+  - component: {fileID: 6233667728464358297}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6233667728464358296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233667728464358302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6233667728464358297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233667728464358302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31fa308d030184f4fab9977bcd640732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Plastic Collect
+    clip: {fileID: 8300000, guid: 4afd357ed43cbe54384b19170e400781, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Engine
+    clip: {fileID: 8300000, guid: 2e662e9afac004246a13717d912ddab3, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Time Tick
+    clip: {fileID: 8300000, guid: 6dd75f86b3119d44dba5904b26a11d0c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Waves
+    clip: {fileID: 8300000, guid: 6d4da9f7426f8224fab81829c08fc2ad, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Filling Bar
+    clip: {fileID: 8300000, guid: 2dfb4520f6fde704ea8c99199566fd9e, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Gain Money
+    clip: {fileID: 8300000, guid: 4d933b22714b7404f90829802cf4dbcf, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Navigation
+    clip: {fileID: 8300000, guid: 7e5c9c19d1ffa0b4a9a5950dff241a5d, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: 336a9bcf45a49a04bb25445955b19008, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Box Select
+    clip: {fileID: 8300000, guid: 5df866208a28f254599245d8e0d62de5, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Typing
+    clip: {fileID: 8300000, guid: 2d75470d686561b48bd9a797e010faab, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Flying Bird
+    clip: {fileID: 8300000, guid: 914b20066e337db4bba9727cd453af2f, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Gull
+    clip: {fileID: 8300000, guid: 8f3284a28b9c4c74fbfaff47b91d78ea, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Tap
+    clip: {fileID: 8300000, guid: 99a827283c1cfaa47bc16c4bd24b7cb7, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Complete All
+    clip: {fileID: 8300000, guid: 3ee883991136fbf4fb0f382f45b3a886, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Complete One Movement
+    clip: {fileID: 8300000, guid: 04dc7c42948a5ed48b17e5b6c738da98, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Drag
+    clip: {fileID: 8300000, guid: c2fcfcc2477684440adafd08ac9d2e8c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Gain Points
+    clip: {fileID: 8300000, guid: bab974c1dbfa44547a39e3dac2cdc54c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Notification
+    clip: {fileID: 8300000, guid: 474ad20580042b8468f9c8ebaea583a3, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Pop Up Navigation
+    clip: {fileID: 8300000, guid: 830459e1708e32649ac075f60bbed814, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Engine Stop
+    clip: {fileID: 8300000, guid: 31a2164341e09bd4dbdbad1d5b7a811c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Warning
+    clip: {fileID: 8300000, guid: 4a838b007fafb144491e542dcae531e6, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Deduct Point
+    clip: {fileID: 8300000, guid: c2162b48003726f43aaadc895539f026, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit Rock
+    clip: {fileID: 8300000, guid: d827a92d5606668479dc3f8920c7872c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Wire Connected
+    clip: {fileID: 8300000, guid: 2ae00fcc22e786b47b2a3c75593e77d4, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}

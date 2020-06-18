@@ -16,8 +16,8 @@ public class BoatStats : MonoBehaviour
     private int trash;
     public int Trash { get { return trash; } set { trash = value; } }
 
-    [SerializeField] private int fuelPrice = 200;
-    [SerializeField] private int obstacleHitPenalty = 200;
+    [SerializeField] private int fuelPrice;
+    [SerializeField] private int obstacleHitPenalty;
 
     // References to UI objects
     [SerializeField] private TMP_Text scoreDisplay;
@@ -38,7 +38,7 @@ public class BoatStats : MonoBehaviour
 
     void Update()
     {
-        //Manager.Instance.Score = score;
+        Manager.Instance.Score = score;
         ShowStats();
         ClampScore();
         TrashDebugger();
@@ -112,12 +112,30 @@ public class BoatStats : MonoBehaviour
             score -= obstacleHitPenalty;
             rockHitNotification.SetActive(true);
         }
-        else if (collision.gameObject.tag == "Animal")
-        {
-            Destroy(collision.gameObject);
-            score += 200;
-            birdSaveNotification.SetActive(true);
-            PauseMenu.GameIsPaused = true;
-        }
+        //else if (collision.gameObject.tag == "Animal")
+        //{
+        //    Destroy(collision.gameObject);
+        //    SpawnAnimalEvent.numberOfSpawns--;
+        //    score += 200;
+        //    birdSaveNotification.SetActive(true);
+        //    PauseMenu.GameIsPaused = true;
+        //}
     }
+
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Animal")
+    //    {
+    //        collision.gameObject.GetComponent<HealthBar>().FillBar(1);
+
+    //        if (collision.gameObject.GetComponent<HealthBar>().healthBar.value == collision.gameObject.GetComponent<HealthBar>().healthBar.maxValue)
+    //        {
+    //            Destroy(collision.gameObject);
+    //            SpawnAnimalEvent.numberOfSpawns--;
+    //            score += 200;
+    //            birdSaveNotification.SetActive(true);
+    //            PauseMenu.GameIsPaused = true;
+    //        }
+    //    }
+    //}
 }

@@ -8,13 +8,17 @@ public class SpawnAnimalEvent : MonoBehaviour
     [SerializeField] private GameObject sea;
     private BoxCollider col;
 
-    public float timeInBetweenSpawns = 30;
+    [SerializeField] private float timeInBetweenSpawns;
     private float time;
+
+    public static int numberOfSpawns;
+    [SerializeField] private int maxNumberOfSpawns;
 
     void Start()
     {
         col = sea.GetComponent<BoxCollider>();
         time = timeInBetweenSpawns;
+        numberOfSpawns = 0;
     }
 
     void Update()
@@ -40,9 +44,10 @@ public class SpawnAnimalEvent : MonoBehaviour
     {
         time -= Time.deltaTime;
 
-        if (time <= 0)
+        if (time <= 0 & numberOfSpawns <= maxNumberOfSpawns)
         {
             SpawnAnimal(animal);
+            numberOfSpawns++;
             time = timeInBetweenSpawns;
         }
     }

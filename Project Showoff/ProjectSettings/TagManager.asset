@@ -15,6 +15,7 @@ TagManager:
   - Obstacle
   - Animal
   - Sea
+  - RescueNotification
   layers:
   - Default
   - TransparentFX

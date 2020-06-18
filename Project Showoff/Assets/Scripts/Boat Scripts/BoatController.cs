@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BoatController : MonoBehaviour
 {
 	// Boat states
-	public enum BoatState { SAIL, DOCK, DOCKED, RESCUE };
+	public enum BoatState { START, SAIL, DOCK, DOCKED, RESCUE };
 	public static BoatState boatCurrentState = BoatState.SAIL;
-
-	// Plane for retrieving mouse clicked position
-	static Plane XZPlane = new Plane(Vector3.up, Vector3.zero);
 
 	// Target position and angle difference between Boat and target position
 	private Vector3 _targetPosition;
@@ -18,19 +16,20 @@ public class BoatController : MonoBehaviour
 
 	// Field of View
 	private float FOV = 180f;
+	// Navigation distance
+	[SerializeField] private float navDist;
+
+	private float timeToClick;
 
 	// Boat speeds
-	public float rotationSpeed = 1.5f;
-	public float boatSpeed = 0;
-	public float maxBoatSpeed = 1f;
+	[SerializeField] private float rotationSpeed;
+	[SerializeField] private float boatSpeed;
+	[SerializeField] private float maxBoatSpeed;
 
 	private bool _rotateTowardsTarget;
 
 	// For clamping movement
 	private Vector3 pos;
-
-	// Navigation distance
-	public float navDist = 75f;
 
 	// Access to other scripts attached to the Boat 
 	private BoatFuel boatFuel;
@@ -41,50 +40,60 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private Transform dock;
 	[SerializeField] private GameObject dockMenu;
 
-	[SerializeField] private Vector3 exitDockPosition = new Vector3(125, 0, -10);
+	[SerializeField] private Vector3 exitDockPosition;
 	[SerializeField] private GameObject pointer;
+	[SerializeField] private GameObject rescueNotification;
 
 	private BoxCollider[] boatColliders;
 
 	private void Start()
 	{
-		_targetPosition = new Vector3(125, 0, -70);
+		_targetPosition = transform.position;
+		boatCurrentState = BoatState.START;
 		boatFuel = GetComponent<BoatFuel>();
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
+		timeToClick -= Time.deltaTime;
 		ChangeColliders(boatUpgrade.BoatIndex);
 		MaxSpeed(boatUpgrade.BoatIndex);
 		ClampBoatPosition(-350, 350, -100, 600);
 
 		switch (boatCurrentState)
 		{
-			case BoatState.SAIL:
-				//PauseMenu.GameIsPaused = false;
+			case BoatState.START:
 				TargetPosition();
-				if (CheckIfTargetPositionWithinFOV() && NavDistance() && boatFuel.Fuel > 0)
+				break;
+			// SAIL STATE
+			case BoatState.SAIL:
+				PauseMenu.GameIsPaused = false;
+				TargetPosition();
+				if (NavDistance() && boatFuel.Fuel > 0)
 				{
 					LookAtTarget();
-					Sail();					
+					Sail();
 				}
 				break;
+
+			// DOCK STATE
 			case BoatState.DOCK:
-				if (CheckIfTargetPositionWithinFOV())
-					Dock();
-				else
-					boatCurrentState = BoatState.SAIL;
+				Dock();
 				break;
+
+			// DOCKED STATE
 			case BoatState.DOCKED:
 				Docked();
 				PauseMenu.GameIsPaused = true;
 				break;
+
+			// RESCUE STATE
 			case BoatState.RESCUE:
 				TargetPosition();
-				if (CheckIfTargetPositionWithinFOV() && NavDistance() && boatFuel.Fuel > 0)
+				if (NavDistance() && boatFuel.Fuel > 0)
 					RescueAnimal();
 				break;
 		}
@@ -117,15 +126,18 @@ public class BoatController : MonoBehaviour
 	// Clamps boat speed based on boat type
 	private void MaxSpeed(int index)
 	{
-		if (index == 0) {
+		if (index == 0)
+		{
 			maxBoatSpeed = 1.0f;
 			rotationSpeed = 1.5f;
 		}
-		else if (index == 1) {
+		else if (index == 1)
+		{
 			maxBoatSpeed = 0.8f;
 			rotationSpeed = 1.25f;
 		}
-		else if (index == 2) {
+		else if (index == 2)
+		{
 			maxBoatSpeed = 0.6f;
 			rotationSpeed = 1f;
 		}
@@ -134,7 +146,7 @@ public class BoatController : MonoBehaviour
 	// Send boat to dock if boat stuck with no fuel
 	public void SendToDock()
 	{
-		boatCurrentState = BoatState.DOCKED;		
+		boatCurrentState = BoatState.DOCKED;
 	}
 
 	// Set boat read for sail when undocked
@@ -145,6 +157,7 @@ public class BoatController : MonoBehaviour
 		PauseMenu.GameIsPaused = false;
 	}
 
+	// NOT USED ANYMORE
 	// Check if target position is within FOV of the boat
 	private bool CheckIfTargetPositionWithinFOV()
 	{
@@ -236,10 +249,10 @@ public class BoatController : MonoBehaviour
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
 		// If near dock then switch to DOCKED state
-		if (distance < 50)
-		{
-			boatCurrentState = BoatState.DOCKED;
-		}
+		//if (distance < 50)
+		//{
+		//	boatCurrentState = BoatState.DOCKED;
+		//}
 
 		Sail();
 		LookAtTarget();
@@ -263,48 +276,88 @@ public class BoatController : MonoBehaviour
 	{
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
-		if (distance > 15)
+		if (distance > 10)
 		{
 			LookAtTarget();
 			Sail();
 		}
 		else
 		{
-			boatStats.Score += 100;
-			boatCurrentState = BoatState.SAIL;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+
+			if (Physics.Raycast(ray, out hit))
+			{
+				if (hit.transform.tag == "Animal")
+				{
+					if (hit.transform.GetComponent<HealthBar>().rescueActive == true && Input.GetMouseButtonDown(0))
+					{
+						hit.transform.GetComponent<HealthBar>().FillBar(10);
+						if(hit.transform.GetComponent<HealthBar>().healthBar.value >= hit.transform.GetComponent<HealthBar>().healthBar.maxValue)
+						{
+							boatStats.Score += 300;
+							rescueNotification.SetActive(true);
+							PauseMenu.GameIsPaused = true;
+						}
+					}
+				}
+			}
 		}
+	}
+
+	// Enable click in game after some time when you close the in-game menu
+	public void ResetTimerToClick(float sec)
+	{
+		timeToClick = sec;
+	}
+
+	// Set position of boat and rotation after leaving dock
+	public void SetStartTarget()
+	{
+		_targetPosition = transform.position;
+		_targetPosition.z += 10;
 	}
 
 	// Get clicked position
 	private void TargetPosition()
 	{
-		float distance;
+		//float distance;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if (Input.GetMouseButton(0))
+		if (Physics.Raycast(ray, out hit))
 		{
-			if (XZPlane.Raycast(ray, out distance))
+			if (hit.transform.tag == "Sea")
 			{
-				// Get clicked position and reset y axis to 0
-				_targetPosition = ray.GetPoint(distance);
-				_targetPosition.y = 0;
-			}
-		}
-
-		if (Input.GetMouseButtonDown(0))
-		{
-			if (Physics.Raycast(ray, out hit))
-			{
-				if (hit.transform.tag == "Dock")
+				if (Input.GetMouseButton(0) && timeToClick <= 0)
 				{
+					_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
+					boatCurrentState = BoatState.SAIL;
+				}
+			}
+			else if (hit.transform.tag == "Dock")
+			{
+				if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
+				{
+					_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
 					boatCurrentState = BoatState.DOCK;
 				}
-				else if (hit.transform.tag == "Animal")
+			}
+			else if (hit.transform.tag == "Animal" && hit.transform.GetComponent<HealthBar>().rescueActive == false)
+			{
+				if (Input.GetMouseButton(0) && timeToClick <= 0)
 				{
+					_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
 					boatCurrentState = BoatState.RESCUE;
 				}
-			}
+			}			
 		}
+	}
+
+	// If it collides with dock it enters DOCKED state
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Dock")
+			boatCurrentState = BoatState.DOCKED;
 	}
 }

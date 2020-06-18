@@ -18,9 +18,9 @@ public class TrashCollector : MonoBehaviour
 	[SerializeField] private GameObject dockPointer;
 
 	// Boat trash capacities
-	public int smallBoatCapacity = 50;
-	public int mediumBoatCapacity = 100;
-	public int largeBoatCapacity = 150;
+	public int smallBoatCapacity;
+	public int mediumBoatCapacity;
+	public int largeBoatCapacity;
 
 	// Current boat trash capacity
 	private int currentCapacityThreshold;

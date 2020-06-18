@@ -12,6 +12,7 @@ public class LanguageSwitch : MonoBehaviour
 
     void Update()
     {
+        // DONT FORGET LANGUAGE
         currentLanguage = Manager.Instance._language;
 
         if (currentLanguage == Language.ENGLISH)

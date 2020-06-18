@@ -753,7 +753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 1695657957345252538, guid: 548b47cb03a506a499a4009c97a0ad72, type: 3}
   sea: {fileID: 1591366708}
-  timeInBetweenSpawns: 15
+  timeInBetweenSpawns: 1
+  maxNumberOfSpawns: 5
 --- !u!4 &57478144
 Transform:
   m_ObjectHideFlags: 0
@@ -4756,7 +4757,7 @@ GameObject:
   - component: {fileID: 255057493}
   m_Layer: 0
   m_Name: Boat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4773,14 +4774,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb46845e8111b444ad3b94117899930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDist: 150
   rotationSpeed: 1.5
   boatSpeed: 1
   maxBoatSpeed: 5
-  navDist: 150
   dock: {fileID: 164497395}
   dockMenu: {fileID: 962550755}
   exitDockPosition: {x: 125, y: 0, z: -10}
   pointer: {fileID: 592505325}
+  rescueNotification: {fileID: 1556823211}
 --- !u!54 &255057486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4875,9 +4877,9 @@ MonoBehaviour:
   capacityThreshold: {fileID: 1315474823}
   capacityNotification: {fileID: 1157138547}
   dockPointer: {fileID: 592505325}
-  smallBoatCapacity: 50
-  mediumBoatCapacity: 100
-  largeBoatCapacity: 150
+  smallBoatCapacity: 100
+  mediumBoatCapacity: 200
+  largeBoatCapacity: 300
 --- !u!114 &255057492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19335,7 +19337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1de0c872b441314a86185a4c19e8b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitNotification: {fileID: 1603999728}
+  UIElement: {fileID: 1603999728}
 --- !u!1 &870449353
 GameObject:
   m_ObjectHideFlags: 0
@@ -25127,7 +25129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c8bf4eeffd75e45b59fbe84632aa32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTimerMax: 3
+  disappearTimerMax: 5
 --- !u!1001 &1158430103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31950,7 +31952,7 @@ GameObject:
   - component: {fileID: 1556823213}
   m_Layer: 5
   m_Name: Bird Saved Notification
-  m_TagString: Untagged
+  m_TagString: RescueNotification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33654,6 +33656,28 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 255057485}
         m_MethodName: SetSailState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 255057485}
+        m_MethodName: ResetTimerToClick
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 255057485}
+        m_MethodName: SetStartTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
