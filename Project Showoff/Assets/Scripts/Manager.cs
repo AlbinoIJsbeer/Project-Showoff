@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
+        Name = "Anonymous";
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
