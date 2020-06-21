@@ -25,6 +25,7 @@ public class HealthBar : MonoBehaviour
 
         UpdatePosition();
         timer = 10f;
+        rescueActive = false;
     }
 
     void Update()
@@ -86,11 +87,16 @@ public class HealthBar : MonoBehaviour
         if (timer <= 0)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score -= 100;
+            rescueActive = false;
+            SpawnAnimalEvent.numberOfSpawns--;
             Destroy(gameObject);
         }
         else if (healthBar.value >= healthBar.maxValue)
         {
-            //GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score += 300;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score += 300;
+            //GameObject.FindGameObjectWithTag("RescueNotification").SetActive(true);
+            rescueActive = false;
+            SpawnAnimalEvent.numberOfSpawns--;
             Destroy(gameObject);
         }
     }

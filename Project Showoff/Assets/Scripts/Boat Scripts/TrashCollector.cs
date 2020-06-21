@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class TrashCollector : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class TrashCollector : MonoBehaviour
 		{
 			if (boatUpgrade.BoatIndex == 0 && boatStats.Trash < smallBoatCapacity)
 			{
+				FindObjectOfType<AudioManager>().Play("Collect");
 				Destroy(other.gameObject);
 				boatStats.Trash++;
 				boatStats.Score += scoreIncrement;

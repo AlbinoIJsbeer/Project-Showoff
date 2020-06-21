@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9095771049565933043}
   m_Layer: 0
   m_Name: trash bag 4 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2198691794195587174}
   - component: {fileID: 5926635681592532243}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 4781243995347322675}
   m_Layer: 0
   m_Name: box 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 6138899124702136396}
   m_Layer: 0
   m_Name: bottle 5 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 3230902794482888489}
   m_Layer: 0
   m_Name: Pan1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 8345335064137099243}
   m_Layer: 0
   m_Name: box 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 1857910936755582997}
   m_Layer: 0
   m_Name: trash bag 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 3488827261559731077}
   m_Layer: 0
   m_Name: pan2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 2248812623439421069}
   m_Layer: 0
   m_Name: Pan1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 7638190830577180239}
   m_Layer: 0
   m_Name: bucket (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 3186287237796536769}
   m_Layer: 0
   m_Name: bucket (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 3585233510711270297}
   m_Layer: 0
   m_Name: pan2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1200,6 +1200,134 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1196698513125311010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4037827198836599928}
+  - component: {fileID: 7489622250811160207}
+  - component: {fileID: 1224616698911517485}
+  - component: {fileID: 6407409558199006487}
+  m_Layer: 0
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4037827198836599928
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196698513125311010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3708198088803319303}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7489622250811160207
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196698513125311010}
+  m_CullTransparentMesh: 0
+--- !u!114 &1224616698911517485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196698513125311010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6407409558199006487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196698513125311010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1224616698911517485}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5127343000038100502}
+        m_MethodName: FillBar
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1254099464097090195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,7 +1341,7 @@ GameObject:
   - component: {fileID: 1683024209563429939}
   m_Layer: 0
   m_Name: jerry can(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,7 +1420,7 @@ GameObject:
   - component: {fileID: 7736250243838386496}
   m_Layer: 0
   m_Name: bottle 1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,7 +1577,7 @@ GameObject:
   - component: {fileID: 6609081678590779128}
   m_Layer: 0
   m_Name: box 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1561,7 +1689,7 @@ GameObject:
   - component: {fileID: 1117462233766563088}
   m_Layer: 0
   m_Name: trash bag 2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1668,7 +1796,7 @@ GameObject:
   - component: {fileID: 3853232390187897599}
   m_Layer: 0
   m_Name: pan 4 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1701,7 +1829,7 @@ GameObject:
   - component: {fileID: 3546671952973058395}
   m_Layer: 0
   m_Name: bottle 2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,7 +1939,7 @@ GameObject:
   - component: {fileID: 5598957235269904092}
   m_Layer: 0
   m_Name: bottle 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1890,6 +2018,7 @@ GameObject:
   - component: {fileID: 3095308777076843185}
   - component: {fileID: 5127343000038100502}
   - component: {fileID: 5709102677235512863}
+  - component: {fileID: 4553285723056901118}
   m_Layer: 0
   m_Name: Animal Trash Pile
   m_TagString: Animal
@@ -1957,6 +2086,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4553285723056901118
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695657957345252538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 14.3202305, y: 6.5276527, z: 11.877491}
+  m_Center: {x: 1.0657034, y: 2.2442799, z: -0.24706078}
 --- !u!1 &1765744950374316380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +2112,7 @@ GameObject:
   - component: {fileID: 4368689928452685381}
   m_Layer: 0
   m_Name: trash bag 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2049,7 +2191,7 @@ GameObject:
   - component: {fileID: 5168235607610491748}
   m_Layer: 0
   m_Name: bottle 1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2206,7 +2348,7 @@ GameObject:
   - component: {fileID: 5872526738300560070}
   m_Layer: 0
   m_Name: pan 4 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2316,7 +2458,7 @@ GameObject:
   - component: {fileID: 1371232377518702097}
   m_Layer: 0
   m_Name: trash bag 5 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2428,7 +2570,7 @@ GameObject:
   - component: {fileID: 4724427328500619038}
   m_Layer: 0
   m_Name: jerry can(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2507,7 +2649,7 @@ GameObject:
   - component: {fileID: 7471914799640114396}
   m_Layer: 0
   m_Name: trash bag 2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2586,7 +2728,7 @@ GameObject:
   - component: {fileID: 7393350760070811095}
   m_Layer: 0
   m_Name: jerry can (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2931,7 +3073,7 @@ GameObject:
   - component: {fileID: 270400622340032883}
   m_Layer: 0
   m_Name: box 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3152,7 +3294,7 @@ GameObject:
   - component: {fileID: 2521271047809577362}
   m_Layer: 0
   m_Name: trash bag 3(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3229,7 +3371,7 @@ GameObject:
   - component: {fileID: 3011558723914592699}
   m_Layer: 0
   m_Name: trash bag 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3339,7 +3481,7 @@ GameObject:
   - component: {fileID: 524570417178371233}
   m_Layer: 0
   m_Name: bottle 5 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3370,7 +3512,7 @@ GameObject:
   - component: {fileID: 4584279547199624368}
   m_Layer: 0
   m_Name: bottle 4 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3403,7 +3545,7 @@ GameObject:
   - component: {fileID: 3426619929615870279}
   m_Layer: 0
   m_Name: bucket (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3481,7 +3623,7 @@ GameObject:
   - component: {fileID: 4286474620815997066}
   m_Layer: 0
   m_Name: box 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3514,7 +3656,7 @@ GameObject:
   - component: {fileID: 8792813611440366049}
   m_Layer: 0
   m_Name: bucket (3)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3594,7 +3736,7 @@ GameObject:
   - component: {fileID: 7766165744047999635}
   m_Layer: 0
   m_Name: trash bag 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3750,7 +3892,7 @@ GameObject:
   - component: {fileID: 7262803474789198948}
   m_Layer: 0
   m_Name: trash bag 6(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3783,7 +3925,7 @@ GameObject:
   - component: {fileID: 554595307761227803}
   m_Layer: 0
   m_Name: bucket (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3861,7 +4003,7 @@ GameObject:
   - component: {fileID: 4635266435957731361}
   m_Layer: 0
   m_Name: pan 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3892,7 +4034,7 @@ GameObject:
   - component: {fileID: 720106506120021227}
   m_Layer: 0
   m_Name: trash bag 5 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4081,7 +4223,7 @@ GameObject:
   - component: {fileID: 5970195169243504925}
   m_Layer: 0
   m_Name: bottle 4 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4191,7 +4333,7 @@ GameObject:
   - component: {fileID: 5182800708104906698}
   m_Layer: 0
   m_Name: Pan1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4331,7 +4473,7 @@ GameObject:
   - component: {fileID: 6743735821581574514}
   m_Layer: 0
   m_Name: box 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4364,7 +4506,7 @@ GameObject:
   - component: {fileID: 72675089233418595}
   m_Layer: 0
   m_Name: bucket(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4444,7 +4586,7 @@ GameObject:
   - component: {fileID: 2429564696436003890}
   m_Layer: 0
   m_Name: trash bag 3 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4679,7 +4821,7 @@ GameObject:
   - component: {fileID: 8278836127434715374}
   m_Layer: 0
   m_Name: pan 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4710,7 +4852,7 @@ GameObject:
   - component: {fileID: 2864858973290980280}
   m_Layer: 0
   m_Name: box 3(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4899,7 +5041,7 @@ GameObject:
   - component: {fileID: 3671585896627669220}
   m_Layer: 0
   m_Name: Pan1 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5118,7 +5260,7 @@ GameObject:
   - component: {fileID: 4392933824809890993}
   m_Layer: 0
   m_Name: pan2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5149,7 +5291,7 @@ GameObject:
   - component: {fileID: 2983964952213780438}
   m_Layer: 0
   m_Name: Pan1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5338,7 +5480,7 @@ GameObject:
   - component: {fileID: 6231038984061988817}
   m_Layer: 0
   m_Name: pan2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5369,7 +5511,7 @@ GameObject:
   - component: {fileID: 4608559544078635190}
   - component: {fileID: 8091906072153176158}
   - component: {fileID: 3660281313244141113}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5392,8 +5534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10.9}
-  m_SizeDelta: {x: 160, y: 13.26}
+  m_AnchoredPosition: {x: 0, y: -15.13}
+  m_SizeDelta: {x: 160, y: 21.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8091906072153176158
 CanvasRenderer:
@@ -5421,7 +5563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time left to rescue
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,
@@ -5450,8 +5592,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5491,10 +5633,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3660281313244141113}
-    characterCount: 19
+    characterCount: 2
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -5525,7 +5667,7 @@ GameObject:
   - component: {fileID: 3836436988858273853}
   m_Layer: 0
   m_Name: pan 3(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5556,7 +5698,7 @@ GameObject:
   - component: {fileID: 8932451178288416601}
   m_Layer: 0
   m_Name: bottle 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5666,7 +5808,7 @@ GameObject:
   - component: {fileID: 2580233131738838288}
   m_Layer: 0
   m_Name: UI Position
-  m_TagString: Animal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5777,7 +5919,7 @@ GameObject:
   - component: {fileID: 4889972479264239953}
   m_Layer: 0
   m_Name: bottle 2 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5936,7 +6078,7 @@ GameObject:
   - component: {fileID: 1377220713402782027}
   m_Layer: 0
   m_Name: bottle 2 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6014,7 +6156,7 @@ GameObject:
   - component: {fileID: 1213934726796159480}
   m_Layer: 0
   m_Name: Pan1 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6125,7 +6267,7 @@ GameObject:
   - component: {fileID: 6192598046046034946}
   - component: {fileID: 6354988245605782590}
   - component: {fileID: 8251772261013227384}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6207,7 +6349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -6223,7 +6365,7 @@ GameObject:
   - component: {fileID: 713889105428067164}
   m_Layer: 0
   m_Name: box 1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6491,7 +6633,7 @@ GameObject:
   - component: {fileID: 8130612383322692687}
   m_Layer: 0
   m_Name: box 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6522,7 +6664,7 @@ GameObject:
   - component: {fileID: 1335686896565037100}
   m_Layer: 0
   m_Name: plastic box (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6583,7 +6725,7 @@ GameObject:
   - component: {fileID: 4550583244400588633}
   m_Layer: 0
   m_Name: trash bag 6 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6614,7 +6756,7 @@ GameObject:
   - component: {fileID: 5054364544217945456}
   m_Layer: 0
   m_Name: pan 3 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6675,7 +6817,7 @@ GameObject:
   - component: {fileID: 7053358032618592860}
   m_Layer: 0
   m_Name: box 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6706,7 +6848,7 @@ GameObject:
   - component: {fileID: 8631805543893733248}
   m_Layer: 0
   m_Name: bottle 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6816,7 +6958,7 @@ GameObject:
   - component: {fileID: 3752601204577968495}
   m_Layer: 0
   m_Name: box 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6847,7 +6989,7 @@ GameObject:
   - component: {fileID: 953123362157758443}
   m_Layer: 0
   m_Name: box 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7036,7 +7178,7 @@ GameObject:
   - component: {fileID: 6244168508239267818}
   m_Layer: 0
   m_Name: bottle 5 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7067,7 +7209,7 @@ GameObject:
   - component: {fileID: 1324790360471420069}
   m_Layer: 0
   m_Name: trash bag 6 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7205,7 +7347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5273264421143680693}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7243,7 +7385,7 @@ GameObject:
   - component: {fileID: 2585118420591597842}
   m_Layer: 0
   m_Name: pan2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7274,7 +7416,7 @@ GameObject:
   - component: {fileID: 1487984314659066479}
   m_Layer: 0
   m_Name: Pan1 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7307,7 +7449,7 @@ GameObject:
   - component: {fileID: 986361968288015637}
   m_Layer: 0
   m_Name: jerry can (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7463,7 +7605,7 @@ GameObject:
   - component: {fileID: 7511206924409689404}
   m_Layer: 0
   m_Name: trash bag 6 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7526,7 +7668,7 @@ GameObject:
   - component: {fileID: 919817299765318888}
   m_Layer: 0
   m_Name: trash bag 1 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7735,7 +7877,7 @@ GameObject:
   - component: {fileID: 315639233994297063}
   m_Layer: 0
   m_Name: box 3(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7768,7 +7910,7 @@ GameObject:
   - component: {fileID: 6656626921396717622}
   m_Layer: 0
   m_Name: bottle 1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7846,7 +7988,7 @@ GameObject:
   - component: {fileID: 4331633905402884755}
   m_Layer: 0
   m_Name: plastic box (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7958,7 +8100,7 @@ GameObject:
   - component: {fileID: 6876283737609002892}
   m_Layer: 0
   m_Name: bottle 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8038,7 +8180,7 @@ GameObject:
   - component: {fileID: 2935327945480708631}
   m_Layer: 0
   m_Name: bucket (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8118,7 +8260,7 @@ GameObject:
   - component: {fileID: 7026761467158776085}
   m_Layer: 0
   m_Name: jerry can (3)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8274,7 +8416,7 @@ GameObject:
   - component: {fileID: 4743865184029675001}
   m_Layer: 0
   m_Name: box 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8382,13 +8524,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3708198088803319303}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3708198088803319303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8403,6 +8545,7 @@ RectTransform:
   - {fileID: 3323729040845867354}
   - {fileID: 2198691794195587174}
   - {fileID: 4608559544078635190}
+  - {fileID: 4037827198836599928}
   m_Father: {fileID: 1258570262479504423}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8424,7 +8567,7 @@ GameObject:
   - component: {fileID: 306340729089318633}
   m_Layer: 0
   m_Name: dented jerry can (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8501,7 +8644,7 @@ GameObject:
   - component: {fileID: 2402303370839708200}
   m_Layer: 0
   m_Name: box 2(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8771,7 +8914,7 @@ GameObject:
   - component: {fileID: 698898172453495270}
   m_Layer: 0
   m_Name: trash bag 1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8880,7 +9023,7 @@ GameObject:
   - component: {fileID: 7656163284024001087}
   m_Layer: 0
   m_Name: bottle 2 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8960,7 +9103,7 @@ GameObject:
   - component: {fileID: 8520670139156918797}
   m_Layer: 0
   m_Name: bottle 1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9198,7 +9341,7 @@ GameObject:
   - component: {fileID: 3898963973910892322}
   m_Layer: 0
   m_Name: trash bag 2 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9275,7 +9418,7 @@ GameObject:
   - component: {fileID: 3928938226183386970}
   m_Layer: 0
   m_Name: Pan1(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9366,7 +9509,7 @@ GameObject:
   - component: {fileID: 2649620055859111785}
   m_Layer: 0
   m_Name: pan 3 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9429,7 +9572,7 @@ GameObject:
   - component: {fileID: 8602451087569325129}
   m_Layer: 0
   m_Name: bottle 2 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9586,7 +9729,7 @@ GameObject:
   - component: {fileID: 51627201821613223}
   m_Layer: 0
   m_Name: pan2 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9728,7 +9871,7 @@ GameObject:
   - component: {fileID: 4684665136666445907}
   m_Layer: 0
   m_Name: trash bag 3 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9916,7 +10059,7 @@ GameObject:
   - component: {fileID: 5764170138943251879}
   m_Layer: 0
   m_Name: dented jerry can(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9993,7 +10136,7 @@ GameObject:
   - component: {fileID: 2655322763929976812}
   - component: {fileID: 8893147119913072487}
   - component: {fileID: 7046613703632615582}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10015,7 +10158,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10066,7 +10209,7 @@ GameObject:
   - component: {fileID: 8726752269723104350}
   m_Layer: 0
   m_Name: trash bag 4 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10097,7 +10240,7 @@ GameObject:
   - component: {fileID: 5252375031688882217}
   m_Layer: 0
   m_Name: pan 4(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10128,7 +10271,7 @@ GameObject:
   - component: {fileID: 4940961100655403982}
   m_Layer: 0
   m_Name: trash bag 5 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10159,7 +10302,7 @@ GameObject:
   - component: {fileID: 4295971723958553376}
   - component: {fileID: 2814505384362280402}
   - component: {fileID: 8997543953642509118}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10234,7 +10377,7 @@ GameObject:
   - component: {fileID: 4175103692206616054}
   m_Layer: 0
   m_Name: jerry can (3)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10313,7 +10456,7 @@ GameObject:
   - component: {fileID: 238212351327131397}
   m_Layer: 0
   m_Name: bucket(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10472,7 +10615,7 @@ GameObject:
   - component: {fileID: 6625932940144136365}
   m_Layer: 0
   m_Name: trash bag 1 (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10707,7 +10850,7 @@ GameObject:
   - component: {fileID: 6590198800460811083}
   m_Layer: 0
   m_Name: trash bag 5(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10740,7 +10883,7 @@ GameObject:
   - component: {fileID: 6785791997380198401}
   m_Layer: 0
   m_Name: jerry can(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10896,7 +11039,7 @@ GameObject:
   - component: {fileID: 6653899998582937785}
   m_Layer: 0
   m_Name: pan 3 (2)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10927,7 +11070,7 @@ GameObject:
   - component: {fileID: 3323729040845867354}
   - component: {fileID: 8754576276410419798}
   - component: {fileID: 8539589246195986175}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Guider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11085,7 +11228,7 @@ GameObject:
   - component: {fileID: 6079559581019921331}
   m_Layer: 0
   m_Name: dented jerry can (3)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11162,7 +11305,7 @@ GameObject:
   - component: {fileID: 8662182331973689027}
   m_Layer: 0
   m_Name: plastic box (1)(Clone)
-  m_TagString: Trash
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11422,6 +11565,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 44e3eabd99a410344aba89564df4c229,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44e3eabd99a410344aba89564df4c229, type: 3}
 --- !u!4 &4700321268103514816 stripped
@@ -11511,6 +11659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Seagull
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 72256c90f05815940af7b7ea21234bca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72256c90f05815940af7b7ea21234bca, type: 3}

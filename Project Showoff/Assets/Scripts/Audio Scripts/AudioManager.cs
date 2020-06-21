@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    private void Awake()
+    void Awake()
     {
         foreach (Sound s in sounds)
         {
@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
         s.source.Play();
     }
 }

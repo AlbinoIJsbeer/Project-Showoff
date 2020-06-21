@@ -46,6 +46,8 @@ public class BoatController : MonoBehaviour
 
 	private BoxCollider[] boatColliders;
 
+	public AudioSource boatEngine;
+
 	private void Start()
 	{
 		_targetPosition = transform.position;
@@ -54,10 +56,16 @@ public class BoatController : MonoBehaviour
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 		boatColliders = gameObject.GetComponents<BoxCollider>();
+
+	
+		boatEngine.Play();
+
+		FindObjectOfType<AudioManager>().Play("Waves");
+		//FindObjectOfType<AudioManager>().Play("Engine");
 	}
 
-	private void Update()
-	{
+	private void FixedUpdate()
+	{		
 		timeToClick -= Time.deltaTime;
 		ChangeColliders(boatUpgrade.BoatIndex);
 		MaxSpeed(boatUpgrade.BoatIndex);
@@ -70,7 +78,7 @@ public class BoatController : MonoBehaviour
 				break;
 			// SAIL STATE
 			case BoatState.SAIL:
-				PauseMenu.GameIsPaused = false;
+				//PauseMenu.GameIsPaused = false;
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 				{
@@ -220,9 +228,11 @@ public class BoatController : MonoBehaviour
 
 			// Use fuel when moving
 			boatFuel.Fuel -= 0.01f;
+			boatEngine.volume = 0.4f;
 		}
 		else
 		{
+			boatEngine.volume = 0.1f;
 			boatSpeed -= 0.01f;
 		}
 	}
@@ -283,25 +293,32 @@ public class BoatController : MonoBehaviour
 		}
 		else
 		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
+			//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			//RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit))
-			{
-				if (hit.transform.tag == "Animal")
-				{
-					if (hit.transform.GetComponent<HealthBar>().rescueActive == true && Input.GetMouseButtonDown(0))
-					{
-						hit.transform.GetComponent<HealthBar>().FillBar(10);
-						if(hit.transform.GetComponent<HealthBar>().healthBar.value >= hit.transform.GetComponent<HealthBar>().healthBar.maxValue)
-						{
-							boatStats.Score += 300;
-							rescueNotification.SetActive(true);
-							PauseMenu.GameIsPaused = true;
-						}
-					}
-				}
-			}
+			//if (Physics.Raycast(ray, out hit))
+			//{
+			//	if (hit.collider.tag == "Animal")
+			//	{
+			//		Debug.Log("Animal under pointer");
+			//		if (Input.GetMouseButtonDown(0) && hit.collider.gameObject.GetComponent<HealthBar>().rescueActive == true)
+			//		{
+			//			//if ()
+			//			//{
+							
+			//				hit.collider.gameObject.GetComponent<HealthBar>().FillBar(10);
+			//				Debug.Log("Bar +10");
+						
+			//				if (hit.collider.gameObject.GetComponent<HealthBar>().healthBar.value >= hit.collider.gameObject.GetComponent<HealthBar>().healthBar.maxValue)
+			//				{
+			//					boatStats.Score += 300;
+			//					rescueNotification.SetActive(true);
+			//					PauseMenu.GameIsPaused = true;
+			//				}
+			//			//}
+			//		}
+			//	}
+			//}
 		}
 	}
 
@@ -343,14 +360,17 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.DOCK;
 				}
 			}
-			else if (hit.transform.tag == "Animal" && hit.transform.GetComponent<HealthBar>().rescueActive == false)
+			else if (hit.transform.tag == "Animal")
 			{
-				if (Input.GetMouseButton(0) && timeToClick <= 0)
+				if (hit.collider.gameObject.GetComponent<HealthBar>().rescueActive == false)
 				{
-					_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
-					boatCurrentState = BoatState.RESCUE;
+					if (Input.GetMouseButton(0) && timeToClick <= 0)
+					{
+						_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
+						boatCurrentState = BoatState.RESCUE;
+					}
 				}
-			}			
+			}
 		}
 	}
 
