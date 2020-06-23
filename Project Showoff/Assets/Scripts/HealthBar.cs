@@ -6,6 +6,10 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
+    public delegate void AnimalEvent();
+    public static event AnimalEvent OnBirdRescueSuccess;
+    public static event AnimalEvent OnBirdRescueFail;
+
     [SerializeField] private Transform targetPos;
     [SerializeField] private GameObject UIObject;
     [SerializeField] private TMP_Text timeUI;
@@ -89,6 +93,7 @@ public class HealthBar : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score -= 100;
             rescueActive = false;
             SpawnAnimalEvent.numberOfSpawns--;
+            OnBirdRescueFail?.Invoke();
             Destroy(gameObject);
         }
         else if (healthBar.value >= healthBar.maxValue)
@@ -97,6 +102,7 @@ public class HealthBar : MonoBehaviour
             //GameObject.FindGameObjectWithTag("RescueNotification").SetActive(true);
             rescueActive = false;
             SpawnAnimalEvent.numberOfSpawns--;
+            OnBirdRescueSuccess?.Invoke();
             Destroy(gameObject);
         }
     }

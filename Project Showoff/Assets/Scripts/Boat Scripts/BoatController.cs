@@ -42,7 +42,10 @@ public class BoatController : MonoBehaviour
 
 	[SerializeField] private Vector3 exitDockPosition;
 	[SerializeField] private GameObject pointer;
-	[SerializeField] private GameObject rescueNotification;
+	//[SerializeField] private GameObject rescueNotification;
+
+	[SerializeField] private GameObject birdSave;
+	[SerializeField] private GameObject birdDie;
 
 	private BoxCollider[] boatColliders;
 
@@ -56,7 +59,8 @@ public class BoatController : MonoBehaviour
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 		boatColliders = gameObject.GetComponents<BoxCollider>();
-
+		HealthBar.OnBirdRescueSuccess += BirdSaved;
+		HealthBar.OnBirdRescueFail += BirdDied;
 	
 		boatEngine.Play();
 
@@ -105,6 +109,16 @@ public class BoatController : MonoBehaviour
 					RescueAnimal();
 				break;
 		}
+	}
+
+	private void BirdSaved()
+	{
+		birdSave.SetActive(true);
+	}
+
+	private void BirdDied()
+	{
+		birdDie.SetActive(true);
 	}
 
 	// Change boat colliders based on boat
@@ -227,7 +241,7 @@ public class BoatController : MonoBehaviour
 			else boatSpeed = 1f;
 
 			// Use fuel when moving
-			boatFuel.Fuel -= 0.01f;
+			boatFuel.Fuel -= 0.0075f;
 			boatEngine.volume = 0.4f;
 		}
 		else
@@ -257,13 +271,6 @@ public class BoatController : MonoBehaviour
 	{
 		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z + 35);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
-
-		// If near dock then switch to DOCKED state
-		//if (distance < 50)
-		//{
-		//	boatCurrentState = BoatState.DOCKED;
-		//}
-
 		Sail();
 		LookAtTarget();
 	}
@@ -290,35 +297,6 @@ public class BoatController : MonoBehaviour
 		{
 			LookAtTarget();
 			Sail();
-		}
-		else
-		{
-			//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			//RaycastHit hit;
-
-			//if (Physics.Raycast(ray, out hit))
-			//{
-			//	if (hit.collider.tag == "Animal")
-			//	{
-			//		Debug.Log("Animal under pointer");
-			//		if (Input.GetMouseButtonDown(0) && hit.collider.gameObject.GetComponent<HealthBar>().rescueActive == true)
-			//		{
-			//			//if ()
-			//			//{
-							
-			//				hit.collider.gameObject.GetComponent<HealthBar>().FillBar(10);
-			//				Debug.Log("Bar +10");
-						
-			//				if (hit.collider.gameObject.GetComponent<HealthBar>().healthBar.value >= hit.collider.gameObject.GetComponent<HealthBar>().healthBar.maxValue)
-			//				{
-			//					boatStats.Score += 300;
-			//					rescueNotification.SetActive(true);
-			//					PauseMenu.GameIsPaused = true;
-			//				}
-			//			//}
-			//		}
-			//	}
-			//}
 		}
 	}
 
@@ -362,14 +340,11 @@ public class BoatController : MonoBehaviour
 			}
 			else if (hit.transform.tag == "Animal")
 			{
-				if (hit.collider.gameObject.GetComponent<HealthBar>().rescueActive == false)
-				{
 					if (Input.GetMouseButton(0) && timeToClick <= 0)
 					{
 						_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
 						boatCurrentState = BoatState.RESCUE;
 					}
-				}
 			}
 		}
 	}

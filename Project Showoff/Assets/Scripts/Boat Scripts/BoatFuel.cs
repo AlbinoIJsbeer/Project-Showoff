@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoatFuel : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class BoatFuel : MonoBehaviour
     [SerializeField] private GameObject lowFuel;
     [SerializeField] private GameObject pointer;
     [SerializeField] private GameObject emptyFuelTank;
+    [SerializeField] private GameObject flashingGauge;
+    private float opacity = 0;
+    public float flashInterval = 0.015f;
 
     void Start()
     {
@@ -26,6 +30,7 @@ public class BoatFuel : MonoBehaviour
         EmptyFuelTank();
         FuelGauge();
         LowFuelNotification();
+        RedFlashWarning();
     }
 
     // Set fuel
@@ -55,13 +60,17 @@ public class BoatFuel : MonoBehaviour
         if (90 >= fuelNdeedle.eulerAngles.z && fuelNdeedle.eulerAngles.z >= 45)
         {
             lowFuel.SetActive(true);
+            flashingGauge.SetActive(true);
             if (BoatController.boatCurrentState == BoatController.BoatState.SAIL)
                 pointer.SetActive(true);
             else if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
                 pointer.SetActive(false);
         }
         else
+        {
             lowFuel.SetActive(false);
+            flashingGauge.SetActive(false);
+        }
     }
 
     // Show empty fuel tank notification
@@ -72,5 +81,17 @@ public class BoatFuel : MonoBehaviour
             emptyFuelTank.SetActive(true);
             PauseMenu.GameIsPaused = true;
         }
+    }
+
+    private void RedFlashWarning()
+    {
+        opacity += flashInterval;
+
+        if (opacity <= 0)
+            flashInterval *= -1;
+        else if (opacity >= 0.6f)
+            flashInterval *= -1;
+
+        flashingGauge.GetComponent<Image>().color = new Color(1, 0, 0, opacity);
     }
 }

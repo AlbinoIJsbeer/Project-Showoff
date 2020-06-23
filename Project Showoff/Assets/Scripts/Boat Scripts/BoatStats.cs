@@ -11,7 +11,7 @@ public class BoatStats : MonoBehaviour
 
     private int score;
     public int Score { get { return score; } set { score = value; } }
-    private int money;
+    public int money;
     public int Money { get { return money; } set { money = value; } }
     private int trash;
     public int Trash { get { return trash; } set { trash = value; } }
@@ -25,7 +25,6 @@ public class BoatStats : MonoBehaviour
     [SerializeField] private TMP_Text trashDisplay;
 
     [SerializeField] private GameObject rockHitNotification;
-    [SerializeField] private GameObject birdSaveNotification;
 
     // Reference to fuel
     private BoatFuel boatFuel;
