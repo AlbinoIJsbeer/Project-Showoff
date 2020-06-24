@@ -11,7 +11,7 @@ public class BoatStats : MonoBehaviour
 
     private int score;
     public int Score { get { return score; } set { score = value; } }
-    public int money;
+    private int money;
     public int Money { get { return money; } set { money = value; } }
     private int trash;
     public int Trash { get { return trash; } set { trash = value; } }
@@ -43,11 +43,14 @@ public class BoatStats : MonoBehaviour
 
     void Update()
     {
-        Manager.Instance.Score = score;
+        //Manager.Instance.Score = score;
         ShowStats();
         ClampScore();
         TrashDebugger();
         ShowFact();
+
+        if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+            rockHitNotification.SetActive(false);
     }
 
     private void ShowFact()
@@ -99,7 +102,7 @@ public class BoatStats : MonoBehaviour
     private void ResetStats()
     {
         score = 0;
-        money = 0;
+        money = 200;
         trash = 0;
     }
 

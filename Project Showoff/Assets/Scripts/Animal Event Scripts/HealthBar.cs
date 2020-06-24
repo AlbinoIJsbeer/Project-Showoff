@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour
         healthBar.value = 0;
 
         UpdatePosition();
-        timer = 10f;
+        timer = 5f;
         rescueActive = false;
     }
 

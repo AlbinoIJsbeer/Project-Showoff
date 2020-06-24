@@ -25,6 +25,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	[SerializeField] private float boatSpeed;
 	[SerializeField] private float maxBoatSpeed;
+	[SerializeField] private float fuelConsumptionRate;
 
 	private bool _rotateTowardsTarget;
 
@@ -238,7 +239,7 @@ public class BoatController : MonoBehaviour
 			else boatSpeed = 1f;
 
 			// Use fuel when moving
-			boatFuel.Fuel -= 0.02f;
+			boatFuel.Fuel -= fuelConsumptionRate;
 			//boatEngine.volume = 0.4f;
 		}
 		else
@@ -297,6 +298,10 @@ public class BoatController : MonoBehaviour
 			LookAtTarget();
 			Sail();
 		}
+		else
+		{
+			_targetPosition = transform.position;
+		}
 	}
 
 	// Enable click in game after some time when you close the in-game menu
@@ -329,7 +334,7 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.SAIL;
 				}
 			}
-			else if (hit.transform.tag == "Dock")
+			else if (hit.transform.tag == "Dock" && boatCurrentState != BoatState.RESCUE)
 			{
 				if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
 				{
@@ -337,7 +342,7 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.DOCK;
 				}
 			}
-			else if (hit.transform.tag == "Animal")
+			else if (hit.transform.tag == "Animal" && boatCurrentState != BoatState.RESCUE)
 			{
 					if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
 					{

@@ -8982,6 +8982,7 @@ MonoBehaviour:
   rotationSpeed: 1.5
   boatSpeed: 1
   maxBoatSpeed: 5
+  fuelConsumptionRate: 0.02
   dock: {fileID: 164497395}
   dockMenu: {fileID: 962550755}
   exitDockPosition: {x: 125, y: 0, z: -10}
@@ -9100,7 +9101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef63874e3b8ee148891493a4a8e29c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  money: 200
   fuelPrice: 200
   obstacleHitPenalty: 200
   scoreDisplay: {fileID: 1878039013}
@@ -78921,6 +78922,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 640107092}
         m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 255057492}
+        m_MethodName: BuyFuel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
