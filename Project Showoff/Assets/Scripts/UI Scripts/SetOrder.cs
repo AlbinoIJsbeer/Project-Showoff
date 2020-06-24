@@ -8,8 +8,8 @@ public class SetOrder : MonoBehaviour
     private GameObject MainMenu;
     [SerializeField]
     private GameObject HighScores;
-    [SerializeField]
-    private GameObject Settings;
+    //[SerializeField]
+    //private GameObject Settings;
     [SerializeField]
     private GameObject Controls;
     [SerializeField]
@@ -32,7 +32,7 @@ public class SetOrder : MonoBehaviour
     {
         MainMenu.SetActive(true);
         HighScores.SetActive(false);
-        Settings.SetActive(false);
+        //Settings.SetActive(false);
         Controls.SetActive(false);
         
 
