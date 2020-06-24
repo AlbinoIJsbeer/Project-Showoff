@@ -42,7 +42,12 @@ public class BoatController : MonoBehaviour
 
 	[SerializeField] private Vector3 exitDockPosition;
 	[SerializeField] private GameObject pointer;
-	[SerializeField] private GameObject rescueNotification;
+	//[SerializeField] private GameObject rescueNotification;
+
+	[SerializeField] private GameObject birdSave;
+	[SerializeField] private GameObject birdDie;
+
+	[SerializeField] private GameObject dust;
 
 	private BoxCollider[] boatColliders;
 
@@ -54,14 +59,16 @@ public class BoatController : MonoBehaviour
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 		boatColliders = gameObject.GetComponents<BoxCollider>();
+		HealthBar.OnBirdRescueSuccess += BirdSaved;
+		HealthBar.OnBirdRescueFail += BirdDied;
 	}
 
-	private void Update()
-	{
+	private void FixedUpdate()
+	{		
 		timeToClick -= Time.deltaTime;
 		ChangeColliders(boatUpgrade.BoatIndex);
 		MaxSpeed(boatUpgrade.BoatIndex);
-		ClampBoatPosition(-350, 350, -100, 600);
+		ClampBoatPosition(-475, 475, -100, 850);
 
 		switch (boatCurrentState)
 		{
@@ -70,7 +77,7 @@ public class BoatController : MonoBehaviour
 				break;
 			// SAIL STATE
 			case BoatState.SAIL:
-				PauseMenu.GameIsPaused = false;
+				//PauseMenu.GameIsPaused = false;
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 				{
@@ -97,6 +104,18 @@ public class BoatController : MonoBehaviour
 					RescueAnimal();
 				break;
 		}
+	}
+
+	// Notification for saving bird
+	private void BirdSaved()
+	{
+		birdSave.SetActive(true);
+	}
+
+	// Notification for failing to save bird
+	private void BirdDied()
+	{
+		birdDie.SetActive(true);
 	}
 
 	// Change boat colliders based on boat
@@ -213,16 +232,18 @@ public class BoatController : MonoBehaviour
 		// If boat is on the target position then turn speed down to 0
 		if (distance > 1)
 		{
-			if (_angleDiff > 35) boatSpeed = 0.7f;
-			else if (_angleDiff > 15) boatSpeed = 0.8f;
-			else if (_angleDiff > 7.5f) boatSpeed = 0.9f;
+			if (_angleDiff > 35) boatSpeed = 0.5f;
+			else if (_angleDiff > 15) boatSpeed = 0.6f;
+			else if (_angleDiff > 7.5f) boatSpeed = 0.7f;
 			else boatSpeed = 1f;
 
 			// Use fuel when moving
-			boatFuel.Fuel -= 0.01f;
+			boatFuel.Fuel -= 0.02f;
+			//boatEngine.volume = 0.4f;
 		}
 		else
 		{
+			//boatEngine.volume = 0.1f;
 			boatSpeed -= 0.01f;
 		}
 	}
@@ -247,13 +268,6 @@ public class BoatController : MonoBehaviour
 	{
 		_targetPosition = new Vector3(dock.transform.position.x, 0, dock.transform.position.z + 35);
 		float distance = Vector3.Distance(transform.position, _targetPosition);
-
-		// If near dock then switch to DOCKED state
-		//if (distance < 50)
-		//{
-		//	boatCurrentState = BoatState.DOCKED;
-		//}
-
 		Sail();
 		LookAtTarget();
 	}
@@ -276,32 +290,12 @@ public class BoatController : MonoBehaviour
 	{
 		float distance = Vector3.Distance(transform.position, _targetPosition);
 
-		if (distance > 10)
+		if ((boatUpgrade.BoatIndex == 0 && distance > 12) ||
+			(boatUpgrade.BoatIndex == 1 && distance > 25) ||
+			(boatUpgrade.BoatIndex == 2 && distance > 32))
 		{
 			LookAtTarget();
 			Sail();
-		}
-		else
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-
-			if (Physics.Raycast(ray, out hit))
-			{
-				if (hit.transform.tag == "Animal")
-				{
-					if (hit.transform.GetComponent<HealthBar>().rescueActive == true && Input.GetMouseButtonDown(0))
-					{
-						hit.transform.GetComponent<HealthBar>().FillBar(10);
-						if(hit.transform.GetComponent<HealthBar>().healthBar.value >= hit.transform.GetComponent<HealthBar>().healthBar.maxValue)
-						{
-							boatStats.Score += 300;
-							rescueNotification.SetActive(true);
-							PauseMenu.GameIsPaused = true;
-						}
-					}
-				}
-			}
 		}
 	}
 
@@ -327,7 +321,7 @@ public class BoatController : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit))
 		{
-			if (hit.transform.tag == "Sea")
+			if (hit.transform.tag == "Sea" && boatCurrentState != BoatState.RESCUE)
 			{
 				if (Input.GetMouseButton(0) && timeToClick <= 0)
 				{
@@ -343,14 +337,14 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.DOCK;
 				}
 			}
-			else if (hit.transform.tag == "Animal" && hit.transform.GetComponent<HealthBar>().rescueActive == false)
+			else if (hit.transform.tag == "Animal")
 			{
-				if (Input.GetMouseButton(0) && timeToClick <= 0)
-				{
-					_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
-					boatCurrentState = BoatState.RESCUE;
-				}
-			}			
+					if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
+					{
+						_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
+						boatCurrentState = BoatState.RESCUE;
+					}
+			}
 		}
 	}
 
@@ -358,6 +352,17 @@ public class BoatController : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Dock")
+		{
 			boatCurrentState = BoatState.DOCKED;
+		}
+		else if (collision.gameObject.tag == "Obstacle")
+		{
+			FindObjectOfType<AudioManager>().Play("RockHit");
+			FindObjectOfType<AudioManager>().Play("PointDeduct");
+			foreach (ContactPoint contact in collision.contacts)
+			{
+				Instantiate(dust, contact.point, Quaternion.identity);
+			}
+		}
 	}
 }

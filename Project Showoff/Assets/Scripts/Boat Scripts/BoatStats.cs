@@ -11,7 +11,7 @@ public class BoatStats : MonoBehaviour
 
     private int score;
     public int Score { get { return score; } set { score = value; } }
-    private int money;
+    public int money;
     public int Money { get { return money; } set { money = value; } }
     private int trash;
     public int Trash { get { return trash; } set { trash = value; } }
@@ -25,15 +25,20 @@ public class BoatStats : MonoBehaviour
     [SerializeField] private TMP_Text trashDisplay;
 
     [SerializeField] private GameObject rockHitNotification;
-    [SerializeField] private GameObject birdSaveNotification;
+
+    [SerializeField] private List<GameObject> facts;
+    private int factIndex;
 
     // Reference to fuel
     private BoatFuel boatFuel;
+    private BoatUpgrade boatUpgrade;
 
     void Start()
     {
         boatFuel = GetComponent<BoatFuel>();
+        boatUpgrade = GetComponent<BoatUpgrade>();
         ResetStats();
+        factIndex = 0;
     }
 
     void Update()
@@ -42,6 +47,46 @@ public class BoatStats : MonoBehaviour
         ShowStats();
         ClampScore();
         TrashDebugger();
+        ShowFact();
+    }
+
+    private void ShowFact()
+    {
+        if (factIndex == 0 && trash == 50)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 0 && trash == 100 && factIndex == 1)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 1 && trash == 100 && factIndex == 2)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 1 && trash == 200 && factIndex == 3)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 100 && factIndex == 4)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 200 && factIndex == 5)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 300 && factIndex == 6)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex = 0;
+        }
     }
 
     // ClampScore
@@ -112,30 +157,5 @@ public class BoatStats : MonoBehaviour
             score -= obstacleHitPenalty;
             rockHitNotification.SetActive(true);
         }
-        //else if (collision.gameObject.tag == "Animal")
-        //{
-        //    Destroy(collision.gameObject);
-        //    SpawnAnimalEvent.numberOfSpawns--;
-        //    score += 200;
-        //    birdSaveNotification.SetActive(true);
-        //    PauseMenu.GameIsPaused = true;
-        //}
     }
-
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Animal")
-    //    {
-    //        collision.gameObject.GetComponent<HealthBar>().FillBar(1);
-
-    //        if (collision.gameObject.GetComponent<HealthBar>().healthBar.value == collision.gameObject.GetComponent<HealthBar>().healthBar.maxValue)
-    //        {
-    //            Destroy(collision.gameObject);
-    //            SpawnAnimalEvent.numberOfSpawns--;
-    //            score += 200;
-    //            birdSaveNotification.SetActive(true);
-    //            PauseMenu.GameIsPaused = true;
-    //        }
-    //    }
-    //}
 }

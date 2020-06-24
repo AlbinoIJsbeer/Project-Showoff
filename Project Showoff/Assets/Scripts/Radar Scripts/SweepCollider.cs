@@ -28,6 +28,7 @@ public class SweepCollider : MonoBehaviour
             if (!colliders.Contains(other))
             {
                 RadarPing ping = Instantiate(radarPing, other.transform.position, Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
+                ping.transform.localScale = new Vector3(5, 5, 5);
                 ping.transform.parent = radarPings.transform;
                 colliders.Add(other);
             }
@@ -40,11 +41,36 @@ public class SweepCollider : MonoBehaviour
             if (!colliders.Contains(other))
             {
                 RadarPing ping = Instantiate(radarPing, new Vector3(other.transform.position.x, 0, other.transform.position.z), Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
-                ping.SetColor(new Color(1, 0, 0, 1));
+                ping.SetColor(new Color(0, 1, 1, 1));
                 ping.transform.localScale = new Vector3(25, 25, 25);
                 ping.transform.parent = radarPings.transform;
                 colliders.Add(other);
             }    
-        }   
+        }
+
+        // Pings animal on radar
+        if (other.tag == "Animal")
+        {
+            if (!colliders.Contains(other))
+            {
+                RadarPing ping = Instantiate(radarPing, new Vector3(other.transform.position.x, 0, other.transform.position.z), Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
+                ping.SetColor(new Color(1, 1, 0, 1));
+                ping.transform.localScale = new Vector3(30, 30, 30);
+                ping.transform.parent = radarPings.transform;
+                colliders.Add(other);
+            }
+        }
+
+        if (other.tag == "Obstacle")
+        {
+            if (!colliders.Contains(other))
+            {
+                RadarPing ping = Instantiate(radarPing, new Vector3(other.transform.position.x, 0, other.transform.position.z), Quaternion.Euler(90, 0, 0)).GetComponent<RadarPing>();
+                ping.SetColor(new Color(1, 0, 0, 1));
+                ping.transform.localScale = new Vector3(15, 15, 15);
+                ping.transform.parent = radarPings.transform;
+                colliders.Add(other);
+            }
+        }
     }
 }

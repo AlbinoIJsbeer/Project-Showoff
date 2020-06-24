@@ -46,7 +46,7 @@ public class ObstacleSpawner : MonoBehaviour
         float zRandom = 0;
 
         xRandom = Random.Range(col.bounds.min.x, col.bounds.max.x);
-        zRandom = Random.Range(col.bounds.min.z + 125, col.bounds.max.z);
+        zRandom = Random.Range(col.bounds.min.z + 200, col.bounds.max.z);
 
         Vector3 tempVec = new Vector3(xRandom, 0.0f, zRandom);
 
