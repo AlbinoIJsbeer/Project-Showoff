@@ -8,6 +8,9 @@ public class SpawnAnimalEvent : MonoBehaviour
     [SerializeField] private GameObject sea;
     private BoxCollider col;
 
+    [SerializeField] private List<GameObject> facts;
+    private int factIndex;
+
     //[SerializeField] private float timeInBetweenSpawns;
     //private float time;
 
@@ -18,11 +21,14 @@ public class SpawnAnimalEvent : MonoBehaviour
 
     void Start()
     {
+        HealthBar.OnBirdRescueSuccess += ShowFact;
+
         usedPoints = new List<Vector3>();
         col = sea.GetComponent<BoxCollider>();
         SpawnAnimals(animal, numberOfSpawns);
         //time = timeInBetweenSpawns;
         //numberOfSpawns = 0;
+        factIndex = 0;
     }
 
     void Update()
@@ -30,31 +36,19 @@ public class SpawnAnimalEvent : MonoBehaviour
         //TimeToSpawn();
     }
 
-    //private void SpawnAnimal(GameObject _animal)
-    //{
-    //    if (_animal == null) return;
-
-    //    float xRandom = Random.Range(col.bounds.min.x + 25, col.bounds.max.x - 25);
-    //    float zRandom = Random.Range(col.bounds.min.z + 200, col.bounds.max.z - 25);
-
-    //    GameObject temp = Instantiate(_animal);
-    //    Vector3 randomPos = new Vector3(xRandom, transform.position.y, zRandom);
-
-    //    temp.gameObject.transform.position = randomPos;
-    //    temp.transform.SetParent(transform);
-    //}
-
-    //private void TimeToSpawn()
-    //{
-    //    time -= Time.deltaTime;
-
-    //    if (time <= 0 & numberOfSpawns <= maxNumberOfSpawns)
-    //    {
-    //        SpawnAnimal(animal);
-    //        numberOfSpawns++;
-    //        time = timeInBetweenSpawns;
-    //    }
-    //}
+    private void ShowFact()
+    {
+        if (factIndex == 0)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (transform.childCount % 4 == 0)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+    }
 
     private void SpawnAnimals(GameObject _animal, int amount)
     {
@@ -81,5 +75,33 @@ public class SpawnAnimalEvent : MonoBehaviour
         if (usedPoints.Contains(tempVec)) return GetRandomPosition();
 
         return tempVec;
+    }
+
+    // Not used anymore
+    private void SpawnAnimal(GameObject _animal)
+    {
+        if (_animal == null) return;
+
+        float xRandom = Random.Range(col.bounds.min.x + 25, col.bounds.max.x - 25);
+        float zRandom = Random.Range(col.bounds.min.z + 200, col.bounds.max.z - 25);
+
+        GameObject temp = Instantiate(_animal);
+        Vector3 randomPos = new Vector3(xRandom, transform.position.y, zRandom);
+
+        temp.gameObject.transform.position = randomPos;
+        temp.transform.SetParent(transform);
+    }
+
+    // Not used anymore
+    private void TimeToSpawn()
+    {
+        //time -= Time.deltaTime;
+
+        //if (time <= 0 & numberOfSpawns <= maxNumberOfSpawns)
+        //{
+        //    SpawnAnimal(animal);
+        //    numberOfSpawns++;
+        //    time = timeInBetweenSpawns;
+        //}
     }
 }

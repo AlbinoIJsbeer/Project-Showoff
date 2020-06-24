@@ -26,21 +26,67 @@ public class BoatStats : MonoBehaviour
 
     [SerializeField] private GameObject rockHitNotification;
 
+    [SerializeField] private List<GameObject> facts;
+    private int factIndex;
+
     // Reference to fuel
     private BoatFuel boatFuel;
+    private BoatUpgrade boatUpgrade;
 
     void Start()
     {
         boatFuel = GetComponent<BoatFuel>();
+        boatUpgrade = GetComponent<BoatUpgrade>();
         ResetStats();
+        factIndex = 0;
     }
 
     void Update()
     {
-        //Manager.Instance.Score = score;
+        Manager.Instance.Score = score;
         ShowStats();
         ClampScore();
         TrashDebugger();
+        ShowFact();
+    }
+
+    private void ShowFact()
+    {
+        if (factIndex == 0 && trash == 50)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 0 && trash == 100 && factIndex == 1)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 1 && trash == 100 && factIndex == 2)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 1 && trash == 200 && factIndex == 3)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 100 && factIndex == 4)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 200 && factIndex == 5)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex++;
+        }
+        else if (boatUpgrade.BoatIndex == 2 && trash == 300 && factIndex == 6)
+        {
+            facts[factIndex].SetActive(true);
+            factIndex = 0;
+        }
     }
 
     // ClampScore

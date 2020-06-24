@@ -51,8 +51,6 @@ public class BoatController : MonoBehaviour
 
 	private BoxCollider[] boatColliders;
 
-	public AudioSource boatEngine;
-
 	private void Start()
 	{
 		_targetPosition = transform.position;
@@ -63,11 +61,6 @@ public class BoatController : MonoBehaviour
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 		HealthBar.OnBirdRescueSuccess += BirdSaved;
 		HealthBar.OnBirdRescueFail += BirdDied;
-	
-		boatEngine.Play();
-
-		FindObjectOfType<AudioManager>().Play("Waves");
-		//FindObjectOfType<AudioManager>().Play("Engine");
 	}
 
 	private void FixedUpdate()
@@ -245,12 +238,12 @@ public class BoatController : MonoBehaviour
 			else boatSpeed = 1f;
 
 			// Use fuel when moving
-			boatFuel.Fuel -= 0.0015f;
-			boatEngine.volume = 0.4f;
+			boatFuel.Fuel -= 0.02f;
+			//boatEngine.volume = 0.4f;
 		}
 		else
 		{
-			boatEngine.volume = 0.1f;
+			//boatEngine.volume = 0.1f;
 			boatSpeed -= 0.01f;
 		}
 	}
@@ -364,6 +357,8 @@ public class BoatController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Obstacle")
 		{
+			FindObjectOfType<AudioManager>().Play("RockHit");
+			FindObjectOfType<AudioManager>().Play("PointDeduct");
 			foreach (ContactPoint contact in collision.contacts)
 			{
 				Instantiate(dust, contact.point, Quaternion.identity);

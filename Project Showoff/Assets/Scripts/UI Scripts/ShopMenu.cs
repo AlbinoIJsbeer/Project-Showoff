@@ -91,6 +91,7 @@ public class ShopMenu : MonoBehaviour
     {
         if (boatViewIndex == 0 && boatStats.Money >= sBoatCost)
         {
+            FindObjectOfType<AudioManager>().Play("UpgradeBoat");
             boatFuel.MaxFuel = 100;
             boatFuel.Fuel = 100;
             boatStats.Money -= sBoatCost;
@@ -98,6 +99,7 @@ public class ShopMenu : MonoBehaviour
         }
         else if (boatViewIndex == 1 && boatStats.Money >= mBoatCost)
         {
+            FindObjectOfType<AudioManager>().Play("UpgradeBoat");
             boatFuel.MaxFuel = 150;
             boatFuel.Fuel = 150;        
             boatStats.Money -= mBoatCost;
@@ -105,6 +107,7 @@ public class ShopMenu : MonoBehaviour
         }
         else if (boatViewIndex == 2 && boatStats.Money >= lBoatCost)
         {
+            FindObjectOfType<AudioManager>().Play("UpgradeBoat");
             boatFuel.MaxFuel = 200;
             boatFuel.Fuel = 200;
             boatStats.Money -= lBoatCost;

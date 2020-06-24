@@ -34,6 +34,8 @@ public class TrashCollector : MonoBehaviour
 	{
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
+
+		FindObjectOfType<AudioManager>().Play("Ocean");
 	}
 
 	private void Update()
@@ -50,19 +52,21 @@ public class TrashCollector : MonoBehaviour
 		{
 			if (boatUpgrade.BoatIndex == 0 && boatStats.Trash < smallBoatCapacity)
 			{
-				FindObjectOfType<AudioManager>().Play("Collect");
+				FindObjectOfType<AudioManager>().Play("CollectPlasticShort");
 				Destroy(other.gameObject);
 				boatStats.Trash++;
 				boatStats.Score += scoreIncrement;
 			}
 			else if (boatUpgrade.BoatIndex == 1 && boatStats.Trash < mediumBoatCapacity)
 			{
+				FindObjectOfType<AudioManager>().Play("CollectPlasticShort");
 				Destroy(other.gameObject);
 				boatStats.Trash++;
 				boatStats.Score += scoreIncrement;
 			}
 			else if (boatUpgrade.BoatIndex == 2 && boatStats.Trash < largeBoatCapacity)
 			{
+				FindObjectOfType<AudioManager>().Play("CollectPlasticShort");
 				Destroy(other.gameObject);
 				boatStats.Trash++;
 				boatStats.Score += scoreIncrement;
