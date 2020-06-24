@@ -46,6 +46,17 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private BoatStats boatStats;
     [SerializeField] private BoatUpgrade boatUpgrade;
 
+    private bool sBoatUsed;
+    private bool mBoatUsed;
+    private bool lBoatUsed;
+
+    private void Awake()
+    {
+        sBoatUsed = false;
+        mBoatUsed = false;
+        lBoatUsed = false;
+    }
+
     private void Start()
     {
         boatViewIndex = 0;
@@ -54,6 +65,7 @@ public class ShopMenu : MonoBehaviour
     private void Update()
     {
         UpdatePreview(boatViewIndex);
+        CheckIfBoatUsed();
     }
 
     // For the "Next Button" in Upgrade Menu
@@ -140,7 +152,14 @@ public class ShopMenu : MonoBehaviour
             {
                 sBoatStats.SetActive(true);
                 insufficientS.SetActive(false);
-                upgradeButton.interactable = true;
+                if (!sBoatUsed)
+                {
+                    upgradeButton.interactable = true;
+                }
+                else
+                {
+                    upgradeButton.interactable = false;
+                }
             }
             else
             {
@@ -180,7 +199,14 @@ public class ShopMenu : MonoBehaviour
             {
                 mBoatStats.SetActive(true);
                 insufficientM.SetActive(false);
-                upgradeButton.interactable = true;
+                if (!mBoatUsed)
+                {
+                    upgradeButton.interactable = true;
+                }
+                else
+                {
+                    upgradeButton.interactable = false;
+                }
             }
             else
             {
@@ -220,14 +246,33 @@ public class ShopMenu : MonoBehaviour
             {
                 lBoatStats.SetActive(true);
                 insufficientL.SetActive(false);
-                upgradeButton.interactable = true;
+                if (!lBoatUsed)
+                {
+                    upgradeButton.interactable = true;
+                }
+                else
+                {
+                    upgradeButton.interactable = false;
+                }
             }
             else
             {
                 lBoatStats.SetActive(false);
                 insufficientL.SetActive(true);
-                upgradeButton.interactable = false;
+                upgradeButton.interactable = false;        
             }
         }
+    }
+
+    private void CheckIfBoatUsed()
+    {
+        if (boatUpgrade.BoatIndex == 0)
+            sBoatUsed = true;
+
+        if (boatUpgrade.BoatIndex == 1)
+            mBoatUsed = true;
+
+        if (boatUpgrade.BoatIndex == 2)
+            lBoatUsed = true;
     }
 }
