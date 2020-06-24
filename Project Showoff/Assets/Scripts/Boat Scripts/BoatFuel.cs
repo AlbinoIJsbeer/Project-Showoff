@@ -16,6 +16,8 @@ public class BoatFuel : MonoBehaviour
 	[SerializeField] private GameObject pointer;
 	[SerializeField] private GameObject emptyFuelTank;
 	[SerializeField] private GameObject flashingGauge;
+	[SerializeField] private Button refuel;
+
 	private float opacity = 0;
 	public float flashInterval = 0.015f;
 
@@ -31,11 +33,20 @@ public class BoatFuel : MonoBehaviour
 		FuelGauge();
 		LowFuelNotification();
 		RedFlashWarning();
+		CheckIfRefuelingAvailable();
 
 		if (Input.GetKey(KeyCode.Space))
 		{
 			fuel -= 0.3f;
 		}
+	}
+
+	private void CheckIfRefuelingAvailable()
+	{
+		if (fuel == maxFuel)
+			refuel.interactable = false;
+		else
+			refuel.interactable = true;
 	}
 
 	// Set fuel

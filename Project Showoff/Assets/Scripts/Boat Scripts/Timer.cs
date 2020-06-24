@@ -41,6 +41,9 @@ public class Timer : MonoBehaviour
         
         timer -= Time.deltaTime;
 
+        if (timer <= 3)
+            FindObjectOfType<AudioManager>().Play("TimeTicking");
+
         // If there is no time left, then go to end screen
         if (timer <= 0)
         {

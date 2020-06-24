@@ -62,6 +62,11 @@ public class BoatController : MonoBehaviour
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 		HealthBar.OnBirdRescueSuccess += BirdSaved;
 		HealthBar.OnBirdRescueFail += BirdDied;
+
+		FindObjectOfType<AudioManager>().Play("Ocean");
+		FindObjectOfType<AudioManager>().Play("Engine");
+		FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
+		FindObjectOfType<AudioManager>().Play("EngineStart");
 	}
 
 	private void FixedUpdate()
@@ -76,9 +81,8 @@ public class BoatController : MonoBehaviour
 			case BoatState.START:
 				TargetPosition();
 				break;
-			// SAIL STATE
 			case BoatState.SAIL:
-				//PauseMenu.GameIsPaused = false;
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 				{
@@ -86,20 +90,17 @@ public class BoatController : MonoBehaviour
 					Sail();
 				}
 				break;
-
-			// DOCK STATE
 			case BoatState.DOCK:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
 				Dock();
 				break;
-
-			// DOCKED STATE
 			case BoatState.DOCKED:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0);
 				Docked();
 				PauseMenu.GameIsPaused = true;
 				break;
-
-			// RESCUE STATE
 			case BoatState.RESCUE:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.2f);
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 					RescueAnimal();
@@ -240,11 +241,9 @@ public class BoatController : MonoBehaviour
 
 			// Use fuel when moving
 			boatFuel.Fuel -= fuelConsumptionRate;
-			//boatEngine.volume = 0.4f;
 		}
 		else
 		{
-			//boatEngine.volume = 0.1f;
 			boatSpeed -= 0.01f;
 		}
 	}
@@ -346,6 +345,7 @@ public class BoatController : MonoBehaviour
 			{
 					if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
 					{
+						FindObjectOfType<AudioManager>().Play("BirdWhistle");
 						_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
 						boatCurrentState = BoatState.RESCUE;
 					}

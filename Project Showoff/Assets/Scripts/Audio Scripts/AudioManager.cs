@@ -29,4 +29,11 @@ public class AudioManager : MonoBehaviour
         if (s == null) return;
         s.source.Play();
     }
+
+    public void Volume(string name, float vol)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
+        s.source.volume = vol;
+    }
 }
