@@ -26,6 +26,12 @@ public class KeyboardScript : MonoBehaviour
         {
             _wordIndex--;
             _name.text = _name.text.Substring(0, _wordIndex);
+            Manager.Instance.Name = _name.text.Substring(0, _wordIndex);
+        }
+        else
+        {
+            _name.text = "";
+            Manager.Instance.Name = "";
         }
 
     }

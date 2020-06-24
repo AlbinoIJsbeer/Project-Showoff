@@ -22,7 +22,7 @@ public class HighScoreManager : MonoBehaviour
     {
         _scoreManager = new ScoreManager();
         _scoreReader = new ScoreReader();
-        _scoreReader.loadHighScore(TodayNames, TodayScores, AllTimeNames, AllTimeScores);
+        //_scoreReader.loadHighScore(TodayNames, TodayScores, AllTimeNames, AllTimeScores);
         ScoreManager.Load();
     }
     

@@ -6,76 +6,70 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-    public class ScoreManager
+public class ScoreManager
+{
+    public static string _fileName = "scores.xml"; // Since we don't give a path, this'll be saved in the "bin" folder
+
+    public List<Score> Highscores { get; private set; }
+
+    public List<Score> Scores { get; private set; }
+
+    public ScoreManager()
+      : this(new List<Score>())
     {
-        public static string _fileName = "scores.xml"; // Since we don't give a path, this'll be saved in the "bin" folder
 
-        public List<Score> Highscores { get; private set; }
+    }
 
-        public List<Score> Scores { get; private set; }
+    public ScoreManager(List<Score> scores)
+    {
+        Scores = scores;
 
-        public ScoreManager()
-          : this(new List<Score>())
+        UpdateHighscores();
+    }
+
+    public void Add(Score score)
+    {
+        Scores.Add(score);
+
+        Scores = Scores.OrderByDescending(c => c.Value).ToList(); // Orders the list so that the higher scores are first
+
+        UpdateHighscores();
+    }
+
+    public static ScoreManager Load()
+    {
+        // If there isn't a file to load - create a new instance of "ScoreManager"
+        if (!File.Exists(_fileName))
+            return new ScoreManager();
+
+        // Otherwise we load the file
+
+        using (var reader = new StreamReader(new FileStream(_fileName, FileMode.Open)))
         {
-            
-        }
+            var serilizer = new XmlSerializer(typeof(List<Score>));
 
-        public ScoreManager(List<Score> scores)
-        {
-            Scores = scores;
-
-            UpdateHighscores();
-        }
-
-        public void Add(Score score)
-        {
-            Scores.Add(score);
-
-            Scores = Scores.OrderByDescending(c => c.Value).ToList(); // Orders the list so that the higher scores are first
-
-            UpdateHighscores();
-        }
-
-        public static ScoreManager Load()
-        {
-            // If there isn't a file to load - create a new instance of "ScoreManager"
-            if (!File.Exists(_fileName))
-                return new ScoreManager();
-
-            // Otherwise we load the file
-
-            using (var reader = new StreamReader(new FileStream(_fileName, FileMode.Open)))
-            {
-                var serilizer = new XmlSerializer(typeof(List<Score>));
-
-                var scores = (List<Score>)serilizer.Deserialize(reader);
+            var scores = (List<Score>)serilizer.Deserialize(reader);
 
             return new ScoreManager(scores);
-            }
-        }
-
-        public void UpdateHighscores()
-        {
-            Highscores = Scores.Take(4).ToList(); // Takes the first 4 elements
-        }
-
-        public static void Save(ScoreManager scoreManager)
-        {
-            // Overrides the file if it alreadt exists
-            using (var writer = new StreamWriter(new FileStream(_fileName, FileMode.Create)))
-            {
-                var serilizer = new XmlSerializer(typeof(List<Score>));
-
-                serilizer.Serialize(writer, scoreManager.Scores);
-            }
         }
     }
 
-public class Score
-{
-    public string PlayerName { get; set; }
+    public void UpdateHighscores()
+    {
+        Highscores = Scores.Take(4).ToList(); // Takes the first 4 elements
+    }
 
-    public int Value { get; set; }
+    public static void Save(ScoreManager scoreManager)
+    {
+        // Overrides the file if it alreadt exists
+        using (var writer = new StreamWriter(new FileStream(_fileName, FileMode.Create)))
+        {
+            var serilizer = new XmlSerializer(typeof(List<Score>));
+
+            serilizer.Serialize(writer, scoreManager.Scores);
+        }
+    }
 }
+
 
 
