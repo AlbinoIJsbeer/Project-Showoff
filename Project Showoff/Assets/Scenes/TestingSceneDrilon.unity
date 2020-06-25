@@ -2017,6 +2017,7 @@ MonoBehaviour:
   - {fileID: 876874267}
   - {fileID: 497974115}
   - {fileID: 1380348704}
+  showFact: 0
   numberOfSpawns: 20
 --- !u!4 &57478144
 Transform:
@@ -10684,6 +10685,8 @@ MonoBehaviour:
   birdSave: {fileID: 450327743}
   birdDie: {fileID: 1721503276}
   tutorial: {fileID: 2142222526}
+  showBirdRescue: 0
+  showBirdFail: 0
   dust: {fileID: 2524264970130897879, guid: ef96a4fac405e9843acbb763ae8f5150, type: 3}
 --- !u!54 &255057486
 Rigidbody:
@@ -67503,7 +67506,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac0c89e2d584b9a4680c973331548269, type: 2}
+  - {fileID: 2100000, guid: 35dcfabe57aa03c40aa5556c4e70bce1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

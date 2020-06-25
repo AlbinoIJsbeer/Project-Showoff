@@ -29,6 +29,11 @@ public class SetOrder : MonoBehaviour
     private GameObject Storyline4;
     [SerializeField]
     private GameObject Storyline5;
+
+    [SerializeField]
+    private GameObject Cheese;
+    [SerializeField]
+    private GameObject Cheese2;
     void Start()
     {
         MainMenu.SetActive(true);
@@ -45,7 +50,8 @@ public class SetOrder : MonoBehaviour
             Storyline4.SetActive(false);
             Storyline5.SetActive(false);
 
-
+        Cheese.SetActive(false);
+        Cheese2.SetActive(false);
         EventsGif.SetActive(false);
     }
 
