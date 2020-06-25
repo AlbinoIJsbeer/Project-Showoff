@@ -76,8 +76,8 @@ public class HealthBar : MonoBehaviour
         if (BoatController.boatCurrentState == BoatController.BoatState.RESCUE)
         {
             if ((index == 0 && Vector3.Distance(boatPos, transform.position) < 20) ||
-                (index == 1 && Vector3.Distance(boatPos, transform.position) < 30) ||
-                (index == 2 && Vector3.Distance(boatPos, transform.position) < 40))
+                (index == 1 && Vector3.Distance(boatPos, transform.position) < 35) ||
+                (index == 2 && Vector3.Distance(boatPos, transform.position) < 45))
             {
                 rescueActive = true;
                 UIObject.SetActive(true);
@@ -113,6 +113,8 @@ public class HealthBar : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("BirdFlyingAway");
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score += 300;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Money += 200;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Trash += 20;
             rescueActive = false;
             //SpawnAnimalEvent.numberOfSpawns--;
             OnBirdRescueSuccess?.Invoke();

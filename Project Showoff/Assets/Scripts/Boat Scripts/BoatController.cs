@@ -281,7 +281,7 @@ public class BoatController : MonoBehaviour
 		PauseMenu.GameIsPaused = true;
 
 		// Dock the boat
-		transform.position = new Vector3(dock.transform.position.x + 25, 0, dock.transform.position.z + 15);
+		transform.position = new Vector3(dock.transform.position.x + 25, 0, dock.transform.position.z + 25);
 		transform.rotation = new Quaternion(0, 0, 0, 0);
 	}
 
