@@ -43,11 +43,13 @@ public class BoatController : MonoBehaviour
 
 	[SerializeField] private Vector3 exitDockPosition;
 	[SerializeField] private GameObject pointer;
-	//[SerializeField] private GameObject rescueNotification;
 
 	[SerializeField] private GameObject birdSave;
 	[SerializeField] private GameObject birdDie;
 	[SerializeField] private GameObject tutorial;
+
+	public bool showBirdRescue = false;
+	public bool showBirdFail = false;
 
 	[SerializeField] private GameObject dust;
 
@@ -61,8 +63,8 @@ public class BoatController : MonoBehaviour
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
 		boatColliders = gameObject.GetComponents<BoxCollider>();
-		HealthBar.OnBirdRescueSuccess += BirdSaved;
-		HealthBar.OnBirdRescueFail += BirdDied;
+		//HealthBar.OnBirdRescueSuccess += BirdSaved;
+		//HealthBar.OnBirdRescueFail += BirdDied;
 		tutorial.SetActive(true);
 
 		FindObjectOfType<AudioManager>().Play("Ocean");
@@ -100,6 +102,8 @@ public class BoatController : MonoBehaviour
 					LookAtTarget();
 					Sail();
 				}
+				BirdSaved();
+				BirdDied();
 				break;
 			case BoatState.DOCK:
 				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
@@ -115,6 +119,8 @@ public class BoatController : MonoBehaviour
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 					RescueAnimal();
+				BirdSaved();
+				BirdDied();
 				break;
 		}
 	}
@@ -122,13 +128,21 @@ public class BoatController : MonoBehaviour
 	// Notification for saving bird
 	private void BirdSaved()
 	{
-		birdSave.SetActive(true);
+		if (showBirdRescue == true)
+		{
+			birdSave.SetActive(true);
+			showBirdRescue = false;
+		}
 	}
 
 	// Notification for failing to save bird
 	private void BirdDied()
 	{
-		birdDie.SetActive(true);
+		if (showBirdFail == true)
+		{
+			birdDie.SetActive(true);
+			showBirdFail = false;
+		}
 	}
 
 	// Change boat colliders based on boat

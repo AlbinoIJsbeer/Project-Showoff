@@ -6,10 +6,6 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    public delegate void AnimalEvent();
-    public static event AnimalEvent OnBirdRescueSuccess;
-    public static event AnimalEvent OnBirdRescueFail;
-
     [SerializeField] private Transform targetPos;
     [SerializeField] private GameObject UIObject;
     [SerializeField] private TMP_Text timeUI;
@@ -23,6 +19,7 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         rescueActive = false;
+        timer = 5;
     }
 
     void Start()
@@ -40,10 +37,10 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         ActivateRescuing();
-        ActivateTimer();
-        DestroyObjectOnTime();
+        ActivateTimer();     
         UpdateTimerText();
         UpdatePosition();
+        DestroyObjectOnTime();
     }
 
     private void UpdateTimerText()
@@ -103,10 +100,9 @@ public class HealthBar : MonoBehaviour
         if (timer <= 0)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score -= 100;
-            rescueActive = false;
-            //SpawnAnimalEvent.numberOfSpawns--;
-            OnBirdRescueFail?.Invoke();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<BoatController>().showBirdFail = true;         
             BoatController.boatCurrentState = BoatController.BoatState.SAIL;
+            rescueActive = false;
             Destroy(gameObject);
         }
         else if (healthBar.value >= healthBar.maxValue)
@@ -115,10 +111,10 @@ public class HealthBar : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score += 300;
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Money += 200;
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Trash += 20;
-            rescueActive = false;
-            //SpawnAnimalEvent.numberOfSpawns--;
-            OnBirdRescueSuccess?.Invoke();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<BoatController>().showBirdRescue = true;
+            FindObjectOfType<SpawnAnimalEvent>().showFact = true;
             BoatController.boatCurrentState = BoatController.BoatState.SAIL;
+            rescueActive = false;
             Destroy(gameObject);
         }
     }
