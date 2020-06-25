@@ -45,7 +45,7 @@ public class BoatStats : MonoBehaviour
 
     void Update()
     {
-        //Manager.Instance.Score = score;
+        Manager.Instance.Score = score;
         ShowStats();
         ClampScore();
         TrashDebugger();

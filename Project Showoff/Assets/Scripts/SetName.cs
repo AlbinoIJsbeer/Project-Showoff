@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SetName : MonoBehaviour
 {
-    void Awake()
+    [SerializeField] private GameObject manager;
+
+    void Start()
     {
-        Manager.Instance.Name = "";
+        manager.name = "";
     }
 }

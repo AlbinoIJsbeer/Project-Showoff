@@ -47,6 +47,7 @@ public class BoatController : MonoBehaviour
 
 	[SerializeField] private GameObject birdSave;
 	[SerializeField] private GameObject birdDie;
+	[SerializeField] private GameObject tutorial;
 
 	[SerializeField] private GameObject dust;
 
@@ -62,6 +63,7 @@ public class BoatController : MonoBehaviour
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 		HealthBar.OnBirdRescueSuccess += BirdSaved;
 		HealthBar.OnBirdRescueFail += BirdDied;
+		tutorial.SetActive(true);
 
 		FindObjectOfType<AudioManager>().Play("Ocean");
 		FindObjectOfType<AudioManager>().Play("Engine");
@@ -79,7 +81,16 @@ public class BoatController : MonoBehaviour
 		switch (boatCurrentState)
 		{
 			case BoatState.START:
-				TargetPosition();
+				if (tutorial.activeSelf)
+				{
+					PauseMenu.GameIsPaused = true;
+				}
+				else
+				{
+					PauseMenu.GameIsPaused = false;
+					TargetPosition();
+				}
+				
 				break;
 			case BoatState.SAIL:
 				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
