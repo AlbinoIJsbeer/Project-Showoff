@@ -14,7 +14,8 @@ public class SetOrder : MonoBehaviour
     private GameObject Controls;
     [SerializeField]
     private GameObject Storyline;
-
+    [SerializeField]
+    private GameObject EventsGif;
 
     [SerializeField]
     private GameObject NameField;
@@ -43,6 +44,9 @@ public class SetOrder : MonoBehaviour
             Storyline3.SetActive(false);
             Storyline4.SetActive(false);
             Storyline5.SetActive(false);
+
+
+        EventsGif.SetActive(false);
     }
 
     
