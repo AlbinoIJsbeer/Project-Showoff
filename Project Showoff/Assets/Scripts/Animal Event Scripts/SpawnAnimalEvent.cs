@@ -11,6 +11,8 @@ public class SpawnAnimalEvent : MonoBehaviour
     [SerializeField] private List<GameObject> facts;
     private int factIndex;
 
+    public bool showFact;
+
     //[SerializeField] private float timeInBetweenSpawns;
     //private float time;
 
@@ -21,32 +23,33 @@ public class SpawnAnimalEvent : MonoBehaviour
 
     void Start()
     {
-        HealthBar.OnBirdRescueSuccess += ShowFact;
-
-        usedPoints = new List<Vector3>();
-        col = sea.GetComponent<BoxCollider>();
-        SpawnAnimals(animal, numberOfSpawns);
-        //time = timeInBetweenSpawns;
-        //numberOfSpawns = 0;
+        showFact = false;
         factIndex = 0;
+        usedPoints = new List<Vector3>();
+        usedPoints.Clear();
+        col = sea.GetComponent<BoxCollider>();
+        SpawnAnimals(animal, numberOfSpawns);    
     }
 
     void Update()
     {
         //TimeToSpawn();
+        ShowFact();
     }
 
     private void ShowFact()
     {
-        if (factIndex == 0)
+        if (showFact == true && factIndex == 0)
         {
             facts[factIndex].SetActive(true);
             factIndex++;
+            showFact = false;
         }
-        else if (transform.childCount % 4 == 0)
+        else if (showFact == true && transform.childCount % 4 == 0)
         {
             facts[factIndex].SetActive(true);
             factIndex++;
+            showFact = false;
         }
     }
 
