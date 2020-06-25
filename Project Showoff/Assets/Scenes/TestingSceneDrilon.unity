@@ -14437,7 +14437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +200 points
+  m_text: -200 points
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,
@@ -14510,7 +14510,7 @@ MonoBehaviour:
     characterCount: 11
     spriteCount: 0
     spaceCount: 1
-    wordCount: 3
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -45900,7 +45900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +200 punkte
+  m_text: -200 punkte
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,
@@ -79488,7 +79488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +200 punten
+  m_text: -200 punten
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a, type: 2}
   m_sharedMaterial: {fileID: 1228022769517746372, guid: 28b43fa466dbe0c40b6d7a1b4ab6846a,

@@ -16,6 +16,8 @@ public class BoatStats : MonoBehaviour
     public int Money { get { return money; } set { money = value; } }
     private int trash;
     public int Trash { get { return trash; } set { trash = value; } }
+    private int trashCapacityThreshold;
+    public int TrashCapacityThreshold { get { return trashCapacityThreshold; } set { trashCapacityThreshold = value; } }
 
     [SerializeField] private int fuelPrice;
     [SerializeField] private int obstacleHitPenalty;
@@ -51,9 +53,18 @@ public class BoatStats : MonoBehaviour
         TrashDebugger();
         ShowFact();
         CheckIfDepositAvailable();
+        ClampTrashCapacity();
 
         if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
             rockHitNotification.SetActive(false);
+
+        if (Input.GetKeyDown(KeyCode.H))
+            score += 1000;
+    }
+
+    private void ClampTrashCapacity()
+    {
+        trash = Mathf.Clamp(trash, 0, trashCapacityThreshold);
     }
 
     private void CheckIfDepositAvailable()

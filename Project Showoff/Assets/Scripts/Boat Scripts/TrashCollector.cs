@@ -103,12 +103,21 @@ public class TrashCollector : MonoBehaviour
 	private void ChangeCapacityThreshold(int index)
 	{
 		if (index == 0)
+		{
 			currentCapacityThreshold = smallBoatCapacity;
+			boatStats.TrashCapacityThreshold = currentCapacityThreshold;
+		}
 		else if (index == 1)
+		{
 			currentCapacityThreshold = mediumBoatCapacity;
+			boatStats.TrashCapacityThreshold = currentCapacityThreshold;
+		}
 		else if (index == 2)
+		{
 			currentCapacityThreshold = largeBoatCapacity;
-	}
+			boatStats.TrashCapacityThreshold = currentCapacityThreshold;
+		}
+	}	
 
 	// Remove trash max capacity notification
 	private void RemoveNotificationOnTime()

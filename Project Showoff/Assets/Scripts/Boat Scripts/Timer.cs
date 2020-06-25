@@ -13,6 +13,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         TimerCountdown();
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            timer = 3;
+        }
     }
 
     private void TimerCountdown()
