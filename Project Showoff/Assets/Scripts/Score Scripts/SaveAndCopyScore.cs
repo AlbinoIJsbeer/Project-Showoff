@@ -23,6 +23,10 @@ public class SaveAndCopyScore : MonoBehaviour
             PlayerName = _name
         });
         ScoreManager.Save(_scoreManager);
+
+        SetPlayerPref.SaveAll();
+
+
         Debug.LogWarning("Finished !");
     }
 

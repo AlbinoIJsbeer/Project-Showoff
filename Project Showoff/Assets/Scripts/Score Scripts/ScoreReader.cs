@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 
-class ScoreReader
+public class ScoreReader
 {
 
     private XmlDocument _xml = new XmlDocument();
