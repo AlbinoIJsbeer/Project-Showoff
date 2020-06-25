@@ -34,8 +34,6 @@ public class TrashCollector : MonoBehaviour
 	{
 		boatStats = GetComponent<BoatStats>();
 		boatUpgrade = GetComponent<BoatUpgrade>();
-
-		FindObjectOfType<AudioManager>().Play("Ocean");
 	}
 
 	private void Update()

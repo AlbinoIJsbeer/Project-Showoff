@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour
         healthBar.value = 0;
 
         UpdatePosition();
-        timer = 10f;
+        timer = 5f;
         rescueActive = false;
     }
 
@@ -59,6 +59,7 @@ public class HealthBar : MonoBehaviour
     public void FillBar(int increment)
     {
         healthBar.value += increment;
+        FindObjectOfType<AudioManager>().Play("Tap");
     }
 
     private void UpdatePosition()
@@ -110,6 +111,7 @@ public class HealthBar : MonoBehaviour
         }
         else if (healthBar.value >= healthBar.maxValue)
         {
+            FindObjectOfType<AudioManager>().Play("BirdFlyingAway");
             GameObject.FindGameObjectWithTag("Player").GetComponent<BoatStats>().Score += 300;
             rescueActive = false;
             //SpawnAnimalEvent.numberOfSpawns--;

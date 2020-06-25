@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3336011967584740935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3336011967584740929}
+  - component: {fileID: 3336011967584740928}
+  m_Layer: 0
+  m_Name: Audio Manager 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3336011967584740929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336011967584740935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3336011967584740928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336011967584740935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31fa308d030184f4fab9977bcd640732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BirdFlyingAway
+    clip: {fileID: 8300000, guid: a5cdbbbe24f420c48a81c793481dee8a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BirdWhistle
+    clip: {fileID: 8300000, guid: d7989951ab3c628418ac062971ebe80a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Tap
+    clip: {fileID: 8300000, guid: a513e7c53a3cbba488fcbd250fab3220, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GainingMoney
+    clip: {fileID: 8300000, guid: 127483094aed9974692ecb642fb4e2e7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GainingPoints
+    clip: {fileID: 8300000, guid: 101d17405de67b9428f76bfbaa1de6bd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FuelAlmostEmpty
+    clip: {fileID: 8300000, guid: 8d6366cdb64ab8a4a827aa29ef94e1b6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FullCapacityNotification
+    clip: {fileID: 8300000, guid: 85cc576e086ecbd41a8ad9a5dde8df78, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ArrowPopUp
+    clip: {fileID: 8300000, guid: 05dc737f5921e6c49928f55c43199a6b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CollectPlasticShort
+    clip: {fileID: 8300000, guid: 61b63d0183dfb304497a6f2aab39124e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EngineStart
+    clip: {fileID: 8300000, guid: 188cca2f8d84c534dac54c62919f1fa1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Engine
+    clip: {fileID: 8300000, guid: 36173ef91bd1c814d80c59e99f51ddf2, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Ocean
+    clip: {fileID: 8300000, guid: 44259d912f4613d4da5e48ce997d9063, type: 3}
+    volume: 0.355
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: TimeTicking
+    clip: {fileID: 8300000, guid: 2921fa78376086a4881181f93c380e03, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Navigation
+    clip: {fileID: 8300000, guid: 63a2b38f28d25474a8b3203fc024a059, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PointDeduct
+    clip: {fileID: 8300000, guid: f3ba9d2955737a24f9cfed49a6fdaf0f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RockHit
+    clip: {fileID: 8300000, guid: ed11c44f3bbaa9e4c9df9921e501ca56, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SwitchBox
+    clip: {fileID: 8300000, guid: 1dacdfb5962e3764f888141497d6e78a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Typing
+    clip: {fileID: 8300000, guid: 10941122e37c4b74aa275f25a9b23c8f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Refuel
+    clip: {fileID: 8300000, guid: 5ce084b5a07762745a0e35b0f642a96e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SpendMoney
+    clip: {fileID: 8300000, guid: 9e079b17f7a80734db0ae9075cb10cee, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeBoat
+    clip: {fileID: 8300000, guid: 370c89547b553764ebd293c85b455af1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

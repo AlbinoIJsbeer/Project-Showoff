@@ -25,6 +25,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	[SerializeField] private float boatSpeed;
 	[SerializeField] private float maxBoatSpeed;
+	[SerializeField] private float fuelConsumptionRate;
 
 	private bool _rotateTowardsTarget;
 
@@ -61,6 +62,11 @@ public class BoatController : MonoBehaviour
 		boatColliders = gameObject.GetComponents<BoxCollider>();
 		HealthBar.OnBirdRescueSuccess += BirdSaved;
 		HealthBar.OnBirdRescueFail += BirdDied;
+
+		FindObjectOfType<AudioManager>().Play("Ocean");
+		FindObjectOfType<AudioManager>().Play("Engine");
+		FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
+		FindObjectOfType<AudioManager>().Play("EngineStart");
 	}
 
 	private void FixedUpdate()
@@ -75,9 +81,8 @@ public class BoatController : MonoBehaviour
 			case BoatState.START:
 				TargetPosition();
 				break;
-			// SAIL STATE
 			case BoatState.SAIL:
-				//PauseMenu.GameIsPaused = false;
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 				{
@@ -85,20 +90,17 @@ public class BoatController : MonoBehaviour
 					Sail();
 				}
 				break;
-
-			// DOCK STATE
 			case BoatState.DOCK:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.4f);
 				Dock();
 				break;
-
-			// DOCKED STATE
 			case BoatState.DOCKED:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0);
 				Docked();
 				PauseMenu.GameIsPaused = true;
 				break;
-
-			// RESCUE STATE
 			case BoatState.RESCUE:
+				FindObjectOfType<AudioManager>().Volume("Engine", 0.2f);
 				TargetPosition();
 				if (NavDistance() && boatFuel.Fuel > 0)
 					RescueAnimal();
@@ -238,12 +240,10 @@ public class BoatController : MonoBehaviour
 			else boatSpeed = 1f;
 
 			// Use fuel when moving
-			boatFuel.Fuel -= 0.02f;
-			//boatEngine.volume = 0.4f;
+			boatFuel.Fuel -= fuelConsumptionRate;
 		}
 		else
 		{
-			//boatEngine.volume = 0.1f;
 			boatSpeed -= 0.01f;
 		}
 	}
@@ -297,6 +297,10 @@ public class BoatController : MonoBehaviour
 			LookAtTarget();
 			Sail();
 		}
+		else
+		{
+			_targetPosition = transform.position;
+		}
 	}
 
 	// Enable click in game after some time when you close the in-game menu
@@ -329,7 +333,7 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.SAIL;
 				}
 			}
-			else if (hit.transform.tag == "Dock")
+			else if (hit.transform.tag == "Dock" && boatCurrentState != BoatState.RESCUE)
 			{
 				if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
 				{
@@ -337,10 +341,11 @@ public class BoatController : MonoBehaviour
 					boatCurrentState = BoatState.DOCK;
 				}
 			}
-			else if (hit.transform.tag == "Animal")
+			else if (hit.transform.tag == "Animal" && boatCurrentState != BoatState.RESCUE)
 			{
 					if (Input.GetMouseButtonDown(0) && timeToClick <= 0)
 					{
+						FindObjectOfType<AudioManager>().Play("BirdWhistle");
 						_targetPosition = new Vector3(hit.point.x, 0, hit.point.z);
 						boatCurrentState = BoatState.RESCUE;
 					}

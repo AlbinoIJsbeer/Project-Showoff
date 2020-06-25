@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BoatStats : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class BoatStats : MonoBehaviour
     [SerializeField] private TMP_Text trashDisplay;
 
     [SerializeField] private GameObject rockHitNotification;
+    [SerializeField] private Button deposit;
 
     [SerializeField] private List<GameObject> facts;
     private int factIndex;
@@ -43,11 +45,23 @@ public class BoatStats : MonoBehaviour
 
     void Update()
     {
-        Manager.Instance.Score = score;
+        //Manager.Instance.Score = score;
         ShowStats();
         ClampScore();
         TrashDebugger();
         ShowFact();
+        CheckIfDepositAvailable();
+
+        if (BoatController.boatCurrentState == BoatController.BoatState.DOCKED)
+            rockHitNotification.SetActive(false);
+    }
+
+    private void CheckIfDepositAvailable()
+    {
+        if (trash == 0)
+            deposit.interactable = false;
+        else
+            deposit.interactable = true;
     }
 
     private void ShowFact()
@@ -99,7 +113,7 @@ public class BoatStats : MonoBehaviour
     private void ResetStats()
     {
         score = 0;
-        money = 0;
+        money = 200;
         trash = 0;
     }
 
