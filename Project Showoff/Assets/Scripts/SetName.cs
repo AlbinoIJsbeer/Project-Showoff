@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SetName : MonoBehaviour
 {
-    [SerializeField] private GameObject manager;
 
-    void Start()
+    public void SetPlayerName(string _name)
     {
-        manager.name = "";
+        Manager.Instance.Name = _name;
     }
 }

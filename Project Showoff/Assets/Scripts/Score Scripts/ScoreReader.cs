@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.XPath;
+using UnityEngine;
 
-public class ScoreReader
+public class ScoreReader : MonoBehaviour
+
 {
 
     private XmlDocument _xml = new XmlDocument();

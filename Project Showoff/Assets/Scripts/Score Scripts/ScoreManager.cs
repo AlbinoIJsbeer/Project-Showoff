@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using UnityEngine;
 
 public class ScoreManager
 {
-    public static string _fileName = "scores.xml"; // Since we don't give a path, this'll be saved in the "bin" folder
+    public static string _fileName = "HighScores.xml"; // Since we don't give a path, this'll be saved in the project folder
 
     public List<Score> Highscores { get; private set; }
 
@@ -40,7 +41,10 @@ public class ScoreManager
     {
         // If there isn't a file to load - create a new instance of "ScoreManager"
         if (!File.Exists(_fileName))
+        {
             return new ScoreManager();
+        }
+            
 
         // Otherwise we load the file
 
@@ -70,6 +74,3 @@ public class ScoreManager
         }
     }
 }
-
-
-

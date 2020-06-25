@@ -16,6 +16,9 @@ TagManager:
   - Animal
   - Sea
   - RescueNotification
+  - Position
+  - Name
+  - Score
   layers:
   - Default
   - TransparentFX
