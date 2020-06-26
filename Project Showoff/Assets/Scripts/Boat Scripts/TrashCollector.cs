@@ -9,7 +9,7 @@ public class TrashCollector : MonoBehaviour
 	// Notification for maximum trash capacity reached
 	[SerializeField] private TMP_Text capacityThreshold;
 	[SerializeField] private GameObject capacityNotification;
-	private float notificationTimer = 5;
+	private float notificationTimer = 6;
 	private bool notificationOn = false;
 
 	// Score increase per trash collected

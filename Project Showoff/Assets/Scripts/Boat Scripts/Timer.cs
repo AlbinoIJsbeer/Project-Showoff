@@ -7,7 +7,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timeDisplay;
-    public float timer = 120.00f;
+    public float timer = 300.00f;
     public ScoreManager scoreManager;
 
     void Start()
@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+
         TimerCountdown();
 
         if (Input.GetKeyDown(KeyCode.G))
