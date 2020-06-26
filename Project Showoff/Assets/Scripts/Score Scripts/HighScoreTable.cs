@@ -15,49 +15,51 @@ public class HighScoreTable : MonoBehaviour
     private void Awake()
     {
         entryTemplate.gameObject.SetActive(false);
-        //highscoreEntryList = new List<HighScoreEntry>()
-        //{
-        //    new HighScoreEntry{ score = 0, name = "Test" }
-        //};
+
+        highscoreEntryList = new List<HighScoreEntry>()
+        {
+            new HighScoreEntry{ score = 0, name = "Test" } //after done re comment this
+        };
 
         
-        string jsonString = PlayerPrefs.GetString("highscoretable");
-        HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
+        //string jsonString = PlayerPrefs.GetString("highscoretable");
+        //HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
 
-        if (highscores == null)
-        {
-            // There's no stored table, initialize
-            Debug.Log("Initializing table with default values...");
-            AddHighScoreEntry(0, "Test");
-            // Reload
-            jsonString = PlayerPrefs.GetString("highscoreTable");
-            highscores = JsonUtility.FromJson<HighScores>(jsonString);
-        }
+        //if (highscores == null)
+        //{
+        //    // There's no stored table, initialize
+        //    Debug.Log("Initializing table with default values...");                       //after done uncomment this
+        //    AddHighScoreEntry(0, "Test");
+            
+        //    // Reload
+        //    jsonString = PlayerPrefs.GetString("highscoreTable");
+        //    highscores = JsonUtility.FromJson<HighScores>(jsonString); //after done uncomment this
+        //}
 
-        for (int i = 0; i < highscores.highscoreEntryList.Count; i++)
+        for (int i = 0; i < highscoreEntryList.Count; i++)
         {
-            for(int j = 0; j < highscores.highscoreEntryList.Count; j++)
+            for(int j = 0; j < highscoreEntryList.Count; j++)
             {
-                if(highscores.highscoreEntryList[j].score < highscores.highscoreEntryList[i].score)
+                if(highscoreEntryList[j].score < highscoreEntryList[i].score)
                 {
-                    HighScoreEntry tmp = highscores.highscoreEntryList[i];
-                    highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
-                    highscores.highscoreEntryList[j] = tmp;
+                    HighScoreEntry tmp = highscoreEntryList[i]; // after one add highscores.
+                    highscoreEntryList[i] = highscoreEntryList[j];
+                    highscoreEntryList[j] = tmp;
                 }
             }
         }
 
         highscoreEntryTransformList = new List<Transform>();
 
-        foreach (HighScoreEntry highscoreEntry in highscores.highscoreEntryList)
+        foreach (HighScoreEntry highscoreEntry in highscoreEntryList)
         {
             CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }
 
-        //HighScores highscores = new HighScores { highscoreEntryList = highscoreEntryList };
-        //string json = JsonUtility.ToJson(highscores);
-        //PlayerPrefs.SetString("highscoretable", json);
-        //PlayerPrefs.Save();
+        HighScores highscores = new HighScores { highscoreEntryList = highscoreEntryList };
+        string json = JsonUtility.ToJson(highscores);
+        PlayerPrefs.SetString("highscoretable", json);
+        PlayerPrefs.Save();
         
     }
 
@@ -99,6 +101,15 @@ public class HighScoreTable : MonoBehaviour
 
         string jsonString = PlayerPrefs.GetString("highscoretable");
         HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
+
+        if (highscores == null)
+        {
+            // There's no stored table, initialize
+            highscores = new HighScores()
+            {
+                highscoreEntryList = new List<HighScoreEntry>()
+            };
+        }
 
         highscores.highscoreEntryList.Add(highscoreEntry);
 
