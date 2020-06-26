@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -11,10 +12,12 @@ public class Manager : MonoBehaviour
     public string Name { get; set; }
     public int Score;
 
+    
     public Language _language = Language.ENGLISH;
 
     private void Awake()
     {
+
         Name = "Anonymous";
         if (Instance == null)
         {
@@ -27,6 +30,7 @@ public class Manager : MonoBehaviour
         }
     }
 
+
     public void SetPlayerNickName(string value)
     {
         if (string.IsNullOrEmpty(value))
@@ -37,4 +41,6 @@ public class Manager : MonoBehaviour
         Name = value;
         Debug.Log(Name);
     }
+
+
 }

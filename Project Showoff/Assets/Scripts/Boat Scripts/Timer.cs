@@ -10,6 +10,11 @@ public class Timer : MonoBehaviour
     public float timer = 120.00f;
     public ScoreManager scoreManager;
 
+    void Start()
+    {
+        scoreManager = new ScoreManager();
+    }
+
     void Update()
     {
         TimerCountdown();
@@ -52,6 +57,7 @@ public class Timer : MonoBehaviour
         // If there is no time left, then go to end screen
         if (timer <= 0)
         {
+            HighScoreTable.AddHighScoreEntry(Manager.Instance.Score, Manager.Instance.Name);
             SceneManager.LoadScene(2);
         }
     }
